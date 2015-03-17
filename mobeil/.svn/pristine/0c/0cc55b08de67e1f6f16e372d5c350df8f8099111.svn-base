@@ -1,0 +1,40 @@
+/*自定义的公用样式类*/
+.mb12{margin-bottom:12px;}
+.cb1{background:#e8450a;}
+html,body{width:100%;margin:0;}
+.g-0311-header01{background:#e8450a;padding:15px 3%;border-bottom:1px solid #fff;}
+.g-0311-h101{width:30%;margin-right:5%;}
+.logo img{width:100%;}
+.g-0311-ul1{width:59.8%;padding-left:5%;border-left:1px solid #fff;font:14px/18px 微软雅黑; box-sizing:border-box;}
+.g-0311-ul1>li{color:#fff;}
+.g-tellPhone img{height:24px;}
+.g-nav01{background:#e8450a;font:16px/16px 宋体;padding:15px 0;border-bottom:1px solid #fff;}
+.g-nav01>ul>li{float:left;border-right:1px solid #fff;width:25%;text-align:center;box-sizing:border-box;}
+.g-nav01>ul>li.bn{border:none;}
+.g-nav01>ul>li>a:link,.g-nav01>ul>li>a:visited{text-decoration:none;color:#fff;}
+.g-nav01>ul>li>a:hover{text-decoration:underline;}
+.g-0311-h301{font:20px/40px 宋体;padding-left:3%;color:#fff;background:#e8450a;}
+.g-0311-ul2{padding:15px 3%;}
+.g-0311-ul2>li{float:left;width:31%;margin-right:3.333%;}
+.g-0311-ul2>li img{width:100%; border-radius:100%;}
+.g-0311-p1{font:16px/30px 宋体;padding:0 3%;text-indent:2em;}
+.g-0311-p1 a:link,.g-0311-p1 a:visited{color:#f30;text-decoration:none;}
+.g-0311-p1 a:hover{text-decoration:underline;}
+.g-0311-ul03{padding:15px 3%;}
+.g-0311-ul03>li{float:left;width:48%;margin-right:3%;}
+.g-0311-ul03>li.mr0{margin-right:0;}
+.g-0311-ul03>li img{width:100%;}
+.g-0311-ul03>li span{display:block;font:16px/40px 宋体;text-align:center;}
+.g-0311-ul03>li>a:link,.g-0311-ul03>li>a:visited{text-decoration:none;color:#666;}
+.g-0311-ul03>li>a:hover{color:#f30;text-decoration:underline;}
+.g-0311-h302{text-align:center;color:#fff;background:#383838;font:16px/40px 微软雅黑;}
+.g-0311-p2{font:16px/30px 宋体;padding:0 10px 3%;}
+.g-0311-span1{display:inline-block;width:20%;}
+.g-info{width:35%;margin:0 auto 15px;}
+.g-0311-ul04{padding-top:15px;border-top:1px solid #fff;}
+.g-0311-ul04>li{font:15px/26px 宋体;color:#fff;}
+.g-0311-div1{margin:15px 3%;padding:2%;box-shadow:0 3px 5px rgba(0,0,0,0.3);}
+.formTitle{font:14px/30px 宋体;color:#666;font-weight:bold;}
+.g-0311-div1 .inputText{height:24px;width:93%;padding:0 3%;}
+.g-textarea1{width:95%;height:60px;padding:2%;}
+.g-subBtn1{display:inline-block;height:33px;width:26%;background:url(../img/tjly_37.jpg) no-repeat 50% 50%; background-size:100% 100%;border:none;cursor:pointer;}

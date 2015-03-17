@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{
+    margin:0;
+    padding:0
+}
+a{ 
+    text-decoration:none
+}
+
+#wrap{
+    width:400px;
+    margin:auto
+}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+	<a href="#">web标准学习</a>
+   <a href="#">css</a>
+   <a href="#">javascript</a>
+   <a href="#">html5</a>
+   <a href="#">canvas</a>
+   <a href="#">video</a>
+   <a href="#">audio</a>
+   <a href="#">jQuery</a>
+   <a href="#">jQuerymobile</a>
+   <a href="#">flash</a>
+   <a href="#">firefox</a>
+   <a href="#">chrome</a>
+   <a href="#">opera</a>
+   <a href="#">IE9</a>
+   <a href="#">css3.0</a>
+   <a href="#">andriod</a>
+   <a href="#">apple</a>
+   <a href="#">google</a>
+   <a href="#">jobs</a>
+</div>
+<script type="text/javascript">
+
+//随机方法
+function rand(num)
+{
+	return parseInt(Math.random()*num+1);	
+}
+
+//随机颜色值
+function randomColor()
+{
+	var str = Math.ceil((Math.random()*16777215)).toString(16); //把数字转换成16进制
+	
+	if(str.length < 6)
+	{
+		str = "0" + str;
+	}
+	
+	return str;
+}
+
+
+//标签实现
+var aList = document.getElementById("wrap").getElementsByTagName("a");
+var i = 0;
+var len = aList.length;
+for(i;i<len;i++)
+{
+	aList[i].className = "color"+rand(5); //生成随机类名
+	aList[i].style.fontSize = rand(12)+12+"px"; //随机字号
+	aList[i].style.color = "#"+randomColor();
+	
+	aList[i].onmouseover = function()
+	{
+		this.style.background = "#"+randomColor(); 	
+	}
+	aList[i].onmouseout = function()
+	{
+		this.style.background = "";
+	}
+}
+</script>
+</body>
+</html>

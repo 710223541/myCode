@@ -1,0 +1,88 @@
+/* CSS Document */
+body{background:#deddcd;}
+.y2-0316-header1{background:url(../images/0316-nvaBg.png) repeat-x;box-shadow:0 1px 3px rgba(0,0,0,0.3);border-bottom:1px solid #d5d5d5;width:100%;}
+.y2-0316-ul1{width:96%;margin:0 auto;text-align:right;}
+.y2-0316-ul1 li{display:inline-block;margin-right:2.5%;}
+.y2-0316-ul1 li a:link,.y2-0316-ul1 li a:visited{
+	text-decoration:none;
+	font:14px/40px "微软雅黑";
+	color:#666;
+	font-weight:bold; 
+	transition:color 1s,transform 1s;
+	-webkit-transition:color 1s,-webkit-transform 1s;
+	}
+.y2-0316-ul1 li a:hover{
+	color:#000;
+	-webkit-transform:scale(1.2);
+}
+
+.y2-0316-ul2{
+	width:73%;
+	margin:0 auto;
+	margin-top:80px;
+	}
+.y2-0316-ul2 li{
+	display:inline; 
+	float:left;
+	-webkit-perspective: 500; 
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition-property: perspective; 
+	-webkit-transition-duration: 0.5s; 
+	max-width:100%;
+	}
+.y2-0316-ul2 li:hover {
+	 -webkit-perspective: 5000;
+	}
+.y2-0316-ul2 li img{
+	border:10px solid #fcfafa; 
+	-webkit-transform: rotateY(30deg);
+	-moz-box-shadow:0 3px 10px #888;
+	-webkit-box-shadow:0 3px 10px #888;
+	-webkit-transition-property: transform; 
+	-webkit-transition-duration: 0.5s; 
+	}
+	
+.y2-0316-ul2 li:hover img{
+	-webkit-transform: rotateY(0deg);
+	}
+
+.y2-0316-div1{
+	border:10px solid #fcfafa; 
+	padding:20px; width:200px; 
+	height:180px; 
+	background-color:#deddcd; 
+	margin:-195px 0 0 55px; 
+	position:absolute;
+	-moz-box-shadow:0 20px 40px #888; 
+	-webkit-box-shadow:0 20px 40px #888;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, box-shadow, margin; 						    -webkit-transition-duration: 0.5s; 
+	}
+
+.y2-0316-ul2 li:hover .y2-0316-div1 { 
+	-webkit-transform: rotateY(0deg); 
+	-webkit-box-shadow:0 5px 10px #888; 
+	margin:-175px 0 0 30px; 
+	}
+.y2-0316-ul2 h3{
+	color: #7a3f3a;
+	font-variant: small-caps;
+	font-family: Georgia,serif,Times;
+	text-align: center;
+	padding-bottom: 15px;
+	}
+.y2-0316-ul2 p{
+	padding-bottom:15px;
+	}
+.y2-0316-ul2 a{
+	background-color: #7a3f3a;
+	padding: 5px 10px;
+	color: #eee;
+	text-decoration: none;
+	display: block;
+	width: 80px;
+	text-align: center;
+	margin: 0 auto;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	}

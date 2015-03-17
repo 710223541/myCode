@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标签云</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#wrap{width:250px;padding:5px;border:1px solid #d5d5d5;margin: 100px auto 0;}
+a:link,a:visited{text-decoration:none;display:inline-block;line-height:150%;text-align:center;margin:3px;border-radius:3px;color:#fff;padding:0 5px;font-size:12px;font-family:"微软雅黑";}
+a:hover{color:#fff;}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+	<a href="#">Javascript</a>
+	<a href="#">Php</a>
+	<a href="#">java</a>
+	<a href="#">python</a>
+	<a href="#">nodejs</a>
+	<a href="#">css3</a>
+	<a href="#">将军战列舰</a>
+	<a href="#">雍刀巡洋舰</a>
+	<a href="#">超级要塞</a>
+	<a href="#">世纪轰炸机</a>
+    <a href="#">Javascript</a>
+	<a href="#">Php</a>
+	<a href="#">java</a>
+	<a href="#">python</a>
+	<a href="#">nodejs</a>
+	<a href="#">css3</a>
+	<a href="#">将军战列舰</a>
+	<a href="#">雍刀巡洋舰</a>
+	<a href="#">超级要塞</a>
+	<a href="#">世纪轰炸机</a>
+    <a href="#">Javascript</a>
+	<a href="#">Php</a>
+	<a href="#">java</a>
+	<a href="#">python</a>
+	<a href="#">nodejs</a>
+	<a href="#">css3</a>
+	<a href="#">将军战列舰</a>
+	<a href="#">雍刀巡洋舰</a>
+	<a href="#">超级要塞</a>
+	<a href="#">世纪轰炸机</a>
+</div>
+<script type="text/javascript">
+//随机颜色
+function randomColor()
+{
+	var str = Math.ceil(Math.random()*16777216).toString(16);
+	if(str.length<6)
+	{
+		str = "0"+str;	
+	}	
+	return str;
+}
+
+//随机方法
+function rand(num)
+{
+	return parseInt(Math.random()*num+1);
+}
+
+var aList = document.getElementById("wrap").getElementsByTagName("a");
+
+for(var i=0;i<aList.length;i++)
+{
+	aList[i].className = "color"+rand(5);
+	aList[i].style.background = "#"+randomColor();
+	aList[i].style.fontSize = rand(12)+12+"px";
+}
+
+console.log(rand(5));
+</script>
+</body>
+</html>
