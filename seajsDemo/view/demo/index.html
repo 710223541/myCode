@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>seajs模块化开发实战</title>
+<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.css">
+</head>
+
+<body>
+<div class="container tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active y2-tagNav"><a href="javascript:;">首页</a></li>
+        <li class="y2-tagNav"><a href="javascript:;">帮助</a></li>
+        <li class="y2-tagNav"><a href="javascript:;">娱乐</a></li>
+        <li class="y2-tagNav"><a href="javascript:;">学习</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle y2-dropToggle" data-toggle="dropdown" href="#">
+                Dropdown<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu y2-dropCont">
+            	<li><a href="javascript:;">钢铁侠</a></li>
+                <li><a href="javascript:;">绿巨人</a></li>
+                <li><a href="javascript:;">美国队长</a></li>
+                <li><a href="javascript:;">雷神</a></li>
+            </ul>
+        </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active well y2-tagCont" id="tab1">
+          <p>梳理今年李克强记者会的“风格”，绕不开的两个关键词：“摆数据”和“讲故事”。面对尖锐提问，他不是空泛说理，而是直接引用数据回应；在阐述重大问题时，他很少宏大叙事，经常用细节和故事说话。</p>
+          <p>典型一幕是，在回应外媒记者关于“中国是否已经成为世界上最大经济体”时，李克强给出一组数字：即便按照国际权威统计，中国也只是世界第二大经济体。而如果按照人均GDP计算，中国排世界80位以后。</p>
+        </div>
+        <div class="tab-pane well y2-tagCont-js" id="tab2">
+          <p>接着他就讲了两个普通人的平凡故事：春节前，他去中国西部农村考察，连走两户人家。一家母子二人，住在四面透风的破瓦房里，儿子40多岁了，因为穷还没有娶上媳妇。再到另一家，好不容易出了一个大学生，但是妹妹为了给哥哥赚学费，春节都没有回家。</p>
+        </div>
+        <div class="tab-pane well y2-tagCont" id="tab3">
+          <p>今年有记者问，创业是个人的事情，是市场行为，政府为什么要为这事如此操心呢？，他从30多年前家庭联产承包责任制激发出亿万农民积极性的历史讲起，强调“大众创业，万众创新，实际上是一场改革，这也是历史的启示”。在回答网购是否会冲击实体店的问题时，他又谈起自己在实体店时考察的经历，“我问他们有没有担心？实体店的老板给我看，他也开了网店，而且把自己实体店的状况拍成视频上网，他说这对购物者来说更有真实感，更有竞争力”。</p>
+        </div>
+        <div class="tab-pane well y2-tagCont" id="tab4">
+          <p>在论证中国不会出现系统性金融风险时，他精确指出：“地方政府性债务70%以上是投资性的，是有收益的。”在谈下一步简政放权的工作安排时，他也给出实在数字：“国家部门授权地方政府审批的事项还有1200多项，今年要砍掉200多项。”</p>
+          <p>最精彩的一幕出现在正面回应外媒提出的“中国是否成为全球通货紧缩的输出者”问题时。</p>
+          <p>李克强先用数据说话——中国的物价总水平在1月份是正增长，2月份涨幅比1月份更高，因为衡量通货紧缩的标准是一个国家的物价总水平持续出现负增长，“所以不能说中国已经出现了通货紧缩”。</p>
+        </div>
+  	</div>
+</div>
+<script src="../../static/js/sea.js"></script>
+<script type="text/javascript">
+seajs.use("demo/main.js");
+
+</script>
+</body>
+</html>
