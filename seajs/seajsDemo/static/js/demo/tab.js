@@ -7,9 +7,11 @@ define(function(require,exports,module){
 			
 			$(this).click(function(){
 				
-				$(this).addClass("active").siblings().removeClass("active");
+				$(this).addClass("active")
+				.siblings().removeClass("active");
 				
-				obj2.eq(index).addClass("active").siblings().removeClass("active");
+				obj2.eq(index).addClass("active")
+				.siblings().removeClass("active");
 					
 			});
 			
