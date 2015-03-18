@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>瀑布流效果+图片查看</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE; font-family:'微软雅黑';}
+#conWrap{ width:1000px; margin:50px auto 20px; position:relative;}
+#conWrap img{ vertical-align:top; position:absolute; box-shadow:0 0 10px; border-radius:10px; cursor:pointer;}
+#load{ background:url(../img/loader.gif) no-repeat center #DCEFFE; width:100%; height:40px; position:fixed; bottom:0; left:0;}
+#backTop{ background:#6cf;; width:80px; height:80px; position:fixed; bottom:20px; right:20px; border-radius:50%; cursor:pointer; filter:alpha(opacity=0); opacity:0; text-align:center; font-weight::bold; color:#fff; font-size:70px; line-height:100px;}
+#mark{ background:#000; filter:alpha(opacity=0); opacity:0; position:absolute; left:0; display:none;}
+#showPic{ position:fixed; width:900px; height:700px; background: #333;  z-index:2; box-shadow: 0 2px 20px; display:none; filter:alpha(opacity=0); opacity:0; overflow:hidden;}
+#showPic span.btn{ position:absolute; width:50px; height:100%; text-align:center; color:#ccc;  font-weight:bold; font-size:60px; top:0; cursor:pointer; filter:alpha(opacity=10); opacity:0.1; z-index:3; -moz-user-select:   none;}
+#showPic span.next{ right:0;}
+#showPic span.close{ color:red; position:absolute; right:0; top:0; width:50px; height:50px; text-align:center; line-height:50px; cursor:pointer; filter:alpha(opacity=30); opacity:0.3; font-weight:bold; font-size:30px; z-index:3; transition:0.5s;}
+#showPic span.close:hover{ filter:alpha(opacity=70); opacity:0.7; -webkit-transform:rotate(360deg); -moz-transform:rotate(360deg); transform:rotate(360deg);}
+#showPic img{ position:absolute; left:0;}
+#showPic img.pic{ cursor:pointer; height:100%;}
+#showPic img.loading{ width:50px; height:50px; display:none;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+function addData( data ){
+	var pbl = new Pbl;
+	pbl.addData(data);
+}
+window.onload = function(){
+	var oBack = document.getElementById('backTop');
+	var oShow = document.getElementById('showPic');
+	
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	
+	var pbl = new Pbl;
+	pbl.init();
+	pbl.addTL();
+	pbl.getData();
+	
+	window.onscroll = function(){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		
+		if( scrollTop > 500 ){
+			timeMove( oBack, { opacity : 50 } );
+		}else{
+			timeMove( oBack, { opacity : 0 } );
+		}
+		
+		pbl.toScroll();
+	};
+	oBack.onclick = backTop;
+	
+	window.onresize = function(){
+		pbl.toResize();
+		pbl.reShow();
+		if( oShow.style.display == 'block' ){
+			pbl.reMark();
+		}
+	};
+};
+
+function Pbl(){
+	this.obj = document.getElementById('conWrap');
+	this.obj2 = document.getElementById('load');
+	this.url = 'http://www.wookmark.com/api/json/popular?callback=addData&&page=';
+	this.iW = 300;
+	
+	this.oCon = document.getElementById('conWrap');
+	this.oMark = document.getElementById('mark');
+	this.oShow = document.getElementById('showPic');
+	this.aSpan = this.oShow.getElementsByTagName('span');
+	this.oImg1 = this.oShow.getElementsByTagName('img')[0];
+	this.oImg2 = this.oShow.getElementsByTagName('img')[1];
+	this.aImg = this.oCon.getElementsByTagName('img');
+	
+	this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+	this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+}
+
+Pbl.off = true;
+Pbl.off2 = true;
+Pbl.off3 = true;
+Pbl.page = 0;
+Pbl.num = 0;
+Pbl.cell = 0;
+Pbl.arrT = [];
+Pbl.arrL = [];
+Pbl.index = 0;
+Pbl.arrW = [];
+Pbl.arrH = [];
+
+Pbl.prototype = {
+	init : function(){
+		var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+		
+		Pbl.cell = Math.floor( ( clientWidth - 40 ) / ( this.iW + 20 ) );
+		if( Pbl.cell < 3 ){
+			Pbl.cell = 3;
+		}else if( Pbl.cell > 9 ){
+			Pbl.cell = 9;
+		}
+		this.obj.style.width = Pbl.cell * ( this.iW + 20 ) - 20 + 'px';
+	},
+	
+	addTL : function(){
+		for(var i=0; i<Pbl.cell; i++){
+			Pbl.arrT.push( 0 );
+			Pbl.arrL.push( i * (this.iW + 20) );
+		}
+	},
+	
+	getData : function(){
+		if( Pbl.off ){
+			Pbl.off = false;
+			var oScript = document.createElement('script');
+			oScript.src = this.url + Pbl.page;
+			document.body.appendChild(oScript);
+			Pbl.page++;
+		}
+	},
+	
+	getMin : function(){
+		var v = Pbl.arrT[0];
+		var index = 0;
+		
+		for(var i=1; i<Pbl.arrT.length; i++){
+			if( Pbl.arrT[i] < v ){
+				v = Pbl.arrT[i];
+				index = i;
+			}
+		}
+		return index;
+	},
+	
+	getMax : function(){
+		var v = Pbl.arrT[0];
+		var index = 0;
+		
+		for(var i=1; i<Pbl.arrT.length; i++){
+			if( Pbl.arrT[i] > v ){
+				v = Pbl.arrT[i];
+				index = i;
+			}
+		}
+		return index;
+	},
+	
+	addData : function( data ){
+		timeMove( this.obj2, { opacity:0 }, 800, function(){
+			this.style.display = 'none';
+		});
+		
+		var This = this;
+		
+		for(var i=0; i<data.length; i++){
+			var oImg = document.createElement('img');
+			
+			Pbl.iH = this.iW / data[i].width * data[i].height;
+			oImg.style.width = this.iW + 'px';
+			oImg.style.height = Pbl.iH + 'px';
+			
+			var index = this.getMin();
+			oImg.style.left = Pbl.arrL[index] + 'px';
+			oImg.style.top = Pbl.arrT[index] + 'px';
+			
+			Pbl.arrT[index] += Pbl.iH + 20;
+			Pbl.arrW.push( parseInt(data[i].width) );
+			Pbl.arrH.push( parseInt(data[i].height) );
+			
+			oImg.index = Pbl.num;
+			Pbl.num++;
+			
+			oImg.src = data[i].image;
+			oImg.onclick = function(){
+				This.showPic( this );
+			}
+			
+			this.obj.appendChild( oImg );
+		}
+		
+		Pbl.off = true;
+		if( Pbl.page == 10 ) Pbl.off2 = false;
+		
+		this.oImg2.style.display = 'none';
+		
+		var index2 = this.getMax();
+		this.obj.style.height = Pbl.arrT[index2] + 10 + 'px';
+	},
+
+	toScroll : function(){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		var index = this.getMin();
+		var minHeight = Pbl.arrT[index] + this.obj.offsetTop;
+		if( minHeight < scrollTop + clientHeight ){
+			this.checkLast();
+		}
+	},
+	
+	checkLast : function(){
+		if( Pbl.off2 ){
+			this.oImg2.style.display = 'block';
+			this.obj2.style.display = 'block';
+			timeMove( this.obj2, { opacity : 100 }, 800 );
+			this.getData();
+		}else{
+			if( Pbl.off3 ){
+				Pbl.off3 = false;
+				alert( '已经是最后一张了！' );
+			}
+			this.oImg2.style.display = 'none';
+		}
+	},
+	
+	toResize : function(){
+		var x = Pbl.cell;
+		this.init();
+		if( x != Pbl.cell ){
+			Pbl.arrT = [];
+			Pbl.arrL = [];
+			this.addTL();
+			
+			for(var i=0; i<this.aImg.length; i++){
+				var index = this.getMin();
+				timeMove( this.aImg[i], { left : Pbl.arrL[index], top : Pbl.arrT[index] }, 1000 );
+				
+				Pbl.arrT[index] += this.aImg[i].offsetHeight + 20;
+			}
+		}
+	},
+	
+	showPic : function( obj ){
+		var This = this;
+		var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+		var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		Pbl.index = obj.index;
+		
+		this.reMark();
+		timeMove( this.oMark, { opacity:50 } );
+		
+		var W2 = obj.offsetWidth;
+		var H2 = obj.offsetHeight;
+		var L2 = obj.offsetLeft + this.oCon.offsetLeft;
+		var T2 = obj.offsetTop + this.oCon.offsetTop - scrollTop;
+		
+		this.oShow.style.width = obj.offsetWidth + 'px';
+		this.oShow.style.height = obj.offsetHeight + 'px';
+		this.oShow.style.left = L2 + 'px';
+		this.oShow.style.top = T2 + 'px';
+		this.oShow.style.display = 'block';
+		
+		this.reShow();
+			
+		for(var i=0; i<2; i++){
+			this.aSpan[i].onmouseover = function(){
+				timeMove( this, { opacity : 90 } );
+			};
+			
+			this.aSpan[i].onmouseout = function(){
+				timeMove( this, { opacity : 10 } );
+			};
+			
+			this.aSpan[i].onselectstart = function(){
+				return false;
+			}
+		}
+		
+		this.aSpan[2].onclick = function(){
+			timeMove( This.oShow, { width:W2, height:H2, left:L2, top:T2, opacity:0 }, 1000, function(){
+				this.style.display = 'none';
+			});
+			
+			timeMove( This.oMark, { opacity:0 }, function(){
+				this.style.display = 'none';
+			});
+		};
+				
+		this.aSpan[0].onclick = function(){
+			if( !This.aImg[Pbl.index - 1] ) {
+				alert( '已经是第一张了！' );
+				return;
+			}
+			This.reShow( -1 );
+		}
+		this.aSpan[1].onclick = function(){
+			if( !This.aImg[Pbl.index + 1] ){
+				This.checkLast();
+			}else{
+				This.reShow( 1 );
+			}
+		}	
+	},
+	
+	reMark : function(){
+		var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+		
+		this.oMark.style.width = clientWidth + 'px';
+		this.oMark.style.height = document.body.offsetHeight + 'px';
+		this.oMark.style.top = 0;
+		
+		this.oMark.style.display = 'block'
+	},
+	
+	reShow : function( num ){
+		num = num || 0;
+		
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+		var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		
+		var W = clientWidth - clientWidth / 4;
+		var H = clientHeight - clientHeight / 8;
+		var L = ( clientWidth - W ) / 2;
+		var T = ( clientHeight - H ) / 2;
+		
+		for(var i=0; i<2; i++){
+			this.aSpan[i].style.lineHeight = H + 'px';
+		}
+		
+		var scale = H / Pbl.arrH[Pbl.index + num];
+		this.oImg1.style.width = Pbl.arrW[Pbl.index + num] * scale + 'px';
+		this.oImg1.style.left = ( W - this.oImg1.offsetWidth ) / 2 + 'px';
+		
+		this.oImg1.src = '';
+		this.oImg1.src = this.aImg[Pbl.index + num].src;
+		this.oImg1.onclick = function(){
+			window.open( this.src );
+		}
+		Pbl.index += num;
+			
+		if( num == 0 ){
+			this.oImg2.style.left = ( W - 50 ) / 2 + 'px';
+			this.oImg2.style.top = ( H - 50 ) / 2 + 'px';
+			
+			timeMove( this.oShow, { width : W, height : H, left : L, top : T, opacity : 100 }, 1000 );
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+	<div id="conWrap"></div>
+    <div id="load"></div>
+    <div id="backTop">^</div>
+    <div id="mark"></div>
+    <div id="showPic">
+    	<span class="prev btn"><</span>
+        <img src="../img/tab_1.jpg" class="pic">
+        <img src="../img/loader.gif" class="loading">
+        <span class="next btn">></span>
+        <span class="close">X</span>
+   	</div>
+</body>
+</html>

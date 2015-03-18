@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>圆周动画</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#wrap{ width:500px; height:500px; background:#F9FED3; margin:150px auto 0; position:relative;}
+#y{ width:400px; height:400px; border:#CDE3FE 2px solid; position:absolute; left:48px; top:48px; border-radius:50%; box-shadow:#6cf 0 0 10px;}
+#bling{ position:absolute; width:20px; height:20px; background:#5f2; box-shadow:#3F0 0 0 20px 5px; border-radius:50%;}
+</style>
+<script>
+window.onload = function(){
+	var oWra = document.getElementById('wrap');
+	var oY = document.getElementById('y');
+	var oBling = document.getElementById('bling');
+	var num = 0, r = 200;
+	
+	var x = oY.offsetWidth/2+oY.offsetLeft;
+	var y = oY.offsetHeight/2+oY.offsetTop;
+	
+	oBling.style.left = oY.offsetLeft+oY.offsetWidth-oBling.offsetWidth/2+'px';
+	oBling.style.top = oY.offsetTop+oY.offsetHeight/2-oBling.offsetHeight/2+'px';
+	
+	setInterval(function(){
+		num++;
+		var a = Math.sin( num/180*Math.PI ) * (r+3);
+		var b = Math.cos( num/180*Math.PI ) * (r+3);
+		
+		oBling.style.left = a + y -9 + 'px';
+		oBling.style.top = b + x -9 + 'px';
+	},15);
+};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<div id="y"></div>
+        <div id="bling"></div>
+    </div>
+</body>
+</html>

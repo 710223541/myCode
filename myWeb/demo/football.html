@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹动足球</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE; font-family:'微软雅黑';}
+#div{ width:0; height:0; position:fixed; top:300px; left:0; background:url(../img/football2.png) no-repeat center; border-radius:50%; z-index:2;}
+#prom{ width:500px; height:120px; background:#97EC9F; margin:50px auto 0; line-height:60px; text-align:center; font-weight:bold; color:#fff; font-size:26px; -moz-user-select:none;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div');
+	var oDiv2 = document.getElementById('prom');
+	
+	var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+	var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		
+	var timer = null, stopNum = 0;
+	
+	var prevX = 0, prevY = 0;
+	var iSpeedX = 0, iSpeedY = 0;
+	var off = true, off2 = true;;
+	
+	oDiv2.onselectstart = function(){
+		return false;
+	};
+	
+	function init(){
+		oDiv.style.left = clientWidth / 2 + 'px';
+		
+		timeMove( oDiv, { left:clientWidth/2-210/2, top:oDiv.offsetTop-210/2, width:210, height:210 }, 1000, function(){
+			ballMove();
+		});
+	}
+	init();
+	shining();
+	function shining(){
+		setTimeout( function(){
+			timeMove( oDiv2, { opacity : 50 }, 800, function(){
+				timeMove( oDiv2, { opacity : 100 }, 600, function(){
+					shining();
+				})
+			});
+		});
+	}
+	
+	oDiv.onmousedown = function(ev){
+		clearInterval( timer );
+		
+		var ev = ev || event;
+		var disX = ev.clientX - oDiv.offsetLeft;
+		var disY = ev.clientY - oDiv.offsetTop;
+		
+		prevX = ev.clientX;
+		prevY = ev.clientY;
+		
+		
+		if( oDiv.setCapture ) oDiv.setCapture();
+		document.onmousemove = function(ev){
+			var ev = ev || event;
+			
+			var L = ev.clientX - disX;
+			var T = ev.clientY - disY;
+			
+			/*if( L < 0 ){
+				L = 0;
+			}else */if( L > clientWidth - oDiv.offsetWidth ){
+				L = clientWidth - oDiv.offsetWidth;
+			}
+			
+			if( T < 0 ){
+				T = 0;
+			}else if( T > clientHeight - oDiv.offsetHeight ){
+				T = clientHeight - oDiv.offsetHeight;
+			}
+			
+			oDiv.style.left = L + 'px';
+			oDiv.style.top = T + 'px';
+			
+			iSpeedX = ev.clientX - prevX;
+			iSpeedY = ev.clientY - prevY;
+			
+			prevX = ev.clientX;
+			prevY = ev.clientY;
+		};
+		
+		document.onmouseup = function(){
+			document.onmousemove = document.onmouseup = null;
+			if( oDiv.releaseCapture ) oDiv.releaseCapture();
+			
+			var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+			var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			
+			ballMove();
+		};
+		return false;
+	};
+	
+	function ballMove(){
+		clearInterval( timer )
+		timer = setInterval( function(){
+			iSpeedY += 3;
+			
+			var X = oDiv.offsetLeft + iSpeedX;
+			var Y = oDiv.offsetTop + iSpeedY;
+			
+			if( X < 0 ){
+				X = 0;
+				iSpeedX *= -1;
+				iSpeedX *= 0.75;
+			}else if( X > clientWidth - oDiv.offsetWidth ){
+				X = clientWidth - oDiv.offsetWidth;
+				iSpeedX *= -1
+				iSpeedX *= 0.75;
+			}
+			
+			if( Y < 0 ){
+				Y = 0;
+				iSpeedY *= -1;
+				iSpeedY *= 0.75;
+			}else if( Y > clientHeight - oDiv.offsetHeight ){
+				Y = clientHeight - oDiv.offsetHeight;
+				iSpeedY *= -1;
+				iSpeedY *= 0.75;
+				iSpeedX *= 0.75;
+			}
+			
+			oDiv.style.left = X + 'px';
+			oDiv.style.top = Y + 'px';
+			
+			if( parseInt(stopNum) == parseInt(iSpeedY) ){
+				clearTimeout( timer );
+				off2 = true;
+			}
+			
+			stopNum = iSpeedY;
+			
+		}, 15 );
+	}
+	
+	document.onkeyup = function(ev){
+		var ev = ev || event;
+		if( ev.keyCode == 32 && oDiv.offsetWidth == 210 ){
+			if( off && off2 ){
+				off2 = false;
+				clearInterval( timer );
+				timeMove( oDiv, { top : 50, left : -180 }, 1000, function(){
+					off = false;
+				});
+			}else if( !off ){
+				iSpeedX = 160 * Math.random();
+				iSpeedY = -30 * Math.random();
+				ballMove();
+				off = true;
+			}
+		}
+	};
+};
+</script>
+</head>
+
+<body">
+	<div id="div"></div>
+    <div id="prom">敲击空格键收起<——>释放小足球<br>直接拖拽也可以扔出小足球</div>
+</body>
+</html>

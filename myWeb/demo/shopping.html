@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拖拽购物车</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ background:#DCEFFE;}
+ul{ margin:0; padding:0;} li{ list-style:none;}
+#wrap{ width:960px; margin:50px auto 0;}
+#list{ margin:0; padding:0;}
+#list:after{ content:''; display:block; clear:both;}
+#list li{ list-style:none; float:left; text-align:center; margin:10px; background:#eee; box-shadow:#777 0 2px 10px}
+#list img{ vertical-align:top; width:220px;}
+#list p{ margin:5px;}
+#shopList{ width:960px; background:#eee; box-shadow:#777 0 2px 10px; margin-top:10px}
+#shopList:after{ content:''; display:block; clear:both;}
+#shopList div{width:100%; text-align:center; line-height:40px;}
+#shopList div span{ display:inline-block; width:230px;}
+#shopList div span:nth-child(4){ cursor:pointer;}
+#shopList div span:nth-child(4):hover{ color:#888;}
+#shopList p{ float:right; width:230px; text-align:center;}
+</style>
+<script>
+window.onload = function(){
+	var aLi = document.querySelector('#list').querySelectorAll('li');
+	var oDiv = document.querySelector('#shopList');
+	var allM = oDiv.querySelector('.allMoney');
+	var json={}, num=null, iNow=0;
+	
+	for(var i=0; i<aLi.length; i++){
+		aLi[i].index = i;
+		aLi[i].ondragstart = function(ev){
+			num = this.index;
+			if(!("ActiveXObject" in window)){
+				ev.dataTransfer.setData('title','false');
+				ev.dataTransfer.setDragImage (this,0,0)
+			}
+		};
+	}
+	oDiv.ondragenter = function(){
+		allM.style.color = '#aaa';
+	}
+	oDiv.ondragover = function(ev){
+		ev.preventDefault();
+	};
+	oDiv.ondrop = function(ev){
+		ev.preventDefault();
+		var aP = aLi[num].querySelectorAll('p');
+		var title = aP[0].innerHTML;
+		var money = parseInt(aP[1].innerHTML.substring(1));
+		iNow += money;
+		if(!json[title]){
+			var oBox = document.createElement('div');
+			oBox.innerHTML ='<span>数量：'+1+'</span><span>名称：'+title+'</span><span>价格：￥'+money+'</span><span class="del">删除</span>';
+			oDiv.insertBefore(oBox,oDiv.children[0]);
+			allM.innerHTML = '共计：￥'+iNow;
+			var aDel = oDiv.querySelectorAll('.del');
+			for(var i=0; i<aDel.length; i++){
+				aDel[i].index = i;
+				aDel[i].onclick = function(){
+					var aSpan = oDiv.children[this.index].querySelectorAll('span');
+					iNow -= parseInt(aSpan[2].innerHTML.substring(4))*parseInt(aSpan[0].innerHTML.substring(3))
+					allM.innerHTML = '共计：￥'+iNow;
+					delete json[aSpan[1].innerHTML.replace(/名称：/,'')];
+					oDiv.removeChild(oDiv.children[this.index]);
+					aSpan = oDiv.querySelectorAll('.del');
+					for(var i=0; i<aSpan.length; i++){
+						aSpan[i].index = i;
+					}
+					if(aSpan.length==0){
+						allM.innerHTML = '请将商品拖拽至此';
+					}
+				}
+			}
+			json[title] = 1;
+		}else{
+			var aBox = oDiv.querySelectorAll('div');
+			for(var i=0; i<aBox.length; i++){
+				if(aBox[i].innerHTML.indexOf(title) >= 0){
+					var oSpan = aBox[i].querySelector('span');
+					oSpan.innerHTML = '数量：'+(parseInt(oSpan.innerHTML.substring(3))+1);
+				}
+			}
+			allM.innerHTML = '共计：￥'+iNow;
+		}
+		allM.style.color = '';
+	};
+};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<ul id="list">
+        	<li draggable="true">
+            	<img src="../img/buy_1.gif">
+                <p>野花</p>
+                <p>￥58</p>
+            </li>
+            <li draggable="true">
+            	<img src="../img/buy_2.jpg">
+                <p>红花</p>
+                <p>￥16</p>
+            </li>
+            <li draggable="true">
+            	<img src="../img/buy_3.jpg">
+                <p>荷花</p>
+                <p>￥21</p>
+            </li>
+            <li draggable="true">
+            	<img src="../img/buy_4.jpg">
+                <p>菊花</p>
+                <p>￥89</p>
+            </li>
+        </ul>
+        <div id="shopList">
+            <p class="allMoney">请将商品拖拽至此</p>
+        </div>
+    </div>
+</body>
+</html>

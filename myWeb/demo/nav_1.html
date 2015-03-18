@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹动导航</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+*{ padding:0; margin:0;}
+body{ font-family:'微软雅黑'; background:#DCEFFE;}
+li{ list-style:none;}
+#wraper{ width:100%; height:60px; background:#ddd; margin:400px auto 0;}
+#nav{ width:960px; height:60px; margin:0 auto; position:relative;}
+#nav .activ{ float:left; width:20%; text-align:center; font-size:30px;line-height:60px; color:#000;
+cursor:pointer;}
+#focus{ position:absolute; width:20%; height:100%; overflow:hidden; background:#B0D1F2; left:0;}
+#focus ul{ position:absolute; width:960px; height:100%;}
+#focus ul li{ float:left; width:20%; text-align:center; font-size:30px;line-height:60px; color:#fff;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload=function(){
+	var oFocus=document.getElementById("focus");
+	var oUl=document.getElementById('ul');
+	var oNav=document.getElementById('nav');
+	var oA=oNav.getElementsByTagName('a')[0];
+	var timer=null;
+	
+	var aLi=getClass(oNav,'li','activ');
+	var nowPage=0;
+	oNav.onmouseout=function(){
+		clearTimeout(timer);
+		timer=setTimeout(function(){
+			elasMove(oFocus,{left:aLi[nowPage].offsetLeft},oUl);
+		},50);
+	}
+	oNav.onmouseover=function(){
+		clearTimeout(timer);
+	}
+	for(var i=0; i<aLi.length; i++){
+		aLi[i].index=i;
+		aLi[i].onmouseover=function(){
+			elasMove(oFocus,{left:this.offsetLeft},oUl)
+		};
+	}
+};
+function elasMove(obj,json,obj2,fnEnd){
+	//若非导航菜单并且需要链式调用此函数，obj2需传值空字符串；
+	var iSpeed=0;
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		for(var attr in json){
+			var iCur=parseInt(getStyle(obj,attr));
+			iSpeed+=(json[attr]-iCur)/4;
+			iSpeed*=0.6;
+			if(Math.abs(iSpeed)<=1 && Math.abs(json[attr]-iCur)<=1){
+				obj.style[attr]=json[attr]+'px';
+				iSpeed=0;
+				clearInterval(obj.timer);
+				fnEnd && fnEnd.call(obj);
+			}else{
+				if(iCur<0 && (attr=='width'||attr=='height'))iCur=0;
+				obj.style[attr]=iCur+iSpeed+'px';
+			}
+			if(obj2!='')obj2.style.left=-obj.offsetLeft+'px';
+			document.title=obj.offsetLeft+' ; '+iSpeed;
+		}
+	},30);
+}
+</script>
+</head>
+
+<body>
+	<div id="wraper">
+    	<ul id="nav">
+        	<a href="javascript:;"><li id="focus">
+            	<ul id="ul">
+            	  <li>主页</li>
+            	  <li>资料</li>
+            	  <li>游戏</li>
+            	  <li>兴趣</li>
+            	  <li>爱好</li>
+            	</ul>
+            </li></a>
+        	<li class="activ">主页</li>
+        	<li class="activ">资料</li>
+            <li class="activ">游戏</li>
+            <li class="activ">兴趣</li>
+        	<li class="activ">爱好</li>
+         </ul>
+    </div>
+</body>
+</html>

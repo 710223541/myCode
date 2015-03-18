@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ margin:0; background:#DCEFFE;}
+#wrap{ width:400px; height:42px; margin:200px auto 0; position:relative;}
+input{ width:68px; height:40px; border:#aaa 1px solid; outline:none; font-size:16px; padding:0 10px 0 50px; border-radius:20px; position:absolute; left:270px; background:url(../img/sear_ico.png) no-repeat 10px 5px; background-color:#eee; line-height:40px; z-index:2}
+#list{ padding:30px 0 0 0; position:absolute; top:0; left:0; width:398px; background:#fff; display:none; box-shadow:#6cf 0 0 10px; border-radius:0 0 20px 20px; border:#6cf 1px solid;}
+#list li{ list-style:none; line-height:35px; overflow:hidden;}
+#list li a{ display:block; text-decoration:none; color:#000; padding-left:50px;}
+</style>
+<script>
+function fnSear(data){
+	var oUl = document.getElementById('list');
+	var str = '';
+	if(data.s.length){
+		oUl.style.display = 'block';
+		for(var i=0; i<data.s.length; i++){
+			str += '<li><a target="_blank" href="http://www.baidu.com/s?wd='+data.s[i]+'">'+ data.s[i] +'</a></li>';
+		}
+	}else{
+		oUl.style.display = 'none';
+	}
+	oUl.innerHTML = str;
+}
+window.onload = function(){
+	var oTxt = document.getElementById('search');
+	var oUl = document.getElementById('list');
+	var leftValue = oTxt.offsetLeft;
+	var widthVlue = parseInt(getStyle(oTxt,'width'));
+	var num = -1;
+	
+	oTxt.oninput = txtKeyUp;
+	oTxt.onkeydown = txtKeyDown;
+	oTxt.onfocus = openTxt;
+	oTxt.onblur = closeTxt;
+	oUl.onmouseover = tabA;
+	
+	function txtKeyUp(){
+		if(this.value != ''){
+			var oScript = document.createElement('script');
+			oScript.src = 'http://suggestion.baidu.com/su?wd='+this.value+'&cb=fnSear';
+			document.body.appendChild(oScript);
+		}else{
+			oUl.style.display = 'none';
+		}
+	}
+	function openTxt(){
+		timeMove(oTxt,{left:0,width:leftValue+widthVlue});
+		timeMove(oUl,{opacity:100});
+		this.style.cssText = 'border-color:#6cf; box-shadow:#6cf 0 0 10px; background-color:#fff;';
+	}
+	function closeTxt(){
+		timeMove(oTxt,{left:leftValue,width:widthVlue});
+		timeMove(oUl,{opacity:0},function(){
+			oUl.innerHTML = '';
+			oUl.style.display = 'none';
+			oTxt.blur();
+		})
+		num = -1;
+		oTxt.value = '';
+		oTxt.style.cssText = 'border-color:#aaa;';
+	}
+	function txtKeyDown(ev){
+		var ev = ev||event;
+		var a = oUl.getElementsByTagName('a');
+		oTxt.onkeyup = null;
+		switch(ev.keyCode){
+			case 27:
+				closeTxt();
+			break;
+			case 38:
+				num--;
+				if(num < 0)num = a.length-1;
+				this.value = a[num].innerHTML;
+				for(var i=0; i<a.length; i++){
+					a[i].style.cssText = 'color:#000; background:none';
+				}
+				a[num].style.cssText = 'color:#fff; background:#6cf;';
+			break;
+			case 40:
+				num++;
+				if(num > a.length-1)num = 0;
+				this.value = a[num].innerHTML;
+				for(var i=0; i<a.length; i++){
+					a[i].style.cssText = 'color:#000; background:none';
+				}
+				a[num].style.cssText = 'color:#fff; background:#6cf;';
+			break;
+			case 13:
+				if(this.value !='')window.open('http://www.baidu.com/s?wd='+oTxt.value);
+			break;
+			default:
+				oTxt.onkeyup = txtKeyUp;
+			break;
+		}
+	}
+	function tabA(){
+		var a = this.getElementsByTagName('a');
+		for(var i=0; i<a.length; i++){
+			a[i].index = i;
+			a[i].onmouseover = function(){
+				for(var i=0; i<a.length; i++){
+					a[i].style.cssText = 'color:#000; background:none';
+				}
+				this.style.cssText = 'color:#fff; background:#6cf;';
+				num = this.index;
+			};
+		}
+	}
+};
+function getStyle(obj,attr){
+	if(obj.currentStyle){
+		return obj.currentStyle[attr];
+	}else{
+		return getComputedStyle(obj,false)[attr];
+	}
+}
+function timeMove(obj,json,times,fx,fn){//linear,easeOutStrong,backOut,backBoth,elasticOut,bounceOut;
+	if(typeof times=='undefined'){
+		times=400; fx='easeOutStrong';
+	}
+	if(typeof times=='string'){
+		if(typeof fx=='function')fn=fx;
+		fx=times; times=400; 
+	}else if(typeof times=='function'){
+		fn=times; times=400; fx='easeOutStrong';
+	}else if(typeof times=='number'){
+		if(typeof fx=='function'){
+			fn=fx; fx='easeOutStrong';
+		}else if(typeof fx=='undefined'){
+			fx='easeOutStrong';
+		}
+	}
+	var Tween = {
+		linear: function (t, b, c, d){return c*t/d + b;},
+		easeOutStrong: function(t, b, c, d){return -c * ((t=t/d-1)*t*t*t - 1) + b;},
+		backOut: function(t, b, c, d, s){
+			if (typeof s == 'undefined') s = 1.70158;  //回缩的距离 
+			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+		},
+		backBoth: function(t, b, c, d, s){
+			if (typeof s == 'undefined') s = 1.70158; //回缩的距离
+			if ((t /= d/2 ) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+			return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+		},
+		elasticOut: function(t, b, c, d, a, p){
+			if (t === 0) return b;
+			if ( (t /= d) == 1 ) return b+c;
+			if (!p) p=d*0.4;  //弹性的幅度
+			if (!a || a < Math.abs(c)) {
+				a = c; var s = p / 4;
+			} else {
+				var s = p/(2*Math.PI) * Math.asin (c/a);
+			}
+			return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+		},
+		bounceOut: function(t, b, c, d){
+			if ((t/=d) < (1/2.75)) {
+				return c*(7.5625*t*t) + b;
+			} else if (t < (2/2.75)) {
+				return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+			} else if (t < (2.5/2.75)) {
+				return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+			}
+			return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+		}
+	};
+	var iCur={};
+	for(var attr in json){
+		iCur[attr]=0;
+		if(attr=='opacity'){
+			iCur[attr]=Math.round(parseFloat(getStyle(obj,attr))*100);
+		}else{
+			iCur[attr]=parseInt(getStyle(obj,attr));
+		}
+	}
+	var startTime=(new Date()).getTime();
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		var changeTime=(new Date()).getTime();
+		var t=times-Math.max(0,startTime-changeTime+times);
+		for(var attr in json){
+			var value=Tween[fx](t,iCur[attr],json[attr]-iCur[attr],times);
+			if(attr=='opacity'){
+				obj.style['filter']='alpha(opacity:'+value+')';
+				obj.style['opacity']=value/100;
+			}else{
+				obj.style[attr]=value+'px';
+				if(typeof fn=='object'){
+					fn.style.left=-obj.offsetLeft+'px';
+				}
+			}
+		}
+		if(t==times){
+			clearInterval(obj.timer);
+			if(typeof fn=='function')fn.call(obj);
+		}
+	},15);
+}
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<input type="text" id="search" placeholder="百度一下">
+        <ul id="list"></ul>
+    </div>
+</body>
+</html>

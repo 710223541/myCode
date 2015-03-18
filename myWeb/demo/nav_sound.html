@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>钢琴音阶</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#list{ width:960px; height:50px; margin:300px auto 0; padding:0; background:#669; overflow:hidden;}
+#list li{ list-style:none; float:left; width:119px; height:48px; line-height:48px; text-align:center; color:#fff; border:1px solid #aaa; border-right:none; position:relative;}
+#list li:last-child{ border-right:1px solid #aaa; width:118px;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload = function(){
+	var oUl = document.getElementById('list');
+	var aLi = oUl.getElementsByTagName('li');
+	var aAu = oUl.getElementsByTagName('audio');
+	var aDiv = oUl.getElementsByTagName('div');
+	
+	
+	for(var i=0; i<aLi.length; i++){
+		var oDiv = document.createElement('div');
+		oDiv.style.cssText = 'width:120px; height:50px; background:rgba(50,170,200,0.5); position:absolute; top:49px;';
+		aLi[i].appendChild(oDiv);
+	}
+	for(var i=0; i<aLi.length; i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			aAu[this.index].pause(); 
+			aAu[this.index].currentTime = 0; 
+			aAu[this.index].play();
+			timeMove(aDiv[this.index],{top:0},200);
+		};
+		aLi[i].onmouseout = function(){
+			timeMove(aDiv[this.index],{top:49},200);
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+	<ul id="list">
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/a4.mp3"></audio>111</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/b4.mp3"></audio>222</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/c5.mp3"></audio>333</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/d5.mp3"></audio>444</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/e5.mp3"></audio>555</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/f5.mp3"></audio>666</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/g5.mp3"></audio>777</li>
+    	<li><audio src="http://s8.qhimg.com/share/audio/piano1/a5.mp3"></audio>888</li>
+    </ul>
+</body>
+</html>

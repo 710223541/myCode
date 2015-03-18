@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>反三角函数</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#wrap{ width:360px; height:480px; position:relative; margin:200px auto 0;}
+#wrap .eyes{ width:10px; height:15px; border-radius:50%; position:absolute; background:#000; top:80px}
+.left_eye{ left:148px;} .right_eye{ left:194px;}
+#wrap div div{ width:4px; height:7px; background:#fff; border-radius:50%; margin:7px 3px 1px;}
+</style>
+<script>
+window.onload = function(){
+	var oWra = document.getElementById('wrap');
+	var oDiv1 = oWra.children[1];
+	var oDiv2 = oWra.children[2];
+	var r = 16;
+	var T1 =oDiv1.offsetTop + oDiv1.offsetHeight/2, L1 = oDiv1.offsetLeft + oDiv1.offsetWidth/2;
+	var T2 = oDiv2.offsetTop + oDiv2.offsetHeight/2, L2 = oDiv2.offsetLeft + oDiv2.offsetWidth/2;
+	console.log( T1 + ';' + L1 + ';' + T2 + ';' + L2 )
+	document.onmousemove = function(ev){
+		var ev = ev || event;
+		
+		moveEyes(oDiv1, ev.clientX, ev.clientY, L1, T1);
+		moveEyes(oDiv2, ev.clientX, ev.clientY, L2, T2);
+		
+		function moveEyes(obj, x, y, l, t){
+			var changeX = 0, changeY = 0;
+						
+			var pos = getPos( obj )
+			
+			var a =  x - pos.left;
+			var b =  y - pos.top;
+			
+			changeX = Math.sin( Math.atan2(a, b) ) * r; 
+			changeY = Math.cos( Math.atan2(a, b) ) * r;
+			
+			/*if(x < w && y < h ){//左上
+				changeX = Math.sin(Math.atan( a/b ) ) * -r;
+				changeY = Math.cos(Math.atan( a/b ) ) * -r;
+			}else if(x > w && y < h ){//右上
+				changeX = Math.sin(Math.atan( a/b ) ) * r;
+				changeY = Math.cos(Math.atan( a/b ) ) * -r; 
+			}else if(x > w && y > h ){//右下
+				changeX = Math.sin(Math.atan( a/b ) ) * r;
+				changeY = Math.cos(Math.atan( a/b ) ) * r;
+			}else if(x < w && y > h ){//左下
+				changeX = Math.sin(Math.atan( a/b ) ) * -r;
+				changeY = Math.cos(Math.atan( a/b ) ) * r;
+			}*/
+			
+			obj.style.left = changeX + l + 'px';
+			obj.style.top = changeY + t + 'px';
+		}
+	}
+};
+function getPos( obj ){
+	var pos = {};
+	pos.left = 0;
+	pos.top = 0;
+	while( obj ){
+		pos.left += obj.offsetLeft;
+		pos.top += obj.offsetTop;
+		obj = obj.parentNode;
+		if( obj.nodeName.toLowerCase() == 'html' ){
+			break;
+		}
+	}
+	return pos;
+}  
+
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<img src="../img/doraemon.jpg">
+        <div class="left_eye eyes"><div></div></div>
+        <div class="right_eye eyes"><div></div></div>
+    </div>
+</body>
+</html>

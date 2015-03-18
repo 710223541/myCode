@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>透明替换元素</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ background:#DCEFFE; width:960px; margin:100px auto 0;}
+#list{ padding:0; position:relative; width:960px; height:480px;}
+#list li{ list-style:none; float:left; width:180px; height:120px; margin:20px 12px 20px 0; background:#6cf; line-height:120px; text-align:center; font-size:30px; font-weight:bold; color:#fff; filter:alpha(opacity=100); opacity:1;}
+#div{ margin:20px auto 0;}
+#div a{ width:30px; line-height:30px; color:#666; text-decoration:none; text-align:center; margin-right:10px; background:#eee; float:left; border:1px solid #ccc; border-radius:15px;}
+#div .prevNext{ width:60px;} 
+#div a:hover,#div .activ{ color:#fff; border-color:#ccc; background:#6cf;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload=function(){
+	var title=[
+				'效果1',
+				'效果2',
+				'效果3',
+				'效果4',
+				'效果5',
+				'效果6',
+				'效果7',
+				'效果8',
+				'效果9',
+				'效果10',
+				'效果11',
+				'效果12',
+				'效果13',
+				'效果14',
+				'效果15',
+				'效果16',
+				'效果17',
+				'效果18',
+				'效果19',
+				'效果20',
+				'效果21',
+				'效果22',
+				'效果23',
+				'效果24',
+				'效果25',
+				'效果26',
+				'效果27'
+			];
+	var data=title;
+	var arr=[];
+	page({
+		id:'div',
+		allPage:Math.ceil(title.length/15),
+		callBack:function(now,all){
+			liMove(now,all,data);
+		}
+	});
+};
+function liMove(now,all,data){
+	var showNum=15, iNow=0, iNow2=0;
+	var oUl=document.getElementById('list');
+	var aLi=oUl.getElementsByTagName('li');
+	var num = now*showNum <= data.length ? showNum : data.length-(now-1)*showNum;
+	if(oUl.innerHTML==''){
+		for(var i=0; i<showNum; i++){
+			var oLi=document.createElement('li');
+			oLi.innerHTML=data[(now-1)*showNum+i];
+			oUl.appendChild(oLi);
+		}
+	}else{
+		var timer1=null, timer2=null;
+		clearInterval(timer1);
+		timer1=setInterval(function(){
+			timeMove(aLi[iNow],{opacity:0},1000);
+			iNow++;
+			if(iNow>aLi.length-1){
+				iNow=0;
+				clearInterval(timer1);
+			}
+		},55);
+		setTimeout(function(){
+			clearInterval(timer2);
+			timer2=setInterval(function(){
+				aLi[iNow2].innerHTML=data[(now-1)*showNum+iNow2];
+				timeMove(aLi[iNow2],{opacity:100},1000);
+				iNow2++;
+				if(iNow2>num-1){
+					iNow2=0;
+					clearInterval(timer2);
+				}
+			},55);
+		},300);
+	}
+	
+}
+function page(opt){//基于getClass(),页码为a元素，margin-right=10px,涉及到的class为prevNext、activ
+	//每行显示页码数，只能是单数
+	var linePage=7;
+	//默认参数
+	var obj = document.getElementById(opt.id);
+	var nowPage = opt.nowPage || 1;
+	var allPage = opt.allPage || linePage;
+	var callBack = opt.callBack || function(){};
+	//添加首尾、上下页
+	for(var i=0; i<4; i++){
+		var oA=document.createElement('a');
+		oA.className='prevNext';
+		obj.appendChild(oA);
+	}
+	var aA=getClass(obj,'a','prevNext')
+	aA[0].innerHTML='首页'; aA[0].href='#1';
+	aA[3].innerHTML='尾页'; aA[3].href='#'+allPage;
+	aA[1].innerHTML='上一页'; aA[1].href='#'+(nowPage-1);
+	aA[2].innerHTML='下一页'; aA[2].href='#'+(nowPage+1);
+	//添加页码列表
+	if(allPage<=linePage){
+		linePage=allPage;
+		for(var i=1; i<=allPage; i++){
+			var oLi=document.createElement('li');
+			var oA=document.createElement('a');
+			//如果当前页等于此次循环，给当前循环的a元素添加样式calss
+			if(nowPage==i)oA.className='activ';
+			oA.innerHTML=i;
+			oA.href='#'+i;
+			obj.appendChild(oA);
+			//如果allPage小于linePage，隐藏首尾页
+			aA[0].style.visibility='hidden';
+			aA[3].style.visibility='hidden';
+		}
+	}else{
+		for(var i=1; i<=linePage; i++){
+			var oA=document.createElement('a');
+			if(nowPage<=Math.ceil(linePage/2)){
+				//如果nowPage等于此次循环，给当前循环的a元素添加样式calss
+				if(nowPage==i)oA.className='activ';
+				oA.innerHTML=i;
+				oA.href='#'+i;
+			}else if(nowPage>=allPage-Math.floor(linePage/2)){
+				//如果nowPage等于此次循环，给当前循环的a元素添加样式calss
+				if(nowPage==allPage-linePage+i)oA.className='activ';
+				oA.innerHTML=allPage-linePage+i;
+				oA.href='#'+(allPage-linePage+i);
+			}else{
+				//如果走这里，则给linePage中间a元素添加样式class
+				if(i==Math.ceil(linePage/2))oA.className='activ';
+				oA.innerHTML=nowPage-Math.ceil(linePage/2)+i;
+				oA.href='#'+(nowPage-Math.ceil(linePage/2)+i);
+			}
+			obj.appendChild(oA);
+		}
+	}
+	//添加页码后，修正尾页、下一页添加位置
+	obj.appendChild(aA[2]); obj.appendChild(aA[3]);
+	//动态设置obj的整体宽度
+	var allA=obj.getElementsByTagName('a');
+	var oAW=0;
+	for(var i=0; i<allA.length; i++){
+		//每个a元素的宽+a元素的边距值（参考css的margin设置）
+		oAW+=allA[i].offsetWidth+10;
+	}
+	obj.style.width=oAW+'px';
+	//根据当前页码判断是否隐藏首尾、上下页
+	if(nowPage<=Math.ceil(linePage/2) && nowPage!=1){
+		aA[0].style.visibility='hidden';
+	}else if(nowPage>=allPage-Math.floor(linePage/2) && nowPage!=allPage){
+		aA[3].style.visibility='hidden';
+	}else if(nowPage==1){
+		aA[1].style.visibility='hidden';
+		aA[0].style.visibility='hidden';
+	}else if(nowPage==allPage){
+		aA[2].style.visibility='hidden';
+		aA[3].style.visibility='hidden';
+	}
+	//执行回调函数，配合ajax可传参nowPage
+	callBack(nowPage,allPage);
+	//添加点击事件回调该函数重新生成新页码
+	setTimeout(function(){
+		for(var i=0; i<allA.length; i++){
+			allA[i].onclick=function(){
+				obj.innerHTML='';
+				nowPage=parseInt(this.getAttribute('href').substring(1));
+				page({
+					id:opt.id,
+					nowPage:nowPage,
+					allPage:allPage,
+					callBack:callBack
+					});
+				return false;
+			};
+		}
+	},1000);
+}
+</script>
+</head>
+
+<body>
+	<ul id="list"></ul>
+    <div id="div"></div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>两种动画形式</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ background:#DCEFFE;}
+#wraper1,#wraper2{ width:800px; height:420px; border:1px solid; margin:20px auto 0; position:relative;}
+#wraper1 div,#wraper2 div{ width:120px; margin-right:20px; height:70px; background:#6cf; float:left; 
+word-break:break-all; padding:0 10px;}
+#wraper1 span{ display:block; height:1px; width:780px; background:#000; position:absolute; top:70px; left:0;}
+#wraper1 span.last1{ top:350px;}
+#wraper2 div{ margin-top:10px; clear:both; overflow:hidden;}
+#wraper2 span{ display:block; width:1px; height:400px; background:#000; position:absolute; left:140px;}
+#wraper2 span.last2{ left:640px;}
+padding:0 10px;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload=function(){
+	var oWra1=document.getElementById('wraper1');
+	var aDiv1=oWra1.getElementsByTagName('div');
+	var oWra2=document.getElementById('wraper2');
+	var aDiv2=oWra2.getElementsByTagName('div');
+	
+	for(var i=0; i<aDiv1.length; i++){
+		aDiv1[i].innerHTML='width: '+140+'px;'+'<br>'+'height: '+70+'px;'+'<br>'+'运算结果: '+70;
+		aDiv1[i].onmouseover=function(){
+			timeMove(this,{height:350},2000,'elasticOut');
+		};
+		aDiv1[i].onmouseout=function(){
+			timeMove(this,{height:70},2000,'elasticOut');
+		};
+	}
+	for(var i=0; i<aDiv2.length; i++){
+		aDiv2[i].innerHTML='width: '+140+'px;'+'<br>'+'height: '+70+'px;'+'<br>'+'运算结果: '+120;
+		aDiv2[i].onmouseover=function(){
+			timeMove(this,{width:620},1000,'bounceOut');
+		};
+		aDiv2[i].onmouseout=function(){
+			timeMove(this,{width:120},1000,'bounceOut');
+		};
+	}
+};
+function timeMove(obj,json,times,fx,fn){//linear,easeOutStrong,backOut,backBoth,elasticOut,bounceOut;
+	if(typeof times=='undefined'){
+		times=400; fx='easeOutStrong';
+	}
+	if(typeof times=='string'){
+		if(typeof fx=='function')fn=fx;
+		fx=times; times=400; 
+	}else if(typeof times=='function'){
+		fn=times; times=400; fx='easeOutStrong';
+	}else if(typeof times=='number'){
+		if(typeof fx=='function'){
+			fn=fx; fx='easeOutStrong';
+		}else if(typeof fx=='undefined'){
+			fx='easeOutStrong';
+		}
+	}
+	var Tween = {
+		linear: function (t, b, c, d){return c*t/d + b;},
+		easeOutStrong: function(t, b, c, d){return -c * ((t=t/d-1)*t*t*t - 1) + b;},
+		backOut: function(t, b, c, d, s){
+			if (typeof s == 'undefined') s = 1.70158;  //回缩的距离 
+			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+		},
+		backBoth: function(t, b, c, d, s){
+			if (typeof s == 'undefined') s = 1.70158; //回缩的距离
+			if ((t /= d/2 ) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+			return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+		},
+		elasticOut: function(t, b, c, d, a, p){
+			if (t === 0) return b;
+			if ( (t /= d) == 1 ) return b+c;
+			if (!p) p=d*0.4;  //弹性的幅度
+			if (!a || a < Math.abs(c)) {
+				a = c; var s = p / 4;
+			} else {
+				var s = p/(2*Math.PI) * Math.asin (c/a);
+			}
+			return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+		},
+		bounceOut: function(t, b, c, d){
+			if ((t/=d) < (1/2.75)) {
+				return c*(7.5625*t*t) + b;
+			} else if (t < (2/2.75)) {
+				return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+			} else if (t < (2.5/2.75)) {
+				return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+			}
+			return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+		}
+	};
+	var iCur={};
+	for(var attr in json){
+		iCur[attr]=0;
+		if(attr=='opacity'){
+			iCur[attr]=Math.round(parseFloat(getStyle(obj,attr))*100);
+		}else{
+			iCur[attr]=parseInt(getStyle(obj,attr));
+		}
+	}
+	var startTime=(new Date()).getTime();
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		var changeTime=(new Date()).getTime();
+		var t=times-Math.max(0,startTime-changeTime+times);
+		for(var attr in json){
+			var value=Tween[fx](t,iCur[attr],json[attr]-iCur[attr],times);
+			if(attr=='opacity'){
+				obj.style['filter']='alpha(opacity:'+value+')';
+				obj.style['opacity']=value/100;
+			}else{
+				obj.style[attr]=value+'px';
+				if(typeof fn=='object'){
+					fn.style.left=-obj.offsetLeft+'px';
+				}
+			}
+		}
+		if(t==times){
+			clearInterval(obj.timer);
+			if(typeof fn=='function')fn.call(obj);
+		}
+		obj.innerHTML='width: '+obj.offsetWidth+'px;'+'<br>'+'height: '+obj.offsetHeight+
+							'px;'+'<br>'+'运算结果: '+value;
+	},15);
+}
+</script>
+</head>
+
+<body>
+	<div id="wraper1">
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+      <span></span><span class="last1"></span>
+	</div>
+    <div id="wraper2">
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+	  <div></div>
+      <span></span><span class="last2"></span>
+	</div>
+</body>
+</html>

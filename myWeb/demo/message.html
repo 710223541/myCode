@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模拟短信</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#wrap{ width:500px; height:800px; border: 1px solid; margin:50px auto 0; border-radius:60px; position:relative;background:#000; box-shadow:#999 0 2px 10px 2px;}
+#screen{ width:488px; height:678px; border:1px solid; position:absolute; top:60px; left:5px; background:#FFF8F0;}
+#input{ width:488px; height:59px; border-top:1px solid #999; position:absolute; bottom:0; background:#FBEDEC;}
+#input img{ width:60px; height:60px; vertical-align:top; float:left; margin:0 5px;}
+#input input[type="text"]{ width:300px; height:30px; float:left; padding:0 5px; margin:13px 5px;}
+#input input[type="button"]{ width:70px; height:30px; float:left; margin:15px 5px}
+#home{ width:26px; height:26px; border:2px solid #FFF; border-radius:50%; position:absolute; top:755px; left:235px;
+}
+#conWra{ padding:15px; float:left; width:458px; height:588px; overflow:hidden; position:relative;}
+#context{ position:absolute; width:458px;}
+#context div{ clear:both;}
+#context div p{ display:inline-block; line-height:30px; margin:10px 0; padding:5px 10px; border-radius:10px; max-width:75%; color:#fff;}
+#context img{ width:60px; height:60px; vertical-align:top;}
+</style>
+<script>
+window.onload = function(){
+	var oImg = document.getElementById('input').getElementsByTagName('img')[0];
+	var aInput = document.getElementById('input').getElementsByTagName('input');
+	var oCon = document.getElementById('context');
+	var oConWra = document.getElementById('conWra');
+	var num = 1;
+	
+	addEvent(oImg,'click',tab);
+	addEvent(aInput[1],'click',post);
+	addEvent(document,'keydown',keyDown);
+	addMouseWheel(oCon,wheel);
+	aInput[0].focus();
+	
+	function post(){
+		if(aInput[0].value == '')return;
+		var newDiv = document.createElement('div');
+		var newImg = document.createElement('img');
+		var newP = document.createElement('p');
+		var oSpan = document.createElement('span');
+		newImg.src = oImg.src;
+		newP.innerHTML = aInput[0].value;
+		oSpan.innerHTML = ':';
+		if(num == 1){
+			newDiv.style.cssText = 'float:left;';
+			newImg.style.cssText = 'float:left;';
+			oSpan.style.cssText = 'float:left; margin:18px 8px 0 0';
+			newP.style.cssText = 'background:#da0;';
+		}else{
+			newDiv.style.cssText = 'float:right';
+			newImg.style.cssText = 'float:right';
+			oSpan.style.cssText = 'float:right; margin:18px 0 0 8px;';
+			newP.style.cssText = 'background:#6af; float:right';
+		}
+		newDiv.appendChild(newImg);
+		newDiv.appendChild(oSpan);
+		newDiv.appendChild(newP);
+		oCon.appendChild(newDiv);
+		if(oCon.offsetHeight>oConWra.offsetHeight){
+			oCon.style.top = -(oCon.offsetHeight - oConWra.offsetHeight) + 'px';
+		}
+		aInput[0].value = '';
+		aInput[0].focus();
+	}
+	function tab(){
+		if(num == 1){
+			num = 2;
+			oImg.src = '../img/message_'+num+'.png';
+		}else{
+			num = 1
+			oImg.src = '../img/message_'+num+'.png';
+		}
+		aInput[0].focus();
+	}
+	function wheel(ev){
+		var oEv=ev||event;
+		var onOff = null;
+		var speed = 50;
+		if(oEv.wheelDelta){
+			onOff = oEv.wheelDelta>0?true:false;
+		}else{
+			onOff = oEv.detail<0?true:false;
+		}
+		var up = oCon.offsetTop+speed;
+		var down = oCon.offsetTop-speed;
+		if(up > 0)up = 0;
+		if(down < -(oCon.offsetHeight - oConWra.offsetHeight)){
+			down = -(oCon.offsetHeight - oConWra.offsetHeight)
+		}
+		if(onOff){
+			oCon.style.top = up+'px';
+		}else{
+			oCon.style.top = down+'px';
+		}
+		ev.preventDefault();
+	}
+	function keyDown(ev){
+		var ev = ev || event;
+		if(ev.keyCode == 13){
+			post();
+		}
+		if(ev.keyCode==9){
+			tab();
+			ev.preventDefault();
+		}
+	}
+};
+function addMouseWheel(obj,fn){
+	obj.onmousewheel=fn;
+	if(obj.addEventListener){
+		obj.addEventListener('DOMMouseScroll',fn,false);
+	}
+}
+function addEvent(obj,evName,fn){
+	if(obj.addEventListener){
+		obj.addEventListener(evName,fn,false);
+	}else{
+		obj.attachEvent('on'+evName,function(){
+			fn.call(obj);
+		});
+	}
+}
+</script>
+</head>
+
+<body style="height:2000px;">
+	<div id="wrap">
+    	<div id="screen">
+        	<div id="conWra">
+            	<div id="context"></div>
+            </div>
+        	<div id="input">
+            	<div><img src="../img/message_1.png"></div>
+                <input type="text">
+                <input type="button" value="发送">
+            </div>
+    	</div>
+        <div id="home"></div>
+    </div>
+</body>
+</html>

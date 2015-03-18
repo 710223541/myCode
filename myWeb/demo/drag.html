@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拖拽图片移动</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#btn{ width:140px; height:35px; margin:250px auto 0; display:block;}
+#prompt{ position:absolute; top:90px; width:120px; height:198px;}
+#wrap{ width:960px; margin:20px auto 0; position:relative;}
+#wrap:after{ content:''; display:block; clear:both;}
+#wrap img{ width:220px; height:130px; float:left; vertical-align:top; margin:10px; box-shadow:#555 0 2px 10px}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload = function(){
+	
+	var oWra = document.getElementById('wrap');
+	var aImg = oWra.getElementsByTagName('img');
+	var oBtn = document.getElementById('btn');
+	var promptImg = document.getElementById('prompt');
+	
+	var arr=[], ZIndex = 2, oImg = null,  timer = null;
+	var T = promptImg.offsetTop, num = 1;
+	
+	promptImg.style.left = oWra.offsetLeft + 50 + 'px';
+	
+	timer = setInterval( promMove, 12 );
+	
+	function promMove(){
+	
+		var topValue = promptImg.offsetTop;
+		
+		if( topValue >= T+20 ){
+			num = -1;
+		}else if( topValue <= T-20 ){
+			num = 1;
+		}
+		
+		promptImg.style.top = topValue + num + 'px';
+		
+	}
+				
+	for(var i=0; i<aImg.length; i++){
+		
+		arr.push( { left:aImg[i].offsetLeft, top:aImg[i].offsetTop } );
+		
+	}
+	for(var i=0; i<aImg.length; i++){
+		
+		aImg[i].style.position = 'absolute';
+		aImg[i].style.margin = 0;
+		aImg[i].style.left = arr[i].left + 'px';
+		aImg[i].style.top = arr[i].top + 'px';
+		aImg[i].index = i;
+		
+	}
+	
+	for(var i=0; i<aImg.length; i++){
+		drag(aImg[i]);
+	}
+	
+	function drag(obj){
+	
+		var disX = 0, disY = 0;
+		
+		obj.onmousedown = function(ev){
+			
+			var ev = ev || event;
+			
+			disX = ev.clientX - obj.offsetLeft;
+			disY = ev.clientY - obj.offsetTop;
+			
+			obj.style.zIndex = ZIndex++;
+			
+			if(obj.setCapture)obj.setCapture();
+			
+			document.onmousemove = function(ev){
+				
+				var ev = ev || event;
+				var imgArr = [];
+				
+				clearInterval( timer );
+				timeMove( promptImg, { opacity:0 }, 1000, function(){
+					promptImg.style.display = 'none';
+				});
+				
+				imgArr.splice(0, imgArr.length-1);
+				
+				obj.style.left = ev.clientX - disX + 'px';
+				obj.style.top = ev.clientY - disY + 'px';
+				
+				for(var i=0; i<aImg.length; i++){
+					
+					var off = pzTesting(obj, aImg[i]);
+					
+					if( off && aImg[i] != obj ){
+						imgArr.push( aImg[i] );
+					}
+					
+					aImg[i].style.border = 'none';
+				}
+				
+				if( imgArr.length ){
+					oImg = recently( obj, imgArr );
+					oImg.style.border = '2px solid #fa0';
+				}else{
+					oImg = null;
+				}
+				
+			}/*mousemove end*/
+			
+			document.onmouseup = function(){
+				
+				var newIndex = 0;
+				
+				document.onmousemove = document.onmouseup = null;
+				
+				if(oImg){
+					oImg.style.zIndex = ZIndex++;
+					timeMove( obj, { left:arr[oImg.index].left, top:arr[oImg.index].top } );
+					timeMove( oImg, { left:arr[obj.index].left, top:arr[obj.index].top } );
+				
+					newIndex = obj.index;
+					obj.index = oImg.index;
+					oImg.index = newIndex;
+					
+					oImg.style.border = 'none';
+					
+				}else{
+					timeMove( obj, { left:arr[obj.index].left, top:arr[obj.index].top } );
+				}
+				
+				if(obj.releaseCapture)obj.releaseCapture();
+								
+			}/*mouseup end*/
+			
+			return false;
+			
+		}/*mousedown end*/
+		
+	}/*drag end*/
+	
+	function pzTesting(obj1, obj2){
+		
+		var T1 = obj1.offsetTop, B1 = obj1.offsetTop + obj1.offsetHeight;
+		var L1 = obj1.offsetLeft, R1 = obj1.offsetLeft + obj1.offsetWidth;
+		
+		var T2 = obj2.offsetTop, B2 = obj2.offsetTop + obj2.offsetHeight;
+		var L2 = obj2.offsetLeft, R2 = obj2.offsetLeft + obj2.offsetWidth;
+		
+		if( B1<T2 || L1>R2 || T1>B2 || R1<L2 ){
+			return false;
+		}else{
+			return true;
+		}
+		
+	}/*pzTesting end*/
+	
+	function recently(obj, arr){
+		
+		var value = 99999;
+		var index = -1
+		
+		for(var i=0; i<arr.length; i++){
+			
+			var a = obj.offsetTop - arr[i].offsetTop;
+			var b = obj.offsetLeft - arr[i].offsetLeft;
+			
+			var c = Math.sqrt( a*a + b*b );
+			
+			if( c < value){
+				value = c;
+				index = i;
+			}
+		}
+		
+		if(index != -1){
+			return arr[index];
+		}else{
+			return false;
+		}
+		
+	}/*recently end*/
+	
+	oBtn.onclick = function(){
+		
+		var indexArr = [];
+		
+		for(var i=0; i<aImg.length; i++){
+			indexArr.push( i );
+		}
+		
+		indexArr.sort(function(){
+			return Math.random() - 0.5;
+		});
+		
+		for(var i=0; i<indexArr.length; i++){
+			aImg[i].index = indexArr[i];
+		}
+		
+		for(var i=0; i<indexArr.length; i++){
+			timeMove( aImg[i], { left:arr[aImg[i].index].left, top:arr[aImg[i].index].top }, 600 );
+		}
+		
+	};
+		
+};
+</script>
+</head>
+
+<body>
+	<input id="btn" type="button" value="点击打乱图片分布">
+    <img src="../img/drag_prom.png" id="prompt">
+	<div id="wrap">
+        <img src="../img/1.jpg">
+        <img src="../img/2.jpg">
+        <img src="../img/3.jpg">
+        <img src="../img/4.jpg">
+        <img src="../img/5.jpg">
+        <img src="../img/6.jpg">
+        <img src="../img/7.jpg">
+        <img src="../img/8.jpg">
+        <img src="../img/9.jpg">
+        <img src="../img/10.jpg">
+        <img src="../img/11.jpg">
+        <img src="../img/12.jpg">
+    </div>
+</body>
+</html>

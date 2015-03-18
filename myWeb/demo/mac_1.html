@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mac菜单</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE;}
+#wrap{ width:100%; position:absolute; bottom:0; text-align:center;}
+#wrap img{ width:80px; height:80px;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('wrap');
+	var aImg = oDiv.getElementsByTagName('img');
+	
+	document.onmousemove = function(ev){
+		var ev = ev || event;
+		for(var i=0; i<aImg.length; i++){
+			var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y = aImg[i].offsetTop + aImg[i].offsetHeight/2+oDiv.offsetTop;
+			var a = ev.clientX - x, b = ev.clientY - y;
+			var c = Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
+			var result = 1-c/620
+			if(result < 0.628)result = 0.628
+			aImg[i].style.width = result*128+'px';
+			aImg[i].style.height = result*128+'px';
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<img src="../img/mac_1.png">
+    	<img src="../img/mac_2.png">
+    	<img src="../img/mac_3.png">
+    	<img src="../img/mac_4.png">
+    	<img src="../img/mac_5.png">
+    	<img src="../img/mac_6.png">
+    	<img src="../img/mac_7.png">
+    	<img src="../img/mac_8.png">
+    </div>
+</body>
+</html>

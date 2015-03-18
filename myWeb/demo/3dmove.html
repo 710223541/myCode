@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微动彩圆</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ margin:0; background:#DCEFFE; font-family:'微软雅黑';}
+#wrap{ width:900px; height:500px; margin:150px auto 0; position:relative;}
+#wrap div{ border-radius:50%; font-size:40px; font-weight:bold; text-align:center; color:#fff; position:absolute; filter:alpha(opacity=80); opacity:0.8; box-shadow:0 0 30px #666;}
+#wrap div:nth-of-type(1){ width:130px; height:130px; background:#66C; line-height:130px; left:600px; top:200px;z-index:1}
+#wrap div:nth-of-type(2){ width:150px; height:150px; background:#393; line-height:150px; left:160px; top:70px; z-index:2}
+#wrap div:nth-of-type(3){ width:160px; height:160px; background:#996; line-height:160px; left:470px; top:310px; z-index:3}
+#wrap div:nth-of-type(4){ width:170px; height:170px; background:#F3F; line-height:170px; left:370px; top:30px; z-index:4}
+#wrap div:nth-of-type(5){ width:190px; height:190px; background:#6cf; line-height:190px; left:220px; top:240px; z-index:5}
+#wrap div:nth-of-type(6){ width:220px; height:220px; background:#F96; line-height:220px; left:310px; top:160px; z-index:6}
+#wrap span{ position:absolute; height:100%; display:inline-block;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload = function(){
+	
+	var oDiv = document.getElementById('wrap');
+	var aDiv = oDiv.getElementsByTagName('div');
+	var oSpan = oDiv.getElementsByTagName('span')[0];
+	var arr = [], off = false;
+	
+	oSpan.style.width = document.body.offsetWidth + 'px';
+	oSpan.style.left = -oDiv.offsetLeft + 'px';
+	oSpan.style.zIndex = oDiv.children.length;
+		
+	for( var i=0; i<aDiv.length; i++ ){
+		arr.push( aDiv[i].offsetLeft );
+	}
+	
+	var middleX = oDiv.offsetLeft + oDiv.offsetWidth / 2;
+	var iMax = parseInt( getStyle( aDiv[aDiv.length - 1], 'zIndex' ) ) + 2;
+	
+	oSpan.onmouseover = move1;
+	oSpan.onmouseout = move2;
+	oSpan.onmousemove = move3;
+	
+	function move1(ev){
+		off = false;
+		var ev = ev || event;
+		var nowX = ev.clientX - middleX;
+		for( var i=0; i<aDiv.length; i++ ){
+			aDiv[i].num = nowX * ( iMax - parseInt( getStyle( aDiv[i], 'zIndex' ) ) ) / 80;
+			timeMove( aDiv[i], { left:arr[i] + aDiv[i].num }, 200, function(){
+				off = true;
+				oSpan.onmouseover = null;
+			});
+		}
+	}
+	function move2(){
+		for( var i=0; i<aDiv.length; i++ ){
+			timeMove( aDiv[i], { left:arr[i] }, 200 );
+		}
+		off = false;
+		oSpan.onmouseover = move1;
+	}
+	function move3(ev){
+		if( off ){
+			var ev = ev || event;
+			var nowX = ev.clientX - middleX;
+			for( var i=0; i<aDiv.length; i++ ){
+				aDiv[i].num = nowX * ( iMax - parseInt( getStyle( aDiv[i], 'zIndex' ) ) ) / 80;
+				aDiv[i].style.left = aDiv[i].num + arr[i] + 'px';
+			}
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <span></span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>YS-Home</title>
+<link rel = "Shortcut Icon" href="png/myico.ico">
+<link href="css/head_foot.css" rel="stylesheet" type="text/css">
+<script src="js/data.js"></script>
+<script src="js/sea.js"></script>
+<script src="js/public.js"></script>
+<script>
+seajs.use( 'mainLoad.js' );
+</script>
+</head>
+
+<body onselectstart="return false">
+	<div id="all_wrap">
+    	<div id="head">
+        	<div id="logo">
+                <div class="span_wrap">
+                    <span>W</span>
+                    <span>E</span>
+                    <span>L</span>
+                    <span>C</span>
+                    <span>O</span>
+                    <span>M</span>
+                    <span>E</span>
+                </div>
+                <div class="logo_pic">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <!--logo end-->
+            <div id="nav">
+            	<ul>
+                	<li><a href="javascript:;">Home</a></li>
+                	<li><a href="javascript:;">Demo</a></li>
+                	<li><a href="javascript:;">About Me</a></li>
+                </ul>
+            </div>
+            <!--nav end-->
+        </div>
+        <!--head end-->
+        <div id="body">
+        	<div id="home">
+            	<div class="main_pic">
+                	<img src="png/cloud.png">
+                    <img src="png/cloud.png">
+                    <img src="png/sheep.png">
+                    <img src="png/text.png">
+                    <img src="png/bird.png">
+                    <img src="png/bird.png">
+                    <div><img src="png/sun.png" id="pic_sun"></div>
+                    <span class="mark_pic"></span>
+                </div>
+                <div class="tab">
+                	<img src="png/tab1_2.png">
+                    <img src="png/tab2_1.png">
+                    <img src="png/tab3_2.png">
+                    <span><</span>
+                    <span>></span>
+                </div>
+                <div class="contact">
+                	<img src="png/werite.png">
+                    <a target="_blank" class="QQ" href="tencent://message/?uin=405287342&Site=www.yshome.net.cn&Menu=yes"><img border="0" src="png/QQ.png" title="点击向我发送QQ消息"></a>
+                    <a target="_blank" class="mail" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=MUhQX1ZCVF9VSElxQEAfUl5c"><img src="png/mail.png" title="点击向我发送E-mail"></a>
+                </div>
+            </div>
+            <!--home end-->
+            <div id="demo">
+            	<div class="tab">
+                	<ul>
+                    	<li><a target="_blank" href="demo/skill.html"><img src="mainImg/demo_pic_top1.jpg"></a></li>
+                    	<li><a target="_blank" href="javascript:;"><img src="mainImg/demo_pic_top2.jpg"></a></li>
+                    	<li><a target="_blank" href="javascript:;"><img src="mainImg/demo_pic_top3.jpg"></a></li>
+                        <li><a target="_blank" href="javascript:;"><img src="mainImg/demo_pic_top4.jpg"></a></li>
+                    </ul>
+                    <span class="btn"><</span>
+                    <span class="btn">></span>
+                </div>
+                <div class="exhibition">
+                	<div class="top">demo列表<span></span></div>
+                    <ul class="demoList"></ul>
+                    <div class="bot">
+                    	<span></span>
+                    	<div class="listWrap"></div>
+                        <div>
+                        	<span class="page_num">2/4</span>
+                            跳转至:
+                            <input type="text">
+                            <input type="button" value="GO">
+                        </div>
+                    </div>
+                </div>
+                <!--exhibition end-->
+            </div>
+            <!--demo end-->
+            <div id="about">
+            	<div class="top_wrap">
+                    <div class="flower">
+                        <img src="png/flower.png">
+                    </div>
+                    <ul>
+                        <li class="main_li">
+                        	<h1>网站概述</h1>
+                            <p>该页面是作为个人学习总结而建立的，也是为应聘面试准备的，希望能够在自己应聘的过程中有一点加分，如果您对我有兴趣的话，不妨看一下我的个人信息以及联系方式吧^^。</p>
+                            <p>该页是一站式页面，利用seajs进行模块化管理，页面上的所有效果都是基于原生javascript开发，动画效果大部分由tween算法封装的函数来完成，少量颜色变化由css3过渡动画来完成。</p>
+                            <p>由于IE浏览器低版本对于css3的支持情况非常不理想，所以本站在制作时直接摒弃IE9以下浏览器，希望您能够理解！</p>
+                            <p>或许本页面还有一些bug存在，如果您有什么问题或者建议的话，请不吝赐教，可以<a target="_blank" class="QQ" href="tencent://message/?uin=405287342&Site=www.yshome.net.cn&Menu=yes">QQ</a>联系我，或者向我发送<a target="_blank" class="mail" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=MUhQX1ZCVF9VSElxQEAfUl5c">邮件</a>！</p>
+                        </li>
+                        <li class="main_li">
+                        	<h1>个人信息</h1>
+                            <ul>
+                            	<li>姓名：杨森</li>
+                                <li>男 | 24岁（1990年11月16日）</li>
+                            </ul>
+                            <h3>专业技能</h3>
+                            <p>1.熟练使用HTML、CSS制作网页，兼容各种主流浏览器。</p>
+                            <p>2.熟练使用JavaScript，可用原生JS实现网页各类交互效果。</p>
+                            <p>3.熟练DOM操作，熟练使用Ajax和Jsonp实现前后端数据交互。</p>
+                            <p>4.熟练使用HTML5，CSS3等技术进行项目开发。</p>
+                            <p>5.熟练使用JQuery库，对常见库和框架有一定了解。</p>
+                            <p>6.能够手动编写JQuery插件和javascript组件。</p>
+                        </li>
+                        <li class="main_li">
+                        	<h1>联系方式</h1>
+                            <ul>
+                            	<li>QQ：<a target="_blank" class="QQ" href="tencent://message/?uin=405287342&Site=www.yshome.net.cn&Menu=yes">405287342</a></li>
+                            	<li>微博：<a target="_blank" href="http://weibo.com/u/5303624274">@秀气灬小猪</a></li>
+                            	<li>邮箱：<a target="_blank" class="mail" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=MUhQX1ZCVF9VSElxQEAfUl5c">yangsendyx@qq.com</a></li>
+                                <li>电话：15989213012（手机）</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bot_wrap">
+                    <span></span>
+                    <div class="icon_wrap">
+                        <div><img src="png/about_ico_home.png"></div>
+                        <span class="move_shadow"></span>
+                    </div>
+                    <div class="icon_wrap">
+                        <div><img src="png/about_ico_per.png"></div>
+                        <span class="move_shadow"></span>
+                    </div>
+                    <div class="icon_wrap">
+                        <div><img src="png/about_ico_call.png"></div>
+                        <span class="move_shadow"></span>
+                    </div>
+                </div>
+                <!--bot_wrap end-->
+            </div>
+            <!--about end-->
+        </div>
+        <!--body end-->
+        <div id="foot">
+        	<ul>
+                <li><a href="javascript:;">首页</a></li>
+                <li><a href="javascript:;">实例</a></li>
+                <li><a href="javascript:;">关于</a></li>
+            </ul>
+            <p><a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备14084840号</a>&nbsp;&nbsp;yshome.net.cn版权所有</p>
+        </div>
+        <!--foot end-->
+        <div id="load">
+            <div id="loading">
+                <img src="png/load_bgd.png">
+                <img src="png/load_big.png">
+                <img src="png/load_small.png">
+                <span>0%</span>
+            </div>
+            <img src="png/load_shadow.png" class="shadow">
+            <div class="text">
+                <p>抱歉，您的浏览器版本过低，请升级后再浏览本页面！</p>
+                <a href="http://www.google.cn/intl/zh-CN/chrome/"><img src="png/browser_ico_chrome.png"></a>
+                <a href="http://www.firefox.com.cn/"><img src="png/browser_ico_firefox.png"></a>
+                <a href="http://www.opera.com/zh-cn"><img src="png/browser_ico_opera.png"></a>
+                <a href="http://windows.microsoft.com/zh-CN/internet-explorer/download-ie"><img src="png/browser_ico_ie.png"></a>
+            </div>
+        </div>
+        <!--load end-->
+    </div>
+</body>
+</html>

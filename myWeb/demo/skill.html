@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body ul{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none; color:#4598E2; transition:0.5s color;}
+a:hover{ color:#F4A937;}
+body{ background:#DCEFFE; font-family:'微软雅黑';}
+
+#imgWra{ width:170px; height:170px; position:fixed; z-index:2; top:-170px;}
+img{ position:absolute; vertical-align:top; border-radius:50%; border:10px solid #BDDEF7; width:0; height:0; left:75px; top:75px;}
+
+#main{ position:absolute; top:0; left:0; overflow:hidden;}
+#main li{ background:url(../img/skill_bgd_top.jpg) top repeat-x, url(../img/skill_bgd_bottom.jpg) bottom repeat-x #dceffe; width:100%; height:100%; position:absolute; top:0; left:0;}
+#main p{ position:absolute; width:800px; text-align:center; font-size:22px; color:#4598E2; overflow:hidden;}
+#main p span{ display:block; width:100%; height:30px; text-overflow:ellipsis; white-space:nowrap;}
+
+#main li:nth-of-type(2) img{ width:150px; height:150px; display:none;}
+#main li:nth-of-type(5) img{ width:150px; height:150px; display:none;}
+#main li:nth-of-type(1) p{ opacity:0;}
+#main li:nth-of-type(2) p{ width:0; opacity:1; height:60px;}
+#main li:nth-of-type(3) p{ opacity:0; border-bottom:1px solid #4598e2; width:600px;}
+#main li:nth-of-type(4) p{ height:60px; width:480px; opacity:0; text-align:left;}
+#main li:nth-of-type(5) p{ width:500px; height:500px; border:12px solid #BDDEF7; border-radius:50%; line-height:500px;}
+
+#next{ position:fixed; width:50px; height:80px; text-align:center; bottom:10px; cursor:pointer; opacity:0;}
+#next span{ display:block; height:15px; font-size:40px; font-weight:bold; color:#64B0EE;}
+
+#nav{width:20px; height:130px; position:fixed; right:30px; opacity:0;}
+#nav li{ border:2px solid #fff; background:#ccc; border-radius:50%; width:10px; height:10px; margin-top:10px; margin:10px auto 0; cursor:pointer;}
+</style>
+<script src="../js/public.js"></script>
+<script>
+window.onload = function(){
+	var oImgWra = document.getElementById('imgWra');
+	var oImg = oImgWra.getElementsByTagName('img')[0];
+	var oMainUl = document.getElementById('main');
+	var aMainLi = oMainUl.getElementsByTagName('li');
+	var oImg2 = aMainLi[1].getElementsByTagName('img')[0];
+	var oImg3 = aMainLi[4].getElementsByTagName('img')[0];
+	var aP = oMainUl.getElementsByTagName('p');
+	var oNext = document.getElementById('next');
+	var aSpan = oNext.getElementsByTagName('span');
+	var oNav = document.getElementById('nav');
+	var aNavLi = oNav.getElementsByTagName('li');
+	
+	var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+	var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+	var nowPage = 0, prevPage = 0, off = false, dir = clientHeight;
+	var oImgWraTop = ( clientHeight - oImgWra.offsetHeight ) / 2;
+	var oImgWraLeft = ( clientWidth - oImgWra.offsetWidth ) / 2;
+	var r = 256;
+	oImgWra.num = 180;
+		
+	/*定义各元素位置*/
+	oImgWra.style.left = oImgWraLeft + 'px';
+	oMainUl.style.width = clientWidth + 'px';
+	oMainUl.style.height = clientHeight + 'px';
+	oNext.style.left = ( clientWidth - oNext.offsetWidth ) / 2 + 'px';
+	oNav.style.top = ( clientHeight - oNav.offsetHeight ) / 2 + 'px';
+	
+	oImg2.style.top = oImgWraTop + 'px';
+	oImg2.style.left = oImgWraLeft + 'px';
+	aP[1].style.left = clientWidth / 2 + 'px';
+	
+	for( var i=0; i<aMainLi.length; i++ ){
+		aMainLi[i].style.top = clientHeight + 'px';
+	}
+	aMainLi[nowPage].style.top = 0;
+	for( var i=0; i<aP.length; i++ ){
+		aP[i].style.top = ( clientHeight - aP[i].offsetHeight ) / 2 + 'px';
+		aP[i].style.left = ( clientWidth - aP[i].offsetWidth ) / 2 + 'px';
+	}
+	oImg3.style.left = oImgWraLeft + 'px';
+	oImg3.style.top = aP[4].offsetTop -79 + 'px';
+	oImg3.num = 0;
+	
+	/*nav添加点击索引*/
+	for( var i=0; i<aNavLi.length; i++ ){
+		aNavLi[i].index = i;
+	}
+	
+	/*向下箭头*/
+	oNext.time = 80;
+	function blingNext(){
+		setTimeout( function(){
+			aSpan[0].style.color = '#fff';
+		},0 * oNext.time);
+		setTimeout( function(){
+			aSpan[0].style.color = '#64B0EE';
+			aSpan[1].style.color = '#fff';
+		},1 * oNext.time);
+		setTimeout( function(){
+			aSpan[1].style.color = '#64B0EE';
+			aSpan[2].style.color = '#fff';
+		},2 * oNext.time);
+		setTimeout( function(){
+			aSpan[2].style.color = '#64B0EE';
+		},3 * oNext.time);
+	}
+	
+	/*进场动画*/
+	startMove();
+	function startMove(){
+		timeMove(oImgWra,{ top:oImgWraTop-150 },2000,'elasticOut',function(){
+			timeMove( aP[nowPage], { opacity:100 },600 );
+			timeMove( oNav, { opacity:100 },600 );
+			timeMove( oNext, { opacity:60 },600, function(){
+				oNext.timer = setInterval( blingNext, 1500 ); 
+				activ();
+				off = true;
+			});
+		});
+		timeMove( oImg, { left:0, top:0, width:150, height:150 },2000, 'elasticOut')
+	}
+	
+	/*show动画*/
+	function show(){
+		if( nowPage > prevPage ){
+			aMainLi[nowPage].style.top = clientHeight + 'px';
+			if( dir > 0 ) dir *= -1;
+		}else if( nowPage < prevPage ){
+			aMainLi[nowPage].style.top = -clientHeight + 'px';
+			if( dir < 0 )dir *= -1;
+		}
+		switch( nowPage ){
+			case 0:
+				showMove0();
+			break;
+			case 1:
+				showMove1();
+			break;
+			case 2:
+				showMove2();
+			break;
+			case 3:
+				showMove3();
+			break;
+			case 4:
+				timeMove( oNext, { opacity:0 },function(){
+					oNext.style.display = 'none';
+				});
+				showMove4();
+			break;
+		}
+	};
+	
+	/*hide动画*/
+	function hide(){
+		if( off ){
+			if( nowPage !=4 && getStyle( oNext, 'opacity' ) == '0' ){
+				oNext.style.display = 'block';
+				setTimeout(function(){
+					timeMove( oNext, { opacity:60 },function(){
+						oNext.timer = setInterval( blingNext, 1500 );
+					});
+				},1000);
+			}
+			off = false;
+			switch( prevPage ){
+				case 0:
+					hideMove0();
+				break;
+				case 1:
+					hideMove1();
+				break;
+				case 2:
+					hideMove2();
+				break;
+				case 3:
+					hideMove3();
+				break;
+				case 4:
+					hideMove4();
+				break;
+			}
+		}
+	};
+	
+	/*五个li入场动画*/
+	function showMove0(){
+		timeMove( aMainLi[nowPage], { top : 0 },1000 );
+		timeMove( aMainLi[prevPage], { top : dir },1000 );
+		timeMove( oImgWra, { top:oImgWraTop-150,left:oImgWraLeft },1000, function(){
+			activ();
+			timeMove( aP[0], { opacity:100 }, 600, function(){
+				prevPage = nowPage;
+				off = true;
+			});
+		});
+	};
+	function showMove1(){
+		timeMove( aMainLi[nowPage], { top : 0 },1000 );
+		timeMove( aMainLi[prevPage], { top : dir },1000 );
+		timeMove( oImgWra, { top : oImgWraTop, left:oImgWraLeft },1000,function(){
+			activ();
+			oImg2.style.display = 'block';
+			aP[1].style.display = 'block';
+			timeMove( oImgWra, { left : oImgWraLeft + 400 },1000 );
+			timeMove( oImg2, { left : oImgWraLeft - 400 },1000 );
+			aP[1].timer2 = setInterval( function(){
+				aP[1].style.left = oImg2.offsetLeft + oImg2.offsetWidth + 'px';
+				aP[1].style.width = oImgWra.offsetLeft - aP[1].offsetLeft + 'px';
+			},15);
+			setTimeout(function(){
+				clearInterval( aP[1].timer2 );
+				prevPage = nowPage;
+				off = true;
+			},1000);
+		});
+	};
+	function showMove2(){
+		timeMove( aMainLi[nowPage], { top : 0 },1000 );
+		timeMove( aMainLi[prevPage], { top : dir },1000 );
+		timeMove( oImgWra, { top : oImgWraTop,left : oImgWraLeft + 400 }, 1000, function(){
+			activ();
+			aP[2].style.width = 0;
+			aP[2].style.height = 0;
+			aP[2].style.left = (clientWidth-600)/2 + 600 + 'px';
+			aP[2].style.opacity = 1;
+			timeMove( aP[2], { width:620, left:(clientWidth-600)/2 },function(){
+				this.style.paddingBottom = '10px';
+				timeMove( this, { height: 60 }, function(){
+					prevPage = nowPage;
+					off = true;
+				});
+			});
+		});
+	};
+	function showMove3(){
+		timeMove( aMainLi[nowPage], { top : 0 },1000 );
+		timeMove( aMainLi[prevPage], { top : dir },1000);
+		timeMove( oImgWra, { top : oImgWraTop,left : oImgWraLeft - 400 }, 1000,function(){
+			activ();
+			aP[3].style.width = 0;
+			aP[3].style.opacity = 1;
+			toRotate( oImg, 720, 700, 1 );
+			timeMove( oImgWra, { left:oImgWraLeft + 400 },700,'linear');
+			aP[3].timer2 = setInterval( function(){
+				aP[3].style.width = oImgWra.offsetLeft - aP[3].offsetLeft + 'px';
+				if( aP[3].offsetWidth > 480 ){
+					clearInterval( aP[3].timer2 );
+				}
+			},15);
+			setTimeout( function(){
+				clearInterval( aP[3].timer2 );
+				prevPage = nowPage;
+				off = true;
+			},1000)
+		});
+	};
+	function showMove4(){
+		timeMove( aMainLi[nowPage], { top : 0 },1000 );
+		timeMove( aMainLi[prevPage], { top : dir },1000 );
+		timeMove( oImgWra, { left:oImgWraLeft, top:aP[4].offsetTop - 79 },1000, function(){
+			activ();
+			oImg3.style.display = 'block';
+			timeMove( oImg3, {top:aP[4].offsetTop+aP[4].offsetHeight-79},1000, function(){
+				var x = aP[4].offsetWidth / 2 + aP[4].offsetLeft;
+				var y = aP[4].offsetHeight / 2 + aP[4].offsetTop;
+				circleMove( oImgWra, x ,y );
+				circleMove( oImg3, x ,y );
+				
+				prevPage = nowPage;
+				off = true;
+			});
+		});
+	}
+			
+	/*五个li离场动画*/
+	function hideMove0(){
+		timeMove( aP[0], { opacity:0 },600, function(){
+			show();
+		});
+	};
+	function hideMove1(){
+		timeMove( oImgWra, { left : oImgWraLeft },1000 );
+		timeMove( oImg2, { left : oImgWraLeft },1000, function(){
+			this.style.display = 'none';
+		});
+		aP[1].timer2 = setInterval( function(){
+			aP[1].style.left = oImg2.offsetLeft + oImg2.offsetWidth + 'px';
+			aP[1].style.width = oImgWra.offsetLeft - aP[1].offsetLeft + 'px';
+			if( oImgWra.offsetLeft - ( oImg2.offsetLeft + oImg2.offsetWidth ) <　0 ){
+				clearInterval( aP[1].timer2 );
+				aP[1].style.display = 'none';
+			}
+		},15);
+		setTimeout(function(){
+			clearInterval( aP[1].timer2 );
+			show();
+		},1000);
+	};
+	function hideMove2(){
+		aP[2].style.paddingBottom = 0;
+		timeMove( aP[2], { height:0 }, function(){
+			timeMove( this, { width:0, left:(clientWidth-aP[2].offsetWidth)/2 + aP[2].offsetWidth }, function(){
+				aP[2].style.opacity = 0;
+				show();
+			});
+		});
+	};
+	function hideMove3(){
+		toRotate( oImg, -720, 700, 1 );
+		timeMove( oImgWra, { left:oImgWraLeft - 400 },700,'linear');
+		aP[3].timer2 = setInterval( function(){
+			aP[3].style.width = oImgWra.offsetLeft - aP[3].offsetLeft + 'px';
+			if( aP[3].offsetWidth < 30 ){
+				clearInterval( aP[3].timer2 );
+				aP[3].style.width = 0;
+				aP[3].style.opacity = 0;
+			}
+		},15);
+		setTimeout( function(){
+			clearInterval( aP[3].timer2 );
+			setTimeout( function(){
+				show();
+			},100);
+		},1000)
+	};
+	function hideMove4(){
+		clearInterval( oImgWra.circleTimer );
+		clearInterval( oImg3.circleTimer );
+		timeMove( oImg3, { top:oImgWra.offsetTop, left: oImgWra.offsetLeft },800,function(){
+			this.style.display = 'none';
+			this.style.left = oImgWraLeft + 'px';
+			this.style.top = aP[4].offsetTop -79 + 'px';
+			this.num = 0;
+			oImgWra.num = 180;
+			show();
+		});
+	};
+	
+	/*导航焦点*/
+	function activ(){
+		for( var i=0; i<aNavLi.length; i++ ){
+			aNavLi[i].style.background = '#ccc';
+		}
+		aNavLi[nowPage].style.background = '#F90';
+	}
+	
+	/*简历圆周运动*/
+	function circleMove( obj, x, y ){
+		obj.circleTimer = setInterval(function(){
+			obj.num--;
+			var a = Math.sin( obj.num/180*Math.PI ) * r;
+			var b = Math.cos( obj.num/180*Math.PI ) * r;
+			
+			obj.style.left = a + x - 79 + 'px';
+			obj.style.top = b + y - 79 + 'px';
+		},15);
+	}
+	
+	addMouseWheel( document, fnWheel );
+	function fnWheel( ev ){
+		var a = upOrDown( ev );
+		if( a && prevPage != 0 && off ){
+			nowPage--;
+			hide();
+		}else if( !a && prevPage != 4 && off ){
+			nowPage++;
+			hide();
+		}
+	}
+	
+	oNext.onclick = function(){
+		if( prevPage < 5 ){
+			nowPage++;
+			hide();
+		}
+	};
+	
+	for( var i=0; i<aNavLi.length; i++ ){
+		aNavLi[i].onclick = function(){
+			if(off){
+				nowPage = this.index;
+				hide();
+			}
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+	<div id="imgWra"><img src="../img/skill_headPhoto.jpg"></div>
+	<ul id="main">
+    	<li>
+        	<p>感谢您来到本页面，滚动鼠标滚轮或者点击下方箭头或者点击右侧导航继续浏览。</p>
+        </li>
+    	<li>
+        	<p>
+            	<span>熟练使用HTML、CSS制作网页，兼容各种主流浏览器。</span>
+                <span>熟练使用JavaScript，可用原生JS实现网页各类交互效果。</span>
+            </p>
+            <img src="../img/skill_headPhoto.jpg">
+        </li>
+    	<li>
+        	<p>
+            	<span>熟练DOM操作，熟练使用Ajax和Jsonp实现前后端数据交互。</span>
+               	<span>熟练使用HTML5，CSS3等技术进行项目开发。</span>
+            </p>
+        </li>
+    	<li>
+        	<p>
+            	<span>熟练使用JQuery库，对常见库和框架有一定了解。</span>
+                <span>能够手动编写JQuery插件和javascript组件。</span>
+            </p>
+        </li>
+    	<li>
+        	<p><a href="../resume.doc" target="_blank">点击下载本人简历</a></p>
+            <img src="../img/skill_headPhoto.jpg">
+        </li>
+    </ul>
+    <div id="next">
+    	<span>∨</span>
+    	<span>∨</span>
+    	<span>∨</span>
+    </div>
+    <ul id="nav">
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ul>
+</body>
+</html>

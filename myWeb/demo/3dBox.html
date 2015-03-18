@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D方块</title>
+<link rel = "Shortcut Icon" href="../png/myico.ico">
+<style>
+body{ background:#DCEFFE;}
+#wrap{ width:500px; height:500px; margin:150px auto 0; position:relative;}
+#wrap div{ width:50px; height:50px; background:#6cf; position:absolute;}
+</style>
+<script>
+//sinθ=角的对边/斜边; cosθ=角的邻边/斜边; tanθ=角的对边/角的邻边; sinθ=cosθ*tanθ; 角度转弧度：角度/180*π
+window.onload = function(){
+	var oWra = document.getElementById('wrap');
+	var aDiv = oWra.getElementsByTagName('div');
+	var r = 200, num = 0, z = 0;
+	var x = oWra.offsetWidth/2-aDiv[0].offsetWidth/2;
+	var y = oWra.offsetHeight/2-aDiv[0].offsetHeight/2;
+	
+	aDiv[0].style.top = '100px'; aDiv[1].style.top = '350px';
+	move(aDiv[0]); move(aDiv[1]);
+	
+	function move(obj){
+		setInterval(function(){
+			num++;
+			if( z < -200){
+				z++;
+			}else if( z > 200 ){
+				z--;
+			}
+			var a = Math.sin( num*Math.PI/180 ) * r;
+			var b = Math.cos( num*Math.PI/180 ) * r;
+			obj.style.left = x + b+'px';
+			obj.style.top = z + obj.offsetTop + 'px';
+			//obj.style.left = (x*b-y*a)+'px';
+			//obj.style.top = (x*a+y*b)+'px';
+			
+			obj.style.width = a/r*30+50+'px';
+			obj.style.height = a/r*30+50+'px';
+		},30);
+	}
+};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div></div>
+        <div></div>
+    </div>
+</body>
+</html>
