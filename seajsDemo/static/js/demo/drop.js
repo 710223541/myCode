@@ -8,16 +8,11 @@ define(function(require,exports,module){
 			obj2.stop().slideToggle("fast");	
 		})
 		
-		//obj3.each
-		drop2();
+		obj3.click(function()
+		{
+			obj2.hide();	
+		});
 	}
 	
-	function drop2()	
-	{
-		alert(2);
-	}	
-	
 	exports.drop = drop;
-	
-	exports.drop2 = drop2;
 })

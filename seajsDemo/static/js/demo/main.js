@@ -8,10 +8,9 @@ define(function(require,exports,module)
 	var y2DropToggle = $(".y2-dropToggle");
 	var y2DropCont = $(".y2-dropCont");
 	var y2DropContList = $(".y2-dropCont li")
-	//tab
-	var a = require("./tab.js")
 	
-	a.tab(y2TagNav,y2TagCont);	
+	//tab
+	require("./tab.js").tab(y2TagNav,y2TagCont);
 	
 	//drop
 	require("./drop.js").drop(y2DropToggle,y2DropCont,y2DropContList);
