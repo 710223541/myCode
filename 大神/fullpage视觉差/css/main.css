@@ -10,11 +10,16 @@ body{ margin:0; padding:0; height:100%;}
 .page1{ background-image:url(../img/bg-star.jpg);}
 .page2{ background-image:url(../img/bg-flower.jpg);}
 .page3{ background-image:url(../img/bg-sea.jpg);}
+.page5{ background-image:url(../img/bg-balloonSky.jpg);}
+
 
 .fix{ position:absolute;}
 .fix1{ top:20px; left:100px;}
-.fix2{ bottom:10px; right:10px;}
+.fix2{ bottom:-100px; right:10px;}
 .fix3{ bottom:130px; left:260px;}
+.fix4{ top:-10; right:360px;}
+.fix5{ top:-10; left:100px;}
+
 
 .page-body{ width:960px; height:60%; margin:10% auto; position:relative;}
 .page img{ position:absolute; vertical-align:top;}
@@ -26,8 +31,14 @@ body{ margin:0; padding:0; height:100%;}
 .page2 img:nth-of-type(2){ right:180px; top:160px;}
 
 .page3 img{ position:absolute; vertical-align:top;}
-.page3 img:nth-of-type(1){ bottom:0; right:240px; width:100px;}
+/*.page3 img:nth-of-type(1){ bottom:0; right:240px; width:100px;}*/
+
+.page4 img.bg-sky{ position:absolute; vertical-align:top; height:100%; width:100%; min-width:960px; min-height:540px;}
+
 
 #navWrap{ position:fixed; width:20px; height:40%; right:60px; top:30%; z-index:999999; display:none;}
 .side-nav.side-now{ background:#F90; opacity:1; cursor:default; border:2px solid #fff; left:-2px;}
 .side-nav{ border-radius:50%; width:12px; height:12px; background-color:#ccc; position:absolute; opacity:0.7; cursor:pointer; left:0; transition:background-color 0.4s;}
+
+#nextIcon{ position:fixed; width:60px; z-index:999999; bottom:30px;}
+#nextIcon div{ background:url(../img/nextIcon.png); height:20px; opacity:0.1;}
