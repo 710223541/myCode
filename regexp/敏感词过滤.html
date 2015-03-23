@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<textarea id="text1" rows="10" cols="30">
+
+</textarea>
+<p><input type="button" value="开始过滤" id="aBtn"></p>
+<div id="div1"></div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var oTxt = document.getElementById("text1");
+	var oBtn = document.getElementById("aBtn");
+	var oDiv = document.getElementById("div1");
+	
+	oBtn.onclick = function()
+	{
+		var str = oTxt.value; //
+		var reg = /习近平|克强|李光耀/g;
+		
+		var res = str.replace(reg,function(str){
+			var nb = "";
+			for(var i=0;i<str.length;i++)
+			{
+				nb += "*";
+			}
+			return nb;
+		});
+		console.log(res);		
+	}		
+}
+</script>
+</body>
+</html>
