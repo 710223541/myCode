@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#wrap{width:300px;margin:30px auto;}
+a{text-decoration:none;font:1em/2em "微软雅黑"; white-space:nowrap;}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+	<a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+    <a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">浩克</a>
+	<a href="#">黑寡妇</a>
+	<a href="#">鹰眼</a>
+    <a href="#">钢铁侠</a>
+	<a href="#">美国队长</a>
+	<a href="#">浩克</a>
+</div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var oDiv = document.getElementById("wrap");
+	var aA = oDiv.getElementsByTagName("a");
+	
+	for(var i=0;i<aA.length;i++)
+	{
+		aA[i].className = "color"+rand(5);
+		aA[i].style.fontSize = rand(12)+12+"px";
+		aA[i].style.color = "#"+randomColor();	
+	}
+}
+
+function randomColor()
+{
+	var str = Math.ceil(Math.random()*(256*256*256)).toString(16);	
+	
+	if(str.length < 6)
+	{
+		str = "0"+str;
+	}
+	
+	return str;
+}
+
+function rand(num)
+{
+	return  Math.floor(Math.random()*(num+1));	
+}
+</script>
+</body>
+</html>
