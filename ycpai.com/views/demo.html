@@ -6,5 +6,22 @@
 </head>
 
 <body>
+<label for="file"><input type="file" name="file" id="file" accept="image/*"></label>
+<script type="text/javascript">
+window.onload = function()
+{
+	var aFile = getID("file");
+	
+	aFile.onchange = function()
+	{
+		alert(this.value);	
+	}
+}
+
+function getID(id)
+{
+	return document.getElementById("file");	
+}
+</script>
 </body>
 </html>
