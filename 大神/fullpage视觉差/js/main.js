@@ -21,16 +21,24 @@
 	var $nav = $('#navWrap').find('.side-nav');
 	var pre = 0;
 	var pageIndex = len;
+	var mouseWheelNum = 0;
+	
+	var $nextIcon = $('#nextIcon');
+	var $nextDiv = $nextIcon.find('div');
+	$nextIcon.css('left', ( $(document).outerWidth() - 100 ) / 2 );
 	
 	var arr = [
+		{ bottom:-100, move:-700 },
 		{ top:20, move:1000 },
-		{ bottom:10, move:-700 },
-		{ bottom:130, move:-700 }
+		{ bottom:130, move:-700 },
+		{ top:-10, move:1000 },
+		{ top:-10, move:1000 }
 	]
 	
+	$(document).attr('bo', true);
 	$wrap.prop('bo', true);
 	$page.eq(0).prop('bo', true).css({ zIndex:pageIndex-1, top:0 });
-	moveStar($page, 0);
+	moveFlower( $page.eq(0) );
 	
 	$nav.each(function(index, element) {
         $(element).css({ top: index * 30 })
@@ -41,6 +49,8 @@
 			$wrap.prop('bo', false);
 			var index = $(this).index();
 			
+			mouseWheelNum = index;
+			
 			pageIndex += 2;
 			$page.eq( pre ).css({ zIndex:pageIndex });
 			
@@ -50,15 +60,77 @@
 			pre = index;
 		}
 	});
+	
+	addMouseWheel(document, function(e){
+		var bo = mouseWheelDir(e);
+		var bo2 = $(document).attr('bo');
+		
+		if( bo2 ){
+			if( !bo ){
+				if( mouseWheelNum != len-1 ){
+					bo2 = $(document).attr('bo', false);
+					mouseWheelNum++;
+					
+					$nav.eq( mouseWheelNum ).trigger('click');
+				}
+			}else{
+				if( mouseWheelNum != 0 ){
+					bo2 = $(document).attr('bo', false);
+					mouseWheelNum--;
+					
+					$nav.eq( mouseWheelNum ).trigger('click');
+				}
+			}
+		}
+	});
+	
+	var runNextIcon = function(){
+		var len = $nextDiv.length - 1;
+		var time = 0;
+		$nextDiv.each(function(index, element) {
+            time += 100;
+			setTimeout(function(){
+				$(element).myMove({ opacity:0.8 }, function(){
+					$(this).myMove({ opacity:0.1 }, function(){
+						if( $(this).index() == len ){
+							setTimeout(runNextIcon, 600);
+						}
+					})
+				});
+			}, time)
+        });
+	}
+	runNextIcon();
 }();
+
+function addMouseWheel(obj,fn){
+	obj.onmousewheel = fn;
+	if(obj.addEventListener){
+		obj.addEventListener('DOMMouseScroll',fn,false);
+	}
+}	
+function mouseWheelDir(ev){
+	var oEv=ev||event;
+	if(oEv.wheelDelta){
+		return oEv.wheelDelta>0?true:false;
+	}else{
+		return oEv.detail<0?true:false;
+	}
+}
 
 function init( $page, top, pre, now, arr ){
 	var $wrap = $page.eq(0).parent();
 	var height = $page.eq(0).parent().outerHeight();
 	var index = $page.eq(pre).css('zIndex');
 	
+	if( now == $page.length-1 ){
+		$('#nextIcon').myMove({ opacity:0 });
+	}else{
+		$('#nextIcon').myMove({ opacity:1 });
+	}
+	
 	var bo = now > pre ? true : false;
-	var time = 1000;
+	var time = 800;
 	
 	if( bo ){
 		var posKey = null, posKey2 = null, tarKey = null;
@@ -73,7 +145,7 @@ function init( $page, top, pre, now, arr ){
 			}
 		});
 		var json = {}, json2 = {}, json3 = {};
-		json[posKey] = arr[pre][tarKey];
+		json[posKey] = arr[pre].move;
 		json2[posKey2] = arr[now][posKey2];
 		json3[posKey2] = arr[now][tarKey];
 		
@@ -104,32 +176,35 @@ function init( $page, top, pre, now, arr ){
 	$page.eq(now).prop('bo', true).myMove({ top:0 }, time, 'easeBothStrong', function(){
 		$page.eq(pre).prop('bo', false);
 		$wrap.prop('bo', true);
-		choiceMoveFn( $page.eq(now), now );
+		$(document).attr('bo', true);
 	});
+	choiceMoveFn( $page.eq(now), now );
 };
 
 function choiceMoveFn( $obj, num ){
 	switch( num ){
 		case 0:
-			moveStar( $obj );
-		break;
-		case 1:
 			moveFlower( $obj );
 		break;
-		case 2:
-			moveSea( $obj );
+		case 1:
+			moveStar( $obj );
 		break;
+		/*case 2:
+			
+		break;*/
 		case 3:
-			moveRainyDay( $obj );
+			var $img = $obj.find('img.bg-sky');
+			$img.eq(0).attr('src', 'img/bg-sky2.jpg');
+			$img.eq(1).attr('src', 'img/bg-sky1.jpg');
+			moveSkyChange( $obj, false );
 		break;
-		case 4:
-			moveFineDay( $obj );
-		break;
+		/*case 4:
+			
+		break;*/
 	}
 }
 
 function moveStar( $obj ){
-	//var $obj = $page.eq(num);
 	if( $obj.prop('bo') ){
 		var $img = $obj.find('img');
 		var time = 1000;
@@ -147,7 +222,6 @@ function moveStar( $obj ){
 }
 
 function moveFlower( $obj ){
-	//var $obj = $page.eq(num);
 	if( $obj.prop('bo') ){
 		var $img = $obj.find('img.moveImg');
 		var time = 4000;
@@ -170,31 +244,24 @@ function moveFlower( $obj ){
 	}
 }
 
-function moveSea( $obj ){
+function moveSkyChange( $obj, bo ){
 	if( $obj.prop('bo') ){
-		var $img = $obj.find('img');
-		var time = 600;
+		if( !bo ){
+			var a = 'img/bg-sky2.jpg';
+			var b = 'img/bg-sky1.jpg';
+		}else{
+			var a = 'img/bg-sky1.jpg';
+			var b = 'img/bg-sky2.jpg';
+		}
 		
-		$img.eq(0).myScale(1.1, time, function(){
-			$(this).myScale(1, time, function(){
-				moveSea( $obj );
-			})
-		})
+		var $img = $obj.find('img.bg-sky');
+		var time = 5000;
+		
+		$img.eq(1).myMove({opacity:0}, time, function(){
+			$(this).attr('src', a).css('opacity', 1);
+			$img.eq(0).attr('src', b);
+			bo = !bo;
+			moveSkyChange( $obj, bo );
+		});
 	}
 }
-
-function moveRainyDay( $obj ){
-	if( $obj.prop('bo') ){
-		
-		//moveRainyDay( $obj )
-	}
-}
-
-function moveFineDay( $obj ){
-	if( $obj.prop('bo') ){
-		
-		//moveFineDay( $obj )
-	}
-}
-
-

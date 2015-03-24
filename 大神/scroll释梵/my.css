@@ -3,6 +3,7 @@
 }
 .con li{
 	height: 800px;
+	border:1px solid #000;
 }
 .nav{
 	position: fixed;

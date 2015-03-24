@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<label for=""><input type="text" name="" id="ipt"></label>
+<label for=""><input type="button" name="" id="btn" value="验证"></label>
+<p id="txt"></p>
+<script type="text/javascript">
+
+window.onload = function()
+{
+	var aIpt = getID("ipt");
+	var aBtn = getID("btn");
+	var aTxt = getID("txt");
+	
+	aBtn.onclick = function()
+	{
+		var res = ValidateEmail(aIpt.value);
+		if(res)
+		{
+			aTxt.innerHTML = aIpt.value+"<br/>是一个合法的Email";
+		}else{
+			aTxt.innerHTML = aIpt.value+"<br/>这不是一个合法的Email";	
+		}	
+	}		
+}
+
+function  ValidateEmail(str)
+{	
+	var re = /^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+	
+	return re.test(str);
+}
+
+function getID(id)
+{
+	return document.getElementById(id);	
+}
+</script>
+</body>
+</html>

@@ -177,9 +177,8 @@ $.fn.extend({
 		
 		var iCur = {};
 		for(var attr in json){
-			var val = parseInt( $(this).css(attr) );
+			var val = parseInt( This.css(attr) );
 			if( $.type( val ) != 'number' || isNaN( val ) ){
-				console.log( This.parent().parent() )
 				console.log('元素的 '+attr+' 值不合法，请先设置元素的 '+attr+' 值!');
 				return;
 			}
@@ -210,7 +209,7 @@ $.fn.extend({
 				if( !window.requestAnimationFrame ){
 					This.prop( 'timer', setTimeout(run, 16.7) );
 				}else{
-					requestAnimationFrame(run);
+					This.prop( 'timer', requestAnimationFrame(run) );
 				}
 			}else{
 				fn && fn.call( This );
@@ -220,7 +219,7 @@ $.fn.extend({
 		if( !window.requestAnimationFrame ){
 			clearTimeout( This.prop('timer') );
 		}else{
-			cancelAnimationFrame(run);
+			cancelAnimationFrame( This.prop('timer') );
 		}
 		run();
 		
@@ -374,7 +373,7 @@ $.fn.extend({
 				if( !window.requestAnimationFrame ){
 					This.prop( 'roTimer', setTimeout(run, 16.7) );
 				}else{
-					requestAnimationFrame(run);
+					This.prop( 'roTimer', requestAnimationFrame(run) );
 				}
 			}else{
 				fn && fn.call( This );
@@ -384,7 +383,7 @@ $.fn.extend({
 		if( !window.requestAnimationFrame ){
 			clearTimeout( This.prop('roTimer') );
 		}else{
-			cancelAnimationFrame(run);
+			cancelAnimationFrame( This.prop('roTimer') );
 		}
 		run();
 		

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>验证手机号</title>
+</head>
+
+<body>
+<label for=""><input type="text" name="" id="ipt"></label>
+<label for=""><input type="button" name="" id="btn" value="验证"></label>
+<p id="txt"></p>
+<script type="text/javascript">
+
+window.onload = function()
+{
+	var aIpt = getID("ipt");
+	var aBtn = getID("btn");
+	var aTxt = getID("txt");
+	
+	aBtn.onclick = function()
+	{
+		var res = ValidateTel(aIpt.value);
+		if(res)
+		{
+			aTxt.innerHTML = aIpt.value+"<br/>是一个合法的手机号";
+		}else{
+			aTxt.innerHTML = aIpt.value+"<br/>这不是一个合法的手机号";	
+		}	
+	}		
+}
+
+function  ValidateTel(str)
+{	
+	var re = /^13\d{9}|145\d{8}|147\d{8}|15\d{9}|170\d{8}|176\d{8}|177\d{8}|178\d{8}|18\d{9}$/g;	
+	return re.test(str);
+}
+
+function getID(id)
+{
+	return document.getElementById(id);	
+}
+</script>
+</body>
+</html>

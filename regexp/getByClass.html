@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<ul id="ul1">
+	<li class="abox box"></li>
+	<li></li>
+	<li class="box active"></li>
+	<li></li>
+	<li class="box"></li>
+</ul>
+
+<script type="text/javascript">
+window.onload = function()
+{
+	var aDiv = document.getElementById("ul1");
+	
+	var oBox = getByClass(aDiv,"box");
+	
+	for(var i=0;i<oBox.length;i++)
+	{
+		oBox[i].style.background = "red";
+		
+		console.log(oBox[i]);
+	}		
+}
+
+function getByClass(oParent,oCname)
+{
+	var oAll = oParent.getElementsByTagName("*");
+	var arr = [];
+	var re = new RegExp('\\b'+oCname+'\\b','i');
+	var i=0;
+	var len = oAll.length;
+	for(i;i<oAll.length;i++)
+	{
+		if(re.test(oAll[i].className))
+		{
+			arr.push(oAll[i]);
+		}
+	}
+	
+	return arr;
+}
+</script>
+</body>
+</html>
