@@ -6,13 +6,22 @@
 <title>个人资料</title>
 <link rel="stylesheet" type="text/css" href="../static/css/public/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/css/public/bootstrap-responsive.min.css">
-  <link rel="stylesheet" type="text/css" href="../static/css/public/base.css">
-<link rel="stylesheet" type="text/css" href="../static/css/y2-style.css">
 <link rel="stylesheet" type="text/css" href="../static/css/detail_new.css">
+<link rel="stylesheet" type="text/css" href="../static/css/public/base.css">
+<link rel="stylesheet" type="text/css" href="../static/css/y2-style.css">
 </head>
 
 <body>
 <div class="y2-header w"><img src="../static/img/header.png" class="w"></div>
+<!--二级导航 start-->
+<ul class="y2-0326-ul1">
+	<li class="active"><a href="javascript:;">个人资料</a></li>
+    <li><a href="javascript:;">我的项目</a></li>
+    <li><a href="javascript:;">信任和认证</a></li>
+    <li><a href="javascript:;">我的评价</a></li>
+    <li><a href="javascript:;">账号</a></li>
+</ul>
+<!--二级导航 end-->
 <!--userInfo start-->
 <div class="y2-userInfo y2-m6 y2-bd1 mt30 y2-bg2 container-fluid">
 	<dl class="y2-0324-dl1">
@@ -30,10 +39,14 @@
     <a href="javascript:;" class="y2-0324-a1"><img src="../static/img/y2-img2.png"></a>
     <div class="cb"></div>	
 </div>
+<!--用户信息编辑框-->
 <div class="y2-userInfo y2-m6 y2-bd1 mt30 y2-bg3" style="padding:1.8803%;">
 	<div class="y2-userInfo-div1 y2-mr1">
-    	<img src="../static/img/y2-img7.png">
-        <input type="hidden" name="img">
+    	<div class="y2-0326-div1 pr">
+        	<img src="../static/img/y2-img7.png" class="pa" style="z-index:10;">
+        	<img src="../static/img/y2-img1.jpg" class="pa" style="z-index:1;">
+        </div>
+        <input type="file" name="img" id="y2-0326js-file1" class="none">
     </div>
 	<div class="y2-userInfo-div2 y2-mr1">
     	<ul class="y2-0325-ul2">
@@ -51,10 +64,11 @@
             </li>
             <li>
             	<label class="Clearfix f14">
-                	<span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 性别</span>
-                    <input type="hidden">
+                	<span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 性别</span>                    
                     <span class="y2-0325-span3" style="margin-right:13px;">先生</span>
+                    <input type="radio" checked name="sex" class="none" value="男">
                     <span class="y2-0325-span4">女士</span>
+                    <input type="radio" name="sex" class="none" value="女">
                 </label>
             </li>
             <li>
@@ -103,7 +117,7 @@
                     <span class="y2-label-c1 f12">填写出生日期，方便匹配推荐合伙人</span>
                 </label>
             </li>
-            <li style="margin-top:35%;">
+            <li class="y2-0325-li1">
             	<a href="javascript:;" class="y2-btn1">保存</a>
                 <a href="javascript:;" class="y2-btn2">取消</a>
             </li>
@@ -112,690 +126,710 @@
     <div class="cb"></div>
 </div>
 <!--userInfo end-->
+<!--右边小导航start-->
+<ul class="y2-0325-ul1 y2-bg2 y2-bd1 mt20 y2-0325-ul1-n2">
+    <li><a href="#div1">个人描述</a></li>
+    <li class="active"><a href="#div2" >个人经历</a></li>
+    <li><a href="#div3">经验能力</a></li>
+    <li><a href="#div4">创业背景</a></li>
+    <li><a href="#div5">擅长技能</a></li>
+    <li><a href="#div6;">作品展示</a></li>
+    <li><a href="#div7">兴趣爱好</a></li>
+</ul>
+<!--右边小导航end-->
 <!--container start-->
 <div class="y2-container y2-m6 container-fluid">
 	<div class="row-fluid">
-	<div class="y2-layout-left span9">
-    	<!--个人描述 start-->
-        <div id="div1">
-            <div class="y2-0324-div1">
-                <h4>个人描述</h4>
-                <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
-                <div class="cb"></div>
-            </div>
-            <!--无内容-->
-            <div class="y2-0324-div2 y2-bd1">
-                <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;编辑个人描述</a>
-            </div>
-            <!--有内容-->
-            <div class="df_experience">
-                <p class="df_Description df_bgcolor_fff fontms_wryh14">我在做一个年轻人社区的app项目，作为一个创业几年的人看创业真不是只需要一种技能一个人就能成的，咱们先聊聊有没有机会发挥各自特点合作成点大事，校园项目介绍那个没有更新我在做一个年轻人社区的app项目，作为一个创业几年的人看创业真不是只需要一种技能一个人就能成的，咱们先聊聊有没有机会发挥各自特点合作成点大事，校园项目介绍那个没有更新</p>
-            </div>
-            <!--编辑框-->
-            <div class="y2-bg3 y2-bd1 y2-p1">
-                <h4>如何写好作为创业者的描述?</h4>	
-                <p class="f14 y2-c2 mt15">简单的说明自己的经历，比如：十年资深程序员，精通java，自己曾经做过App,或者讲讲自己的对创业的理解，目前的创业状态你也可以描述下你来缘创派希望找到什么？</p>
-                <textarea class="y2-bd1 y2-0325-textarea1 Clearfix"></textarea>
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
-                </div>
-            </div>
-        </div>
-        <!--个人描述 end-->
-        <!--个人经历start-->
-        <div class="y2-0324-div1">
-        	<h4>个人经历</h4>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<div class="y2-0324-div4">
-                <h4>工作经历</h4>
-                <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
-                <div class="cb"></div>
-        	</div>
-            
-            <!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加工作经历</a>
-            
-           	<!--编辑后-->
-            <div class="df_job_wrap">
-                <div class="df_job clearfix">
-                    <div class="span4 df_job_item job_red">
-                        <div class="df_company">北京欢堂</div>
-                        <div class="df_position">产品经理</div>
-                        <div class="df_job_time">2011.01 - 至今</div>
-                    </div>
-                    <div class="span4 df_job_item job_org">
-                        <div class="df_company">北京欢堂</div>
-                        <div class="df_position">产品经理</div>
-                        <div class="df_job_time">2011.01 - 至今</div>
-                    </div>
-                    <div class="span4 df_job_item job_red">
-                        <div class="df_company">北京欢堂</div>
-                        <div class="df_position">产品经理</div>
-                        <div class="df_job_time">2011.01 - 至今</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!--编辑框-->     
-            <div class="y2-p1 y2-bg3 ">
-            	<ul class="y2-0325-ul4">
-                    <li>
-                        <label><em class="y2-span-c1">*</em> 公司</label>
-                        <div class="controls">
-                        	<input class="span10" type="text">
-                        </div>
-                    </li> 
-                    <li class="mt10">                                           
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 类型</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
-                            <span class="y2-user-label1">职位</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10">
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 在职时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
-                            <span class="y2-user-label1 ly-tex">在职时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
+        <div class="y2-layout-left span9">
+            <!--个人描述 start-->
+            <div id="div1">
+                <div class="y2-0324-div1">
+                    <h4>个人描述</h4>
+                    <a href="javascript:;"><img src="../static/img/y2-img2.png"></a>
                     <div class="cb"></div>
-                </ul>
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
                 </div>
-            </div>
-            
-            <div class="y2-0324-div4 mt30">
-                <h4>教育经历</h4>
-                <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
-                <div class="cb"></div>
-        	</div>
-            
-            <!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加教育经历</a>
-            
-            <!--编辑后-->
-            <div class="row-fluid">
-              <div class="span5">
-                  <div>北京航空航天大学</div>
-                  <p><small class="df_chuise3 df_major">本科</small><small class="df_chuise3 df_major">计算机</small></p>
-              </div>
-              <div class="df_chuise3">1999 - 2003</div>
-            </div>
-            
-            <div class="row-fluid">
-              <div class="span5">
-                  <div>北京航空航天大学</div>
-                  <p><small class="df_chuise3 df_major">本科</small><small class="df_chuise3 df_major">计算机</small></p>
-              </div>
-              <div class="df_chuise3">1999 - 2003</div>
-            </div>
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-            	<ul class="y2-0325-ul4 oh">
-                    <li>
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 学校名称</span>
-                            <input type="text" class="y2-input1 Clearfix span10">
-                        </label>
-                    </li> 
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em>学历</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 在校时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
-                            <span class="y2-user-label1 ly-tex">在校时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10">
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1">专业</span>
-                            <input type="text" class="y2-input1 Clearfix span10">
-                        </label>
-                    </li> 
-                </ul>
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
-                </div>
-            </div>
-        </div>
-        <!--个人经历end-->
-        <!--经验能力 start-->
-        <div class="y2-0324-div1">
-        	<h4>经验能力</h4>
-            <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加经验能力</a>
-            
-            <!--编辑后-->
-            <div>
-           		<div class="df_experience_box">
-                <div class="row-fluid">
-                  <div class="span4">
-                    <div>支付宝（中国）</div>
-                    <div><small class="df_chuise3 df_major">创始人</small></div>
-                    <div><small class="df_chuise3 df_major">无团队管理经验</small></div>
-                  </div>
-                  <div class="span8">
-                    <p class="text-right"><small class="df_chuise3 df_major">电子商务</small></p>
-                    <p class="text-right"><small class="df_chuise3 df_major">2014.12 ~ 2015.03</small></p>
-                  </div>
-                </div>
-                <div class="df_user_ability">
-                    <strong>沟通协调能力</strong>
-                    <p>沟通协调能力沟通协调能力沟通协调能力沟通协调能力</p>
-                </div>
-            </div>
-            	<div class="df_experience_box">
-                <div class="row-fluid">
-                  <div class="span4">
-                    <div>支付宝（中国）</div>
-                    <div><small class="df_chuise3 df_major">创始人</small></div>
-                    <div><small class="df_chuise3 df_major">无团队管理经验</small></div>
-                  </div>
-                  <div class="span8">
-                    <p class="text-right"><small class="df_chuise3 df_major">电子商务</small></p>
-                    <p class="text-right"><small class="df_chuise3 df_major">2014.12 ~ 2015.03</small></p>
-                  </div>
-                </div>
-                <div class="df_user_ability">
-                    <strong>沟通协调能力</strong>
-                    <p>沟通协调能力沟通协调能力沟通协调能力沟通协调能力</p>
-                </div>
-            </div>
-            </div>       
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-            	<ul class="y2-0325-ul4 oh">
-                    <li>
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 项目名称</span>
-                            <input type="text" class="y2-input1 Clearfix span10">
-                        </label>
-                    </li> 
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 开始时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
-                            <span class="y2-user-label1">结束时间</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em>  项目类型</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 角色</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                        <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
-                            <span class="y2-user-label1 ly-tex">角色</span>
-                            <select name="" id="" class="span12">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt10 oh">
-                        <label class="Clearfix f14 y2-label-c1">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 带领团队</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                    <li class="mt30 oh">
-                        <label class="Clearfix f14 y2-label-c1">
-                            <span class="y2-user-label1"><em class="y2-span-c1">*</em> 描述下你在这个项目中的作用、体现的能力，以及您的创业感悟</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label>
-                    </li>
-                </ul>
-                <div>
-                	<textarea class="y2-bd1 y2-0325-textarea1 Clearfix" style="margin-top:20px;"></textarea>
-                </div>
-              	<div class="mt15">
-                	<label class="Clearfix f14 y2-label-c1">
-                        <span class="y2-user-label1">项目链接</span>
-                        <input type="text" class="y2-input1 Clearfix" style="width:88.954%;">
-                    </label>
-                </div>
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
-                </div>
-            </div>
-        </div>
-        <!--经验能力 end-->
-        <!--创业背景 start-->
-        <div class="y2-0324-div1">
-        	<h4>创业背景</h4>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;编辑创业背景</a>
-            
-            <!--编辑后-->
-            
-            <div class="df_Description df_bgcolor_fff">
-                <div class="">
-                    <div class="row-fluid">
-                        <div class="span2 df_chuise3">创业状态：</div>
-                        <div class="span4">可以全职一起干</div>
-                        <div class="span2 df_chuise3">无薪资可维护：</div>
-                        <div class="span4">0~3个月</div>
+                <div class="y2-0326js-div1">
+                   <!--编辑前-->
+                    <div class="y2-0324-div2 y2-bd1">
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;编辑个人描述</a>
                     </div>
-                    <div class="row-fluid">
-                        <div class="span2 df_chuise3">创业状态：</div>
-                        <div class="span4">可以全职一起干</div>
-                        <div class="span2 df_chuise3">无薪资可维护：</div>
-                        <div class="span4">0~3个月</div>
+                    <!--编辑后-->
+                    <div class="df_experience">
+                        <p class="df_Description df_bgcolor_fff fontms_wryh14">我在做一个年轻人社区的app项目，作为一个创业几年的人看创业真不是只需要一种技能一个人就能成的，咱们先聊聊有没有机会发挥各自特点合作成点大事，校园项目介绍那个没有更新我在做一个年轻人社区的app项目，作为一个创业几年的人看创业真不是只需要一种技能一个人就能成的，咱们先聊聊有没有机会发挥各自特点合作成点大事，校园项目介绍那个没有更新</p>
                     </div>
                 </div>
-            </div>
-
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-            	<ul class="y2-0325-ul4 oh">
-                    <li>
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业状态</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label> 
-                    </li> 
-                    <li class="mt10">
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 期望保障</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label> 
-                    </li> 
-                    <li class="mt10">
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业出资</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label> 
-                    </li> 
-                    <li class="mt10">
-                        <label class="Clearfix f14">
-                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 无资金可维持</span>
-                            <select name="" id="" class="span10">
-                            	<option value="">1</option>
-                            	<option value="">2</option>
-                            	<option value="">3</option>
-                            	<option value="">4</option>
-                            	<option value="">4</option>
-                            </select>
-                        </label> 
-                    </li> 
-                </ul>
-                <div class="f14 mt10">
-                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业方向</span>
-                    <ol class="y2-0325-ol1 oh mt20">
-                        <li><label><input type="checkbox" value="电子商务"> 电子商务</label></li>
-                        <li><label><input type="checkbox" value="社交"> 社交</label></li>
-                        <li><label><input type="checkbox" value="工具"> 工具</label></li>
-                        <li><label><input type="checkbox" value="移动应用"> 移动应用</label></li>
-                        <li><label><input type="checkbox" value="生活消费"> 生活消费</label></li>
-                        <li><label><input type="checkbox" value="企业 服务"> 企业服务</label></li>
-                        <li><label><input type="checkbox" value="文化艺术"> 文化艺术</label></li>
-                        <li><label><input type="checkbox" value="游戏"> 游戏</label></li>
-                        <li><label><input type="checkbox" value="教育"> 教育</label></li>
-                        <li><label><input type="checkbox" value="营销广告"> 营销广告</label></li>
-                        <li><label><input type="checkbox" value="健康医疗"> 健康医疗</label></li>
-                        <li><label><input type="checkbox" value="创业服务"> 创业服务</label></li>
-                        <li><label><input type="checkbox" value="媒体"> 媒体</label></li>
-                        <li><label><input type="checkbox" value="旅游"> 旅游</label></li>
-                        <li><label><input type="checkbox" value="站长工具"> 站长工具</label></li>
-                        <li><label><input type="checkbox" value="金融"> 金融</label></li>
-                        <li><label><input type="checkbox" value="硬件"> 硬件</label></li>
-                        <li><label><input type="checkbox" value="体育"> 体育</label></li>
-                        <li><label><input type="checkbox" name="其他"> 其他</label></li>
-                    </ol>
-                </div> 
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
-                </div>
-            </div>
-        </div>
-        <!--创业背景 end-->
-        <!--擅长技能 start-->
-        <div class="y2-0324-div1">
-        	<h4>擅长技能</h4>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;展现我的技能</a>
-            
-            <!--编辑后-->
-            <div class="df_Description df_bgcolor_fff">
-                <h5 class="fontft_wryh16">能力特点</h5>
-                <div class="df_skill_tags clearfix">
-                    <small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small>
-                </div>
-                <h5 class="fontft_wryh16">常用工具</h5>
-                <div class="df_skill_tags clearfix">
-                    <small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small>
-                </div>
-            </div>
-            
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-                <div class="f14 mt10">
-                    <span class="y2-user-label1 y2-label-c1">能力特点</span>
-                    <ol class="y2-0325-ol1 oh mt20">
-                        <li><label><input type="checkbox" value="市场背景"> 市场背景</label></li>
-                        <li><label><input type="checkbox" value="运营背景"> 运营背景</label></li>
-                        <li><label><input type="checkbox" value="技术背景"> 技术背景</label></li>
-                        <li><label><input type="checkbox" value="设计背景"> 设计背景</label></li>
-                        <li><label><input type="checkbox" value="强烈责任心"> 强烈责任心</label></li>
-                        <li><label><input type="checkbox" value="表达能力强"> 表达能力强</label></li>
-                        <li><label><input type="checkbox" value="承受压力强"> 承受压力强</label></li>
-                        <li><label><input type="checkbox" value="用户需求敏感"> 用户需求敏感</label></li>
-                    </ol>
-                           
-                </div> 
-                <label class="Clearfix f14 y2-label-c1">
-                    <span class="y2-user-label1">常用工具</span>
-                    <input type="text" class="y2-input1 Clearfix" placeholder="回车确认添加">
-                </label>
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
-                </div>
-            </div>
-        </div>
-        <!--擅长技能 end-->
-        <!--作品展示 start-->
-        <div class="y2-0324-div1">
-        	<h4>作品展示</h4>
-            <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc">
-            	<img src="../static/img/y2-img4.png">&nbsp;展示我的作品
-            </a>
-            
-            <!--编辑后-->
-            <div class="df_Description df_bgcolor_fff">
-                <div class="row-fluid">
-                    <div class="span4">
-                        <div class="df_empty">
-                            <a href="#" class="text-center df_link">dsds</a>
-                        </div>
-                    </div>
-                    <div class="span4">
-                        <div class="df_hasImg">
-                            <div class="img_area">
-                                <img src="http://img.taotuwu.com/uploads/allimg/120226/co120226120G3-4.jpg" href="#myModal" data-toggle="modal" class="showBigImg" _title="就看上你疯狂思念11" _src="http://www.sinaimg.cn/dy/slidenews/4_img/2015_12/704_1579346_230297.jpg">
-                            </div>
-                            <div class="df_img_common df_img_mask"></div>
-                            <div class="df_img_common df_img_info">就看上你疯狂思念11</div>
-                        </div>
-                    </div>
-                    <div class="span4">
-                        <div class="df_hasImg">
-                            <div class="img_area">
-                                <img src="/statics/images/detail_new/head.jpg" href="#myModal" data-toggle="modal" class="showBigImg" _title="就看上你疯狂思念22" _src="http://www.sinaimg.cn/dy/slidenews/4_img/2015_12/704_1579349_914038.jpg">
-                            </div>
-                            <div class="df_img_common df_img_mask"></div>
-                            <div class="df_img_common df_img_info">就看上你疯狂思念22</div>
-                        </div>
-                    </div>
-                </div>
-            </div>            
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-            	<div class="tc y2-0324-div5 mb50">
-                	<a href="javascript:;">上传图片</a>
-                    <a href="javascript:;" class="active">在线作品</a>
-                </div>
-                <div class="y2-0325-div10 none">
-                    <ul class="y2-0325-ul5 oh bc">
-                        <li>
-                            <label class="Clearfix f14">
-                                <span class="y2-user-label1 y2-label-c1">作品链接</span>
-                                <input type="text" class="y2-input1 Clearfix" style="width:92%;">
-                            </label>
-                        </li> 
-                        <li class="mt10">
-                            <label class="Clearfix f14">
-                                <span class="y2-user-label1 y2-label-c1">作品描述</span>
-                                <textarea class="y2-bd1 y2-0325-textarea2" placeholder="请在30个字以内对您的作品简单描述。"></textarea>
-                            </label>
-                        </li> 
-                    </ul>
-                    <div class="mt30" style="padding-left:15.3448%;">
-                        <a href="javascript:;" class="y2-btn1">保存</a>
-                        <a href="javascript:;" class="y2-btn2">取消</a>
-                    </div>
-                </div>
-                <div class="y2-0325-div11">
-                    <ul class="y2-0325-ul5 oh bc">
-                        <li class="y2-0325-ul5-li1 tc">
-                           <strong><img src="../static/img/y2-img11.png"></strong> 上传作品图片
-                        </li> 
-                        <li class="mt10">
-                            <label class="Clearfix f14">
-                                <span class="y2-user-label1 y2-label-c1">作品描述</span>
-                                <input type="text" class="y2-input1 Clearfix" style="width:92%;">
-                            </label>
-                        </li> 
-                    </ul>
-                    <div class="mt30" style="padding-left:15.3448%;">
+                <!--编辑框-->
+                <div class="y2-bg3 y2-bd1 y2-p1 none">
+                    <h4>如何写好作为创业者的描述?</h4>	
+                    <p class="f14 y2-c2 mt15">简单的说明自己的经历，比如：十年资深程序员，精通java，自己曾经做过App,或者讲讲自己的对创业的理解，目前的创业状态你也可以描述下你来缘创派希望找到什么？</p>
+                    <textarea class="y2-bd1 y2-0325-textarea1 Clearfix"></textarea>
+                    <div class="mt30">
                         <a href="javascript:;" class="y2-btn1">保存</a>
                         <a href="javascript:;" class="y2-btn2">取消</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--作品展示 end-->
-        <!--兴趣爱好 start-->
-        <div class="y2-0324-div1">
-        	<h4>兴趣爱好</h4>
-            <div class="cb"></div>
-        </div>
-        <div class="y2-0324-div2 y2-bd1">
-        	<!--编辑前-->
-            <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc">
-            	<img src="../static/img/y2-img4.png">&nbsp;编辑我的兴趣
-            </a>
-            
-            <!--编辑后-->
-            <div class="df_Description clearfix df_bgcolor_fff">
-                <span class="hobby_common hobby_01"></span>
-                <span class="hobby_common hobby_02"></span>
-                <span class="hobby_common hobby_03"></span>
-                <span class="hobby_common hobby_04"></span>
-                <span class="hobby_common hobby_05"></span>
-                <span class="hobby_common hobby_06"></span>
-                <span class="hobby_common hobby_07"></span>
-                <span class="hobby_common hobby_08"></span>
-                <span class="hobby_common hobby_09"></span>
-                <span class="hobby_common hobby_10"></span>
-                <span class="hobby_common hobby_11"></span>
-                <span class="hobby_common hobby_12"></span>
-                <span class="hobby_common hobby_13"></span>
-            </div>
-            
-            <!--编辑框-->
-            <div class="y2-p1 y2-bg3">
-                <div class="f14 mt10">
-                    <ol class="y2-0325-ol1 oh mt20">
-                        <li><label><input type="checkbox" value="旅行"> 旅行</label></li>
-                        <li><label><input type="checkbox" value="美食"> 美食</label></li>
-                        <li><label><input type="checkbox" value="哲学"> 哲学</label></li>
-                        <li><label><input type="checkbox" value="读书"> 读书</label></li>
-                        <li><label><input type="checkbox" value="运动"> 运动</label></li>
-                        <li><label><input type="checkbox" value="绘画"> 绘画</label></li>
-                        <li><label><input type="checkbox" value="街舞"> 街舞</label></li>
-                        <li><label><input type="checkbox" value="电影"> 电影</label></li>
-                        <li><label><input type="checkbox" value="军事"> 军事</label></li>
-                        <li><label><input type="checkbox" value="动漫"> 动漫</label></li>
-                        <li><label><input type="checkbox" value="宠物"> 宠物</label></li>
-                        <li><label><input type="checkbox" value="摄影"> 摄影</label></li>
-                    </ol>
-                           
-                </div> 
-                <div class="mt30">
-                    <a href="javascript:;" class="y2-btn1">保存</a>
-                    <a href="javascript:;" class="y2-btn2">取消</a>
+            <!--个人描述 end-->
+            <!--个人经历start-->
+            <div id="div2">
+                <div class="y2-0324-div1">
+                    <h4>个人经历</h4>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0324-div4">
+                        <h4>工作经历</h4>
+                        <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="y2-0326js-div2">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加工作经历</a>
+                        <!--编辑后-->
+                        <div class="df_job_wrap">
+                            <div class="df_job clearfix">
+                                <div class="span4 df_job_item job_red">
+                                    <div class="df_company">北京欢堂</div>
+                                    <div class="df_position">产品经理</div>
+                                    <div class="df_job_time">2011.01 - 至今</div>
+                                </div>
+                                <div class="span4 df_job_item job_org">
+                                    <div class="df_company">北京欢堂</div>
+                                    <div class="df_position">产品经理</div>
+                                    <div class="df_job_time">2011.01 - 至今</div>
+                                </div>
+                                <div class="span4 df_job_item job_red">
+                                    <div class="df_company">北京欢堂</div>
+                                    <div class="df_position">产品经理</div>
+                                    <div class="df_job_time">2011.01 - 至今</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--编辑框-->     
+                    <div class="y2-p1 y2-bg3 none">
+                        <ul class="y2-0325-ul4">
+                            <li>
+                                <label><em class="y2-span-c1">*</em> 公司</label>
+                                <div class="controls">
+                                    <input class="span10" type="text">
+                                </div>
+                            </li> 
+                            <li class="mt10">                                           
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 类型</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
+                                    <span class="y2-user-label1">职位</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10">
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 在职时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
+                                    <span class="y2-user-label1 ly-tex">在职时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <div class="cb"></div>
+                        </ul>
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
+                    <div class="y2-0324-div4 mt30">
+                        <h4>教育经历</h4>
+                        <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
+                        <div class="cb"></div>
+                    </div>
+                    <!--编辑前-->
+                    <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加教育经历</a>
+                    <!--编辑后-->
+                    <div class="row-fluid">
+                      <div class="span5">
+                          <div>北京航空航天大学</div>
+                          <p><small class="df_chuise3 df_major">本科</small><small class="df_chuise3 df_major">计算机</small></p>
+                      </div>
+                      <div class="df_chuise3">1999 - 2003</div>
+                    </div>
+                    
+                    <div class="row-fluid">
+                      <div class="span5">
+                          <div>北京航空航天大学</div>
+                          <p><small class="df_chuise3 df_major">本科</small><small class="df_chuise3 df_major">计算机</small></p>
+                      </div>
+                      <div class="df_chuise3">1999 - 2003</div>
+                    </div>
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <ul class="y2-0325-ul4 oh">
+                            <li>
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 学校名称</span>
+                                    <input type="text" class="y2-input1 Clearfix span10">
+                                </label>
+                            </li> 
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em>学历</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 在校时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
+                                    <span class="y2-user-label1 ly-tex">在校时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10">
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1">专业</span>
+                                    <input type="text" class="y2-input1 Clearfix span10">
+                                </label>
+                            </li> 
+                        </ul>
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--兴趣爱好 end-->
-    </div>
-    <div class="y2-layout-right span3">
-    	<div class="y2-0325-div1 y2-bg2 y2-bd1">
-        	<div class="y2-0325-div1-1 f14">
-                <span class="clearfix fl">资料完善程度：<em class="y2-c1">45%</em></span>
-                <a href="javascript:;" class="clearfix fr y2-a2">预览</a>
-                <div class="cb"></div>
+            <!--个人经历end-->
+            <!--经验能力 start-->
+            <div id="div3">
+                <div class="y2-0324-div1">
+                    <h4>经验能力</h4>
+                    <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0326js-div3">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;添加经验能力</a>
+                        <!--编辑后-->
+                        <div>
+                            <div class="df_experience_box">
+                                <div class="row-fluid">
+                                  <div class="span4">
+                                    <div>支付宝（中国）</div>
+                                    <div><small class="df_chuise3 df_major">创始人</small></div>
+                                    <div><small class="df_chuise3 df_major">无团队管理经验</small></div>
+                                  </div>
+                                  <div class="span8">
+                                    <p class="text-right"><small class="df_chuise3 df_major">电子商务</small></p>
+                                    <p class="text-right"><small class="df_chuise3 df_major">2014.12 ~ 2015.03</small></p>
+                                  </div>
+                                </div>
+                                <div class="df_user_ability">
+                                    <strong>沟通协调能力</strong>
+                                    <p>沟通协调能力沟通协调能力沟通协调能力沟通协调能力</p>
+                                </div>
+                            </div>
+                            <div class="df_experience_box">
+                                <div class="row-fluid">
+                                  <div class="span4">
+                                    <div>支付宝（中国）</div>
+                                    <div><small class="df_chuise3 df_major">创始人</small></div>
+                                    <div><small class="df_chuise3 df_major">无团队管理经验</small></div>
+                                  </div>
+                                  <div class="span8">
+                                    <p class="text-right"><small class="df_chuise3 df_major">电子商务</small></p>
+                                    <p class="text-right"><small class="df_chuise3 df_major">2014.12 ~ 2015.03</small></p>
+                                  </div>
+                                </div>
+                                <div class="df_user_ability">
+                                    <strong>沟通协调能力</strong>
+                                    <p>沟通协调能力沟通协调能力沟通协调能力沟通协调能力</p>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>     
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <ul class="y2-0325-ul4 oh">
+                            <li>
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 项目名称</span>
+                                    <input type="text" class="y2-input1 Clearfix span10">
+                                </label>
+                            </li> 
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 开始时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
+                                    <span class="y2-user-label1">结束时间</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em>  项目类型</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;margin-right:10px;">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 角色</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                                <label class="Clearfix f14 y2-label-c1 fl" style="width:41.5%;">
+                                    <span class="y2-user-label1 ly-tex">角色</span>
+                                    <select name="" id="" class="span12">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt10 oh">
+                                <label class="Clearfix f14 y2-label-c1">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 带领团队</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="mt30 oh">
+                                <label class="Clearfix f14 y2-label-c1">
+                                    <span class="y2-user-label1"><em class="y2-span-c1">*</em> 描述下你在这个项目中的作用、体现的能力，以及您的创业感悟</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label>
+                            </li>
+                        </ul>
+                        <div>
+                            <textarea class="y2-bd1 y2-0325-textarea1 Clearfix" style="margin-top:20px;"></textarea>
+                        </div>
+                        <div class="mt15">
+                            <label class="Clearfix f14 y2-label-c1">
+                                <span class="y2-user-label1">项目链接</span>
+                                <input type="text" class="y2-input1 Clearfix" style="width:88.954%;">
+                            </label>
+                        </div>
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
+               </div>
             </div>
-            <div class="y2-0325-div1-2"><em class="y2-0325-div1-span1" style="width:45%;min-height:6px;"></em></div>
+            <!--经验能力 end-->
+            <!--创业背景 start-->
+            <div id="div4">
+                <div class="y2-0324-div1">
+                    <h4>创业背景</h4>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0326js-div4">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;编辑创业背景</a>
+                        <!--编辑后-->
+                        <div class="df_Description df_bgcolor_fff">
+                            <div>
+                                <div class="row-fluid">
+                                    <div class="span2 df_chuise3">创业状态：</div>
+                                    <div class="span4">可以全职一起干</div>
+                                    <div class="span2 df_chuise3">无薪资可维护：</div>
+                                    <div class="span4">0~3个月</div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span2 df_chuise3">创业状态：</div>
+                                    <div class="span4">可以全职一起干</div>
+                                    <div class="span2 df_chuise3">无薪资可维护：</div>
+                                    <div class="span4">0~3个月</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <ul class="y2-0325-ul4 oh">
+                            <li>
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业状态</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label> 
+                            </li> 
+                            <li class="mt10">
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 期望保障</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label> 
+                            </li> 
+                            <li class="mt10">
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业出资</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label> 
+                            </li> 
+                            <li class="mt10">
+                                <label class="Clearfix f14">
+                                    <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 无资金可维持</span>
+                                    <select name="" id="" class="span10">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </label> 
+                            </li> 
+                        </ul>
+                        <div class="f14 mt10">
+                            <span class="y2-user-label1 y2-label-c1"><em class="y2-span-c1">*</em> 创业方向</span>
+                            <ol class="y2-0325-ol1 oh mt20">
+                                <li><label><input type="checkbox" value="电子商务"> 电子商务</label></li>
+                                <li><label><input type="checkbox" value="社交"> 社交</label></li>
+                                <li><label><input type="checkbox" value="工具"> 工具</label></li>
+                                <li><label><input type="checkbox" value="移动应用"> 移动应用</label></li>
+                                <li><label><input type="checkbox" value="生活消费"> 生活消费</label></li>
+                                <li><label><input type="checkbox" value="企业 服务"> 企业服务</label></li>
+                                <li><label><input type="checkbox" value="文化艺术"> 文化艺术</label></li>
+                                <li><label><input type="checkbox" value="游戏"> 游戏</label></li>
+                                <li><label><input type="checkbox" value="教育"> 教育</label></li>
+                                <li><label><input type="checkbox" value="营销广告"> 营销广告</label></li>
+                                <li><label><input type="checkbox" value="健康医疗"> 健康医疗</label></li>
+                                <li><label><input type="checkbox" value="创业服务"> 创业服务</label></li>
+                                <li><label><input type="checkbox" value="媒体"> 媒体</label></li>
+                                <li><label><input type="checkbox" value="旅游"> 旅游</label></li>
+                                <li><label><input type="checkbox" value="站长工具"> 站长工具</label></li>
+                                <li><label><input type="checkbox" value="金融"> 金融</label></li>
+                                <li><label><input type="checkbox" value="硬件"> 硬件</label></li>
+                                <li><label><input type="checkbox" value="体育"> 体育</label></li>
+                                <li><label><input type="checkbox" name="其他"> 其他</label></li>
+                            </ol>
+                        </div> 
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--创业背景 end-->
+            <!--擅长技能 start-->
+            <div id="div5">
+                <div class="y2-0324-div1">
+                    <h4>擅长技能</h4>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0326js-div5">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc"><img src="../static/img/y2-img4.png">&nbsp;展现我的技能</a>
+                        <!--编辑后-->
+                        <div class="df_Description df_bgcolor_fff">
+                            <h5 class="fontft_wryh16">能力特点</h5>
+                            <div class="df_skill_tags clearfix">
+                                <small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small>
+                            </div>
+                            <h5 class="fontft_wryh16">常用工具</h5>
+                            <div class="df_skill_tags clearfix">
+                                <small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small><small class="df_tip df_chuise3">了解行业动态</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <div class="f14 mt10">
+                            <span class="y2-user-label1 y2-label-c1">能力特点</span>
+                            <ol class="y2-0325-ol1 oh mt20">
+                                <li><label><input type="checkbox" value="市场背景"> 市场背景</label></li>
+                                <li><label><input type="checkbox" value="运营背景"> 运营背景</label></li>
+                                <li><label><input type="checkbox" value="技术背景"> 技术背景</label></li>
+                                <li><label><input type="checkbox" value="设计背景"> 设计背景</label></li>
+                                <li><label><input type="checkbox" value="强烈责任心"> 强烈责任心</label></li>
+                                <li><label><input type="checkbox" value="表达能力强"> 表达能力强</label></li>
+                                <li><label><input type="checkbox" value="承受压力强"> 承受压力强</label></li>
+                                <li><label><input type="checkbox" value="用户需求敏感"> 用户需求敏感</label></li>
+                            </ol>
+                                   
+                        </div> 
+                        <label class="Clearfix f14 y2-label-c1">
+                            <span class="y2-user-label1">常用工具</span>
+                            <input type="text" class="y2-input1 Clearfix" placeholder="回车确认添加">
+                        </label>
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--擅长技能 end-->
+            <!--作品展示 start-->
+            <div id="div6">
+                <div class="y2-0324-div1">
+                    <h4>作品展示</h4>
+                    <a href="javascript:;"><img src="../static/img/y2-img3.png"></a>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0326js-div6">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc">
+                            <img src="../static/img/y2-img4.png">&nbsp;展示我的作品
+                        </a>
+                        <!--编辑后-->
+                        <div class="df_Description df_bgcolor_fff">
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <div class="df_empty">
+                                        <a href="#" class="text-center df_link">dsds</a>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="df_hasImg">
+                                        <div class="img_area">
+                                            <img src="http://img.taotuwu.com/uploads/allimg/120226/co120226120G3-4.jpg" href="#myModal" data-toggle="modal" class="showBigImg" _title="就看上你疯狂思念11" _src="http://www.sinaimg.cn/dy/slidenews/4_img/2015_12/704_1579346_230297.jpg">
+                                        </div>
+                                        <div class="df_img_common df_img_mask"></div>
+                                        <div class="df_img_common df_img_info">就看上你疯狂思念11</div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="df_hasImg">
+                                        <div class="img_area">
+                                            <img src="/statics/images/detail_new/head.jpg" href="#myModal" data-toggle="modal" class="showBigImg" _title="就看上你疯狂思念22" _src="http://www.sinaimg.cn/dy/slidenews/4_img/2015_12/704_1579349_914038.jpg">
+                                        </div>
+                                        <div class="df_img_common df_img_mask"></div>
+                                        <div class="df_img_common df_img_info">就看上你疯狂思念22</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <div class="tc y2-0324-div5 mb50">
+                            <a href="javascript:;">上传图片</a>
+                            <a href="javascript:;" class="active">在线作品</a>
+                        </div>
+                        <div class="y2-0325-div10 none">
+                            <ul class="y2-0325-ul5 oh bc">
+                                <li>
+                                    <label class="Clearfix f14">
+                                        <span class="y2-user-label1 y2-label-c1">作品链接</span>
+                                        <input type="text" class="y2-input1 Clearfix" style="width:92%;">
+                                    </label>
+                                </li> 
+                                <li class="mt10">
+                                    <label class="Clearfix f14">
+                                        <span class="y2-user-label1 y2-label-c1">作品描述</span>
+                                        <textarea class="y2-bd1 y2-0325-textarea2" placeholder="请在30个字以内对您的作品简单描述。"></textarea>
+                                    </label>
+                                </li> 
+                            </ul>
+                            <div class="mt30" style="padding-left:15.3448%;">
+                                <a href="javascript:;" class="y2-btn1">保存</a>
+                                <a href="javascript:;" class="y2-btn2">取消</a>
+                            </div>
+                        </div>
+                        <div class="y2-0325-div11">
+                            <ul class="y2-0325-ul5 oh bc">
+                                <li class="y2-0325-ul5-li1 tc">
+                                   <strong><img src="../static/img/y2-img11.png"></strong> 上传作品图片
+                                </li> 
+                                <li class="mt10">
+                                    <label class="Clearfix f14">
+                                        <span class="y2-user-label1 y2-label-c1">作品描述</span>
+                                        <input type="text" class="y2-input1 Clearfix" style="width:92%;">
+                                    </label>
+                                </li> 
+                            </ul>
+                            <div class="mt30" style="padding-left:15.3448%;">
+                                <a href="javascript:;" class="y2-btn1">保存</a>
+                                <a href="javascript:;" class="y2-btn2">取消</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--作品展示 end-->
+            <!--兴趣爱好 start-->
+            <div id="div7">
+                <div class="y2-0324-div1">
+                    <h4>兴趣爱好</h4>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0324-div2 y2-bd1">
+                    <div class="y2-0326js-div7">
+                        <!--编辑前-->
+                        <a href="javascript:;" class="y2-a1 y2-0324-div3 y2-bd2 y2-bg1 tc">
+                            <img src="../static/img/y2-img4.png">&nbsp;编辑我的兴趣
+                        </a>
+                        <!--编辑后-->
+                        <div class="df_Description clearfix df_bgcolor_fff">
+                            <span class="hobby_common hobby_01"></span>
+                            <span class="hobby_common hobby_02"></span>
+                            <span class="hobby_common hobby_03"></span>
+                            <span class="hobby_common hobby_04"></span>
+                            <span class="hobby_common hobby_05"></span>
+                            <span class="hobby_common hobby_06"></span>
+                            <span class="hobby_common hobby_07"></span>
+                            <span class="hobby_common hobby_08"></span>
+                            <span class="hobby_common hobby_09"></span>
+                            <span class="hobby_common hobby_10"></span>
+                            <span class="hobby_common hobby_11"></span>
+                            <span class="hobby_common hobby_12"></span>
+                            <span class="hobby_common hobby_13"></span>
+                        </div>
+                    </div>
+                    <!--编辑框-->
+                    <div class="y2-p1 y2-bg3 none">
+                        <div class="f14 mt10">
+                            <ol class="y2-0325-ol1 oh mt20">
+                                <li><label><input type="checkbox" value="旅行"> 旅行</label></li>
+                                <li><label><input type="checkbox" value="美食"> 美食</label></li>
+                                <li><label><input type="checkbox" value="哲学"> 哲学</label></li>
+                                <li><label><input type="checkbox" value="读书"> 读书</label></li>
+                                <li><label><input type="checkbox" value="运动"> 运动</label></li>
+                                <li><label><input type="checkbox" value="绘画"> 绘画</label></li>
+                                <li><label><input type="checkbox" value="街舞"> 街舞</label></li>
+                                <li><label><input type="checkbox" value="电影"> 电影</label></li>
+                                <li><label><input type="checkbox" value="军事"> 军事</label></li>
+                                <li><label><input type="checkbox" value="动漫"> 动漫</label></li>
+                                <li><label><input type="checkbox" value="宠物"> 宠物</label></li>
+                                <li><label><input type="checkbox" value="摄影"> 摄影</label></li>
+                            </ol>
+                                   
+                        </div> 
+                        <div class="mt30">
+                            <a href="javascript:;" class="y2-btn1">保存</a>
+                            <a href="javascript:;" class="y2-btn2">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--兴趣爱好 end-->
         </div>
-        
-        <ul class="y2-0325-ul1 y2-bg2 y2-bd1 mt20">
-        	<li><a href="javascript:;">个人描述</a></li>
-            <li><a href="javascript:;" class="active">个人经历</a></li>
-            <li><a href="javascript:;">经验能力</a></li>
-            <li><a href="javascript:;">创业背景</a></li>
-            <li><a href="javascript:;">擅长技能</a></li>
-            <li><a href="javascript:;">作品展示</a></li>
-            <li><a href="javascript:;">兴趣爱好</a></li>
-        </ul>
-    </div>
-    <div class="cb"></div>
+        <div class="y2-layout-right span3">
+            <div class="y2-0325-div1 y2-bg2 y2-bd1">
+                <div class="y2-0325-div1-1 f14">
+                    <span class="clearfix fl">资料完善程度：<em class="y2-c1">45%</em></span>
+                    <a href="javascript:;" class="clearfix fr y2-a2">预览</a>
+                    <div class="cb"></div>
+                </div>
+                <div class="y2-0325-div1-2"><em class="y2-0325-div1-span1" style="width:45%;min-height:6px;"></em></div>
+            </div>
+            <ul class="y2-0325-ul1 y2-bg2 y2-bd1 mt20 y2-0325-ul1-n">
+                <li><a href="#div1">个人描述</a></li>
+                <li class="active"><a href="#div2" >个人经历</a></li>
+                <li><a href="#div3">经验能力</a></li>
+                <li><a href="#div4">创业背景</a></li>
+                <li><a href="#div5">擅长技能</a></li>
+                <li><a href="#div6;">作品展示</a></li>
+                <li><a href="#div7">兴趣爱好</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 <!--container end-->
