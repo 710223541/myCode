@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<label for="file"><input type="file" name="file" id="file" accept="image/*"></label>
+<script type="text/javascript">
+window.onload = function()
+{
+	var aFile = getID("file");
+	
+	aFile.onchange = function()
+	{
+		alert(this.value);	
+	}
+}
+
+function getID(id)
+{
+	return document.getElementById("file");	
+}
+</script>
+</body>
+</html>

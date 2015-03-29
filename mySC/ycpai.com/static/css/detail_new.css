@@ -1,0 +1,205 @@
+/* CSS Document */
+/* 字体 */
+.fontms_wryh14{font-family: "微软雅黑"; font-size: 14px; color: #555; line-height: 20px;}
+.fontname_wryh16{font-family: "微软雅黑"; font-size: 16px; color: #555; font-weight: bold;}
+.fontft_wryh16{font-family: "微软雅黑"; font-size: 16px; color: #b8b8b8; font-weight: normal;}
+
+.df_chuise1{color: #9a9a9a;}
+.df_chuise2{color: #555;}
+.df_chuise3{color: #c1c1c1}
+.df_chuise4{color: #84807d}
+/* 高度 */
+.h30{ height: 30px;}
+
+.body{ font-family: "微软雅黑","Microsoft YaHei,Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif";}
+.df_bgcolor_fff{background-color: #fff;}
+
+/* 用户头像区域 */
+.df_userHead{
+	position: relative;
+	 width: 100px;
+	 margin:20px 0 20px 20px;
+}
+.df_userImage{
+	background: url(/statics/images/detail_new/head.jpg) no-repeat center center;
+	width: 100px; 
+	height: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+	
+}
+.df_createrUser{
+	position: absolute;
+	top: 80px;
+	left: 20px;
+}
+.df_anwser{margin-top: 30px; color: #545454; font:14px/14px "微软雅黑"; }
+.df_anwser small{color: #c5c5c5;padding-right:3px;font:14px/14px "微软雅黑";}
+.df_userInfo{ margin-bottom: 40px; color: #666666; font:14px/14px "微软雅黑";}
+.df_userInfo .info{ margin-right: 30px;}
+.df_userName{ padding: 18px 0 12px 0; }
+.df_userName .name{ font-size: 26px}
+.df_icon1{ float: left;}
+.df_userName .df_vip{ background: url(/statics/images/VIP.png); width: 16px; height: 13px; margin:6px 0 0 8px; }
+.df_userName .de_weibo{background: url(/statics/images/sina.png); width: 16px; height: 16px; margin:3px 0 0 6px;}
+.df_userName .tel{background: url(/statics/images/iconfont-shouji.png); width: 10px; height: 18px;margin:3px 0 0 8px;}
+.df_userName .online{ background: url(/statics/images/online.png) no-repeat; padding-left: 25px; width: 95px; line-height: 15px; height: 15px;margin:4px 0 0 26px;}
+
+.df_green{background-color: #0dec6d;color: #fff;}
+.df_white{background-color: transparent;color: #0dec6d;border:#0dec6d 1px solid; margin-left: 10px;}
+.df_aready_know{background-color: #e6e6e6; color: #333; border:1px solid #ccc;} 
+.df_btn{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 30px;
+}
+.df_green:hover{
+	text-decoration: none;color: #fff;background-color: #0FD564;
+}
+.df_white:hover{text-decoration: none;color: #0dec6d;}
+.know_box{ padding-top: 98px;}
+.know_box a:hover{text-decoration: none;}
+.know_box a:hover .df_num{color: #ffa049;}
+.know_box .df_num{ color: #000; font-weight: bold; font-family: "Microsoft Yahei","Arial";}
+.know_box .border_r{ border-right:1px solid #e9e9e9;}
+
+/* 个人描述 */
+.df_title{
+	height: 56px;
+	line-height: 56px;
+	padding-left: 20px;
+	font-size:16px ;
+	font-family: "微软雅黑";
+}
+.df_Description{padding: 20px;}
+.df_project_logo{
+	width: 95px; 
+	height: 95px;
+	border-radius: 8px;
+	overflow: hidden;
+	background-color: #1e4767;
+	display: block;
+}
+.df_pro_detail{padding:20px 20 20px 0;}
+/*  个人经历 */
+.job_red{background-color: #f24244;}
+.job_org{background-color: #ff9934;}
+.df_job_item{
+
+	padding: 15px;
+	color: #fff;
+	margin-top:5px;
+}
+.df_job_item .df_company{ font-size: 14px; height: 42px; line-height: 42px;}
+.df_job_item .df_position{font-size: 12px;height: 30px; line-height: 30px;}
+.df_job_item .df_job_time{font-size: 14px;height: 30px; line-height: 30px; border-top: #fff 1px solid;}
+
+.btn_df_addMore{
+	display: inline-block;
+	padding:8px 35px;
+	background-color: #fafafa;
+	margin-top:20px;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	color: #b8b8b8;
+}
+.df_major{ margin-right: 10px;}
+/* 经验能力 */
+.df_experience_box{ padding-bottom: 30px;}
+.df_experience_icon{ background: url(/statics/images/df_xmjy.png) no-repeat left center; height: 27px; padding-left: 37px; line-height: 27px;}
+.df_user_ability{ border:#eee solid 1px; background-color: #f8f9fb;padding: 16px 28px; margin-top: 10px;}
+/* 擅长的技能 */
+.df_tip{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	padding:0 13px;
+	background-color: #f2f2f2;
+	margin-right: 27px;
+	border-radius: 4px;
+}
+/* 作品展示 图片预览 */
+.df_hasImg{width: 230px;height: 168px; padding:10px; position: relative; border:1px solid #ededed; background-color: #fafafa; }
+.df_hasImg .img_area{width: 230px;height: 168px; overflow: hidden; text-align: center;}
+.df_hasImg img{/*width: 230px;height: 168px;*/ max-width: 230px;max-height: 168px; border:none; cursor: pointer;}
+.df_empty .df_link{ line-height: 168px; color: #fff;}
+.df_link{ display: block; width: 250px; height: 188px; background: url(/statics/images/detail_new/worksBg.jpg) no-repeat center center;}
+
+.df_img_common{position: absolute; left: 0; bottom: 10px; width: 230px; margin-left: 10px;}
+.df_img_mask{ z-index: 1; opacity: 0.5; height: 34px; filter:alpha(opacity=50); background-color: #000;}
+.df_img_info{z-index: 2; padding-left: 10px;height: 34px; line-height: 34px; color: #fff;}
+
+/* 兴趣爱好 */
+.hobby_common{
+	float: left;
+	display: inline-block;
+	background-image: url(../img/hobbies.png);
+	width: 70px;
+	height: 30px;
+	margin-right: 20px;
+	margin-top: 5px;
+}
+.hobby_01{
+	background-position: 0 0;
+}
+.hobby_02{
+	background-position: 0 -48px;
+}
+.hobby_03{
+	background-position: 0 -95px;
+}
+.hobby_04{
+	background-position: 0 -143px;
+}
+.hobby_05{
+	background-position: 0 -191px;
+}
+.hobby_06{
+	background-position: 0 -238px;
+}
+.hobby_07{
+	background-position: 0 -286px;
+}
+.hobby_08{
+	background-position: 0 -334px;
+}
+.hobby_09{
+	background-position: 0 -381px;
+}
+.hobby_10{
+	background-position: 0 -429px;
+}
+.hobby_11{
+	background-position: 0 -477px;
+}
+.hobby_12{
+	background-position: 0 -524px;
+}
+.hobby_13{
+	background-position: 0 -572;
+}
+
+/*  评论  */
+.df_comment_head{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: url(/statics/images/detail_new/head.jpg) no-repeat center center;
+}
+
+/* 右侧  */
+.right_box1{ height: 310px; background-color: #fff; margin-top: 76px;}
+.right_browse, .right_already{ }
+
+/* 间距 */
+.df_padding{padding:27px;};
+.df_padding20{padding:20px;}
+.df_paddtb16_paddlr28{padding: 16px 28px;}
+.df_padding_top10{padding-top: 10px;}
+.df_padding_bottom20{padding-bottom: 20px;}
+/* 字体 */
+.df_font14{ font-size: 14px;}
+
