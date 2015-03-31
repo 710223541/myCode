@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+</head>
+
+<body>
+<div id="box"></div>
+<script>
+var num = 2000;
+var x = num + 30;
+var box = document.getElementById('box');
+var timer = setInterval(init, 2000);
+function init(){
+	if(num>=3000)
+	{
+		clearTimeout(timer);
+	}else{
+		setTimeout(function(){
+			num++;
+			box.innerHTML = num;
+			if( num < x ){
+				init();
+			}else{
+				x += 30;
+			}
+		}, 1000/30);
+	}
+}
+</script>
+</body>
+</html>
