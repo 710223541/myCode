@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ overflow:hidden; margin:0; padding:0;}
+div.box{ width:700px; height:320px; margin:40px auto; font-size:200px; color:#fff; text-align:center; line-height:320px; font-family:'微软雅黑';}
+</style>
+</head>
+
+<body>
+	<div id="scrollWrap">
+        <div class="box">01</div>
+        <div class="box">02</div>
+        <div class="box">03</div>
+        <div class="box">04</div>
+        <div class="box">05</div>
+        <div class="box">06</div>
+        <div class="box">07</div>
+        <div class="box">08</div>
+        <div class="box">09</div>
+        <div class="box">10</div>
+        <div class="box">11</div>
+        <div class="box">12</div>
+        <div class="box">13</div>
+        <div class="box">14</div>
+        <div class="box">15</div>
+        <div class="box">16</div>
+        <div class="box">17</div>
+        <div class="box">18</div>
+        <div class="box">19</div>
+        <div class="box">20</div>
+        <div class="box">21</div>
+        <div class="box">22</div>
+        <div class="box">23</div>
+        <div class="box">24</div>
+        <div class="box">25</div>
+        <div class="box">26</div>
+        <div class="box">27</div>
+        <div class="box">28</div>
+        <div class="box">29</div>
+        <div class="box">30</div>
+    </div>
+    
+<script src="./jquery.js"></script>
+<script src="./jq-extend.js"></script>
+
+<script>
+
++function(){
+	var arr = [];
+	var $div = $('body').find('div.box');
+	var len = $div.length;
+	for( var i=0; i<len; i++ ){
+		var color = 'rgba('+randomNum()+','+randomNum()+','+randomNum()+',0.5)'
+		$div.eq(i).css('background', color);
+	}
+	
+	function randomNum(){
+		return parseInt( Math.random() * 255 );
+	}
+}();
+
++function(){
+	var allH = $('#scrollWrap').outerHeight();
+	var screnH = $(window).outerHeight();
+	
+	var scale = screnH / allH;
+	var h = $(window).outerHeight() * scale;
+	var json = {
+		width:8,
+		position:'fixed',
+		right:2,
+		height:h,
+		borderRadius:4,
+		background:'#000',
+		opacity:0,
+		top:0
+	}
+	
+	var $scrollBar = $('<div>');
+	$scrollBar.css( json );
+	
+	if( allH > screnH ){
+		$('body').append( $scrollBar );
+	}
+	
+	var $wrap = $('#scrollWrap');
+	$wrap.css({ position:'absolute', top:0, width:'100%' }).prop('top', 0);
+	
+	var bo = true;
+	var num = 0;
+	
+	$(document).mousewheel( scrollPage );
+	
+	function scrollPage(e, bo){
+		var This = $(this);
+		if( !bo ){
+			var dirJson = $.scrollDir(e, num);
+			num = dirJson.num;
+		}else{
+			num = 2;
+			var dirJson = {};
+			switch(bo){
+				case 'up':
+					dirJson.dir = true;
+				break;
+				case 'down':
+					dirJson.dir = false;
+				break;
+			}
+		}
+		
+		clearTimeout( This.prop('timer') );
+		This.prop('timer', setTimeout(function(){
+			time = 400;
+			var speed = 150 * num;
+			num = 0;
+			var top = $wrap.prop('top');
+			
+			if( dirJson.dir ){
+				top -= speed;
+				if( Math.abs(top) >= allH - screnH ) top = -(allH - screnH);
+			}else{
+				top += speed;
+				if( top >= 0 ) top = 0;
+			}
+			
+			var scrollScale = Math.abs(top) / (allH - screnH);
+			var scrollBarTop = (screnH - h) * scrollScale;
+			
+			$wrap.prop('top', top)
+			
+			$wrap.myMove( {top: top}, time, 'easeOut');
+			
+			clearTimeout( $scrollBar.prop('opTimer') )
+			$scrollBar.myMove({ top: scrollBarTop, opacity:0.3 }, time, 'easeOut', function(){
+				$scrollBar.prop('opTimer', setTimeout(function(){
+					$scrollBar.myMove({ opacity:0 }, time);
+				}, 3000));
+			})
+		}, 50));
+		return false;
+	}
+	
+	$scrollBar.mousedown(function(e){
+		var disY = e.pageY - $(this).offset().top;
+		
+		$(document).mousemove(function(e){
+			var y = e.pageY - disY;
+			
+			if( y < 0 ){
+				y = 0;
+			}else if( y > screnH - h ){
+				y = screnH - h;
+			}
+			
+			var pageScale = y / (screnH - h);
+			var pageScaleTop = -((allH - screnH) * pageScale);
+			
+			$scrollBar.css('top', y);
+			$wrap.css('top', pageScaleTop);
+			
+			$(document).mouseup(function(){
+				$(this).off('mousemove').off('mouseup');
+			})
+			return false;
+		})
+	});
+	
+	$(document).keydown(function(e){
+		arguments.callee.time = arguments.callee.time || 1;
+		var time = new Date().getTime();
+		if( arguments.callee.time ){
+			if( time - arguments.callee.time >= 50 ){
+				switch(e.keyCode){
+					case 40:
+						scrollPage(e, 'up');
+					break;
+					case 38:
+						scrollPage(e, 'down');
+					break;
+				}
+				arguments.callee.time = time;
+			}
+		}
+	})
+}();
+</script>
+</body>
+</html>

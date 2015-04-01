@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+//return 指定方法返回的值
+function re()
+{
+	return 3;
+	alert(1);	
+}
+
+//方法接受参数不在乎个数
+function argu(name,sex)
+{
+	console.log(name);	
+	console.log(sex);
+	console.log(arguments[0],arguments[1]);
+}
+
+console.log(re());
+argu("东方会");
+
+//命名参数
+function argu2()
+{
+	for(var i=0;i<arguments.length;i++)
+	{
+		console.log(arguments[i]);		
+	}
+}
+
+argu2(10,30,40,"冰雪奇缘");
+</script>
+</body>
+</html>

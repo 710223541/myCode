@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+
+function createPeron()
+{
+	var o = new Object();
+	o.name = arguments[0];
+	o.sex = arguments[1];
+	o.age = arguments[2];
+	o.show = function()
+	{
+		alert(this.name);
+	}
+	
+	return o;	
+}
+
+var p1 = createPeron("东方惠","女",23);
+p1.show();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+//构造函数下如果要使用该对象实例，必须使用new操作符创建对象
+function Person()
+{
+	this.name = arguments[0];
+	this.age = arguments[1];
+	this.job = arguments[2];
+	this.show = function()
+	{
+		console.log(this.name);	
+	}	
+}
+
+var p1 = new Person("火影忍者");
+p1.show();
+</script>
+</body>
+</html>
