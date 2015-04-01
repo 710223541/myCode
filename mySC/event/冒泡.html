@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{border:20px solid red;}
+#div2{border:20px solid green;}
+#div3{border:20px solid blue;}
+</style>
+</head>
+
+<body>
+<div id="div1"><div id="div2"><div id="div3"></div></div></div>
+<script type="text/javascript">
+function $(id)
+{
+	return document.getElementById(id);
+}
+
+function fn()
+{
+	alert(this.id);	
+}
+
+$("div1").onclick = fn;
+$("div2").onclick = fn;
+$("div3").onclick = fn;
+
+</script>
+</body>
+</html>
