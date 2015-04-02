@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#div1{width:100px;height:100px;background:red;cursor:pointer;position:absolute;}
+#div2{width:100px;height:100px;background:yellow;cursor:pointer;position:absolute;left:100px;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script src="common/main.js"></script>
+<script src="ChildDrag.js"></script>
+<script type="text/javascript">
+window.onload = function()
+{
+	var d1 = new Drag("div1");
+	d1.init();
+	var d2 = new ChildDrag("div2");
+	d2.init();
+}
+
+</script>
+</body>
+</html>

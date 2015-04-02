@@ -48,7 +48,9 @@ window.onload = function()
 		{
 			document.onmousemove = null;
 			document.onmouseup = null;		
-		}	
+		}
+		
+		ev.cancelBubble = true;	
 	}	
 }
 </script>

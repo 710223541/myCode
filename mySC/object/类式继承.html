@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+function a()
+{
+	this.name = "东方惠";	
+}
+
+a.prototype.showName = function(){console.log(this.name)}
+
+function b(){
+	this.name = "东方玉";	
+};
+
+b.prototype = new a();
+
+var b1 = new b();
+
+b1.showName();
+</script>
+</body>
+</html>
