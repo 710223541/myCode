@@ -19,21 +19,22 @@ function extend(obj1,obj2)
 /*
 	拖拽
 */
-function Drag(id)
+function Drag()
 {
-	this.obj = $(id);
+	this.obj = null;
 	this.disX = 0;
 	this.disY = 0;
 }
 
-Drag.prototype.init = function()
+Drag.prototype.init = function(id,toDown,toUp)
 {
 	var _this = this;
+	this.obj = $(id);
 	this.obj.onmousedown = function(ev)
 	{
 		var ev = ev || window.event;
 		_this.fnDown(ev);
-		
+		toDown();
 		document.onmousemove = function(ev)
 		{
 			var ev = ev || window.event;
@@ -42,9 +43,11 @@ Drag.prototype.init = function()
 		document.onmouseup = function()
 		{
 			_this.fnUp();	
+			toUp();
 		}
 		
-		ev.cancelBubble = true;	
+		//ev.cancelBubble = true;	
+		return false;
 	}		
 }
 

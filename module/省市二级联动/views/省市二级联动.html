@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>demo1</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+<div id="show">
+	<select name="state"></select>
+	<select name="city"></select>
+</div>
+<script src="../script/data/state.js"></script>
+<script src="../script/select.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var sel = new Sel('show');
+	sel.init();	
+}
+</script>
+</body>
+</html>

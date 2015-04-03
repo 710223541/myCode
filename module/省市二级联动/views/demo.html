@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+var json1 = {
+        "2":{"name":"第1条"},
+        "1":{"name":"第2条"},
+        "3":{"name":"第3条www.111cn.net"}
+}
+ 
+var json2 = [
+        {"name":"第1条"},
+        {"name":"第2条"},
+        {"name":"第3条"}
+]
+ 
+for(var i in json1){
+        alert(json1[i].name);
+}
+//正确
+for(var i in json2){
+        alert(json2[i].name);
+}
+</script><strong></strong>
+</body>
+</html>
