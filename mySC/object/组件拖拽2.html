@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#div1{width:100px;height:100px;background:red;cursor:pointer;position:absolute;}
+#div2{width:100px;height:100px;background:yellow;cursor:pointer;position:absolute;left:100px;}
+#div3{width:100px;height:100px;background:green;cursor:pointer;position:absolute;left:200px;}
+#div4{width:100px;height:100px;background:blue;cursor:pointer;position:absolute;left:300px;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4"></div>
+<script src="common/main.js"></script>
+<script src="ChildDrag.js"></script>
+<script type="text/javascript">
+window.onload = function()
+{
+	var d1 = new Drag();
+	d1.init("div1");
+	
+	var d2 = new Drag();
+	d2.init("div2",function(){
+		document.title = "钢铁侠";	
+	});
+	
+	var d3 =new Drag();
+	d3.init("div3",function(){
+		document.title = "美国队长";	
+	},function(){
+		document.title = "绿巨人";
+	});
+	
+	var d4 = new Drag();
+	d4.init("div4",function(){
+		document.title = "BeyBey";	
+	});
+}
+
+</script>
+</body>
+</html>

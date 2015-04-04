@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<ol id="list">
+	<li><a href="javascript:;">超级要塞</a></li>
+    <li><a href="javascript:;">将军战列舰</a></li>
+    <li><a href="javascript:;">雉刀巡洋舰</a></li>
+    <li><a href="javascript:;">海啸坦克</a></li>
+    <li><a href="javascript:;">迷你潜艇</a></li>
+    <li><a href="javascript:;">波能坦克</a></li>
+    <li><a href="javascript:;">天狗机器人</a></li>
+</ol>
+<script type="text/javascript">
+(function(){
+	var list = document.getElementById("list");
+	list.addEventListener("click",function(ev)
+	{
+		var tar = ev.target;
+		
+		alert(tar.innerHTML);
+				
+	},false);
+})();
+</script>
+</body>
+</html>

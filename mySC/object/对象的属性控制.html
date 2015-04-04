@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+var person = {
+	name : "东方红"	
+}
+
+Object.defineProperty(person,"name",{
+	writable : false,
+	value :	"加菲猫" 	
+});
+
+person.name = "欧弟";
+
+console.log(person.name);
+</script>
+</body>
+</html>

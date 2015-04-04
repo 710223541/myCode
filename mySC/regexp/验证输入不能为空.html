@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<input type="text" id="txt">
+<input type="button" id="btn" value="验证">
+<script type="text/javascript">
+window.onload = function()
+{
+	var oTxt = document.getElementById("txt");
+	var oBtn = document.getElementById("btn");
+	oBtn.onclick = function()
+	{
+		if(oTxt.value == "")
+		{
+			console.log("不能为空");
+		}else{
+			console.log("提交成功");	
+		}	
+	}	
+}
+</script>	
+</body>
+</html>
