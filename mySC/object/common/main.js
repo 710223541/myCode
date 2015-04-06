@@ -24,17 +24,22 @@ function Drag()
 	this.obj = null;
 	this.disX = 0;
 	this.disY = 0;
+	this.setting = {
+		fnDown : function(){},
+		fnUp : function(){}	
+	}
 }
 
-Drag.prototype.init = function(id,toDown,toUp)
+Drag.prototype.init = function(opt)
 {
+	extend(this.setting,opt);
 	var _this = this;
-	this.obj = $(id);
+	this.obj = $(opt.id);
 	this.obj.onmousedown = function(ev)
 	{
 		var ev = ev || window.event;
 		_this.fnDown(ev);
-		toDown();
+		_this.setting.fnDown();
 		document.onmousemove = function(ev)
 		{
 			var ev = ev || window.event;
@@ -43,7 +48,7 @@ Drag.prototype.init = function(id,toDown,toUp)
 		document.onmouseup = function()
 		{
 			_this.fnUp();	
-			toUp();
+			_this.setting.fnUp();
 		}
 		
 		//ev.cancelBubble = true;	

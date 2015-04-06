@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>放大镜1</title>
+<style type="text/css">
+html,body,div,img,span{margin:0;padding:0;}
+img{border:none;}
+.pr{position:relative;}
+.pa{position:absolute;}
+#div1{width:182px;height:182px;border:1px solid #d5d5d5;overflow:hidden;}
+#span1{width:100px;height:100px;background:yellow;opacity:0.5;filter:alpha(opacity=50);display:none;}
+</style>
+</head>
+
+<body>
+<div id="div1" class="pr">
+	<img src="img/1.jpg" width="180" height="180">
+	<span id="span1" class="pa"></span>
+</div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var aDiv1 = document.getElementById('div1');
+	var aSpan = document.getElementById('span1');
+	
+	var f1 = new Filt();
+	f1.init({
+		o1 : aDiv1,
+		o2 : aSpan	
+	});	
+}
+
+function Filt()
+{	
+	this.setting = {
+		o1 : '',
+		o2 : ''	
+	}
+}
+
+Filt.prototype = {
+	init : function(opt)
+	{
+		extend(this.setting,opt);
+		var This = this;
+		this.setting.o1.onmouseover = function(ev)
+		{
+			This.setting.o2.style.display = 'block';
+		}
+		
+		this.setting.o1.onmouseout = function()
+		{
+			This.setting.o2.style.display = 'none';
+		}
+		
+		this.setting.o1.onmousemove = function()
+		{
+			var ev = ev || window.event;
+			This.fnMove(ev);	
+		}
+	},
+	fnMove : function(ev)
+	{
+		this.setting.o2.style.display = 'block';
+		var L = (ev.clientX - this.setting.o1.offsetLeft) - this.setting.o2.offsetWidth/2;
+		var T = (ev.clientY - this.setting.o1.offsetTop) - this.setting.o2.offsetWidth/2;
+		if(L<0)
+		{
+			L = 0;	
+		}else if(L>this.setting.o1.offsetWidth - this.setting.o2.offsetWidth)
+		{
+			L = this.setting.o1.offsetWidth - this.setting.o2.offsetWidth;	
+		}
+		
+		if(T<0)
+		{
+			T = 0;
+		}else if(T>this.setting.o1.offsetHeight - this.setting.o2.offsetHeight)
+		{
+			T = this.setting.o1.offsetHeight - this.setting.o2.offsetHeight;
+		}
+		this.setting.o2.style.left = L + 'px';
+		this.setting.o2.style.top = T + 'px';
+	}
+}
+
+
+function extend(obj1,obj2)
+{
+	for(var attr in obj2)
+	{
+		obj1[attr] = obj2[attr];	
+	}	
+}
+</script>
+</body>
+</html>
