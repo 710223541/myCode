@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	*{margin:0; padding:0; list-style:none;}
+	#ul1{width:660px; overflow:hidden; margin:50px auto;}
+	li{width:200px; height:200px; background:#ccc; border-radius:10px; margin:0 20px 20px 0; float:left; cursor:pointer; line-height:200px; text-align:center;}
+</style>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+</ul>
+<script src="object/综合应用/move.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var oUl = document.getElementById("ul1");
+	var aLi = oUl.getElementsByTagName("li");
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].onmouseover = function(){
+			
+			startMove(this,{'border-radius':100});	
+		}
+		aLi[i].onmouseout = function()
+		{
+			startMove(this,{'border-radius':10});	
+		}	
+	}
+}
+</script>
+</body>
+</html>

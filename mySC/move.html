@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#div1{width:100px;height:100px;background:red;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+function $id()
+{
+	return document.getElementById(arguments[0]);	
+}
+
+var aDiv = $id('div1');
+aDiv.onmouseover = function()
+{
+	startMove();	
+}
+
+var timer = null;
+function startMove()
+{
+	clearInterval(timer);
+	timer = setInterval(speed,30);
+	function speed()
+	{
+		console.log(aDiv.offsetWidth);
+		var iSpeed = 2;
+		if(aDiv.offsetWidth == 200)
+		{
+			clearInterval(timer);	
+		}else{
+			aDiv.style.width = aDiv.offsetWidth + iSpeed + 'px';
+			iSpeed++;	
+		}	
+	}	
+}
+</script>
+</body>
+</html>
