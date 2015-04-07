@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>mac菜单</title>
+</head>
+<style type="text/css">
+*{margin:0;padding:0;}
+img{border:none;}
+#div1{width:100%;position:absolute;bottom:0;text-align:center;}
+#div1 img{width:64px;}
+</style>
+<body>
+<input type="text" name="" id="">
+<input type="text" name="" id="">
+<input type="text" name="" id="">
+<input type="text" name="" id="">
+<input type="text" name="" id="">
+<input type="text" name="" id="">
+<div id="div1">
+	<img src="./img/1.png" alt="">
+	<img src="./img/2.png" alt="">
+	<img src="./img/3.png" alt="">
+	<img src="./img/4.png" alt="">
+	<img src="./img/5.png" alt="">
+ 	<img src="./img/3.png" alt="">
+</div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var oDiv = document.getElementById('div1');
+	var oImg = oDiv.getElementsByTagName('img');
+	
+	var a1 = new appleNav;	
+	a1.init({
+		oParent:oDiv,
+		oChild:oImg			
+	});		
+}
+
+function appleNav()
+{
+	this.setting = {
+		oParent:'',
+		oChild:'',
+		arr:[]
+	};	
+}
+
+appleNav.prototype = {
+	init : function(opt)
+	{
+		extend(this.setting,opt);
+		var This = this;
+		document.onmousemove = function(ev)
+		{
+			var ev = ev || window.event;
+			This.fnCp(ev);		
+		}
+	},
+	fnCp : function(ev)
+	{
+		for(var i=0;i<this.setting.oChild.length;i++)
+		{
+			var Y = this.setting.oChild[i].offsetTop+(this.setting.oChild[i].offsetHeight/2)+this.setting.oParent.offsetTop;
+			var X = this.setting.oChild[i].offsetLeft+(this.setting.oChild[i].offsetWidth/2);
+			this.setting.arr.push([X,Y]);
+			
+			var a = ev.clientX - X;
+			var b = ev.clientY - Y;
+			var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+			var scale = 1 - c/300;
+			if(scale<0.5)
+			{
+				scale = 0.5;	
+			}
+			var oIpt = document.getElementsByTagName('input');
+			oIpt[i].value = scale;
+			this.setting.oChild[i].style.width = scale*128+'px';
+			this.setting.oChild[i].style.height = scale*128+'px';
+		}
+	},
+}
+
+function extend(obj1,obj2)
+{
+	for(var attr in obj2)
+	{
+		obj1[attr] = obj2[attr];
+	}
+}
+
+</script>
+</body>
+</html>
