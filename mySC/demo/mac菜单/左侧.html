@@ -9,10 +9,13 @@
 img{border:none;}
 body{background:url(img/bg.jpg) no-repeat;background-size:100% 100%;overflow:hidden;}
 #div1 img{width:64px;}
+.tc{text-align:center;}
+button{text-decoration:none;color:#fff;font-size:24px;display:inline-block;padding-top:30px;border:none;background:none;cursor:pointer;outline:none;}
 </style>
 <body>
-<div id="aBtn">
-	<a href="javascript:;">到左边</a>
+<div id="aBtn" class="tc">
+	<button>到左边</button>
+    <button>到底部</button>
 </div>
 <div id="div1">
 	<img src="./img/1.png" alt="">
@@ -29,44 +32,40 @@ window.onload = function()
 	oBody.style.height = document.documentElement.clientHeight+'px';
 	var oDiv = document.getElementById('div1');
 	var oImg = oDiv.getElementsByTagName('img');
-	var aBtn = document.getElementById("aBtn").getElementsByTagName("a")[0];
-	
-	var bOff = true;
-	aBtn.onclick = function()
+	var aBtn = document.getElementById("aBtn").getElementsByTagName("button");
+	f1();
+	aBtn[0].onclick = function()
 	{
-		if(bOff)
-		{
-			this.innerText = '到底部';
-			bOff = false;	
-			var a1 = new appleNav;	
-			a1.init({
-				oParent:oDiv,
-				oChild:oImg	,
-				position:'static',
-				dir:'left',
-				pa:'',
-				bm:'',
-				ta:'',
-				w:'64px',
-				h:'100%',	
-			});	
-		}else{
-			this.innerText = '到左边';	
-			bOff = true;
-		}
+		f1();
 	}
 	
-	var a1 = new appleNav;	
-	a1.init({
-		oParent:oDiv,
-		oChild:oImg	,
-		dir:'center',
-		w:'100%',
-		h:'auto',
-		pa:'absolute',
-		bm:0,
-		ta:'center'	
-	});		
+	function f1()
+	{
+		var a1 = new appleNav;	
+		a1.init({
+			oParent:oDiv,
+			oChild:oImg	,
+			dir:'left',
+			w:'64px',
+			h:'100%',
+			pt:100
+		});		
+	}
+	
+	aBtn[1].onclick = function()
+	{
+		var a1 = new appleNav;	
+		a1.init({
+			oParent:oDiv,
+			oChild:oImg	,
+			dir:'center',
+			w:'100%',
+			h:'auto',
+			pa:'absolute',
+			ta:'center'	
+		});		
+	}
+	
 }
 
 function appleNav()
@@ -78,9 +77,8 @@ function appleNav()
 		w:'64px',
 		h:'100%',
 		dir:'left',
-		pt:15,
+		pt:200,
 		pa:'',
-		bm:'',
 		ta:''
 	};	
 }
@@ -95,13 +93,14 @@ appleNav.prototype = {
 		{
 			this.setting.oParent.style.width = this.setting.w;
 			this.setting.oParent.style.height = this.setting.h;
-			this.setting.oParent.style.paddingTop = this.setting.pt+'%';
+			this.setting.oParent.style.bottom = -130+'px';
+			this.setting.oParent.style.paddingTop = this.setting.pt+'px';
 		}else if(this.setting.dir=='center')
 		{
 			this.setting.oParent.style.width = this.setting.w+'%';
 			this.setting.oParent.style.height = this.setting.h;
 			this.setting.oParent.style.position = this.setting.pa;
-			this.setting.oParent.style.bottom = this.setting.bm+'px';
+			this.setting.oParent.style.bottom = 0;
 			this.setting.oParent.style.textAlign = this.setting.ta;
 		}
 		
