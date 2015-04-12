@@ -1,0 +1,30 @@
+/*
+	2015/04/11
+	雪人工作室出品
+	作者：墨飞
+	QQ:1434831689
+	Email:ghost199006@126.com
+*/
+
+/* css reset */
+html,body,ul,li,div,p,h2,h3,h4,nav,section,{margin:0;padding:0;}
+ul,ol,dl{list-style:none;}
+img{border:0;}
+
+/* common css */
+.bc{margin-right:auto;margin-left:auto;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.tl{text-align:left;}
+.fl{float:left;}
+.fr{float:right;}
+
+
+/*清浮动*/
+.cb{clear:both;}
+.oh{overflow:hidden;}
+
+/*定位*/
+.pr{position:relative;}
+.pa{position:absolute;}
+

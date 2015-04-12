@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#div1{width:20px;height:20px;position:absolute;background:yellow;left:600px;top:300px;border-radius:20px;box-shadow:0 2px 5px rgba(0,0,0,0.5);}
+.div2{border:1px solid red;position:absolute;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var oDiv1 = document.getElementById('div1');
+	var r = 120;
+	var x = 480;
+	var y = 300;
+	var num = 0;
+	setInterval(f1,30);
+	function f1()
+	{
+		num++;
+		var a = Math.sin(num*Math.PI/180)*r;
+		var b = Math.cos(num*Math.PI/180)*r;
+		oDiv1.style.left = x + b + 'px';
+		oDiv1.style.top = y + a + 'px';	
+		
+		var aDiv2 = document.createElement('div');
+		aDiv2.className = 'div2';
+		document.body.appendChild(aDiv2);
+		aDiv2.style.left = oDiv1.offsetLeft+'px';
+		aDiv2.style.top = oDiv1.offsetTop+'px';
+	}	
+}
+</script>
+</body>
+</html>

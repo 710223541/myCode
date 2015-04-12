@@ -1,0 +1,20 @@
+/*
+	2015/04/11
+	雪人工作室出品
+	作者：墨飞
+	QQ:1434831689
+	Email:ghost199006@126.com
+*/
+
+/* index */
+body{background:url(../images/png/bgd_body.png) repeat-x #DCEFFE;}
+.arr_wrap{width:960px;}
+.index_logo{float:left;}
+#nav_list>li{width:100px;float:left;}
+#index_content>section{height:0;text-align:center;line-height:500px;font-size:60px;border:1px solid #000;display:none;width:0;}
+
+/* Logo */
+.index_logo{width:250px;height:250px;border-radius:50%;background:url(../images/png/bgd_logo.png) repeat-x;box-shadow:0 5px 5px rgba(0,0,0,0.5);transition:0.3s;position:absolute;left:50px;top:-80px;left:0;}
+.index_logo:hover{width:230px;height:230px;left:12px;}
+
+#index_content{margin-top:160px;}
