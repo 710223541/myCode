@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-事件指令</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope', function ($scope) {
+            $scope.name = '';
+        }]);
+    </script>
+</head>
+<body>
+<input type="checkbox" ng-model="aaa"/>
+<select name="" id="">
+    <option value="">11111</option>
+    <option value="" ng-selected = 'aaa'>22222</option>
+    <option value="">333333</option>
+</select>
+<input type="text" ng-model="bbb" ng-change="bbb='hello'"/>
+<p>{{bbb}}</p>
+</body>
+</html>

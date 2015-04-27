@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app>
+<head>
+<meta charset="utf-8">
+<title>angularJs-click指令</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+function Aaa($scope,$timeout)
+{
+	$scope.name = "令狐冲";
+	/*$timeout(function(){
+		$scope.name = "任盈盈";	
+	},1000)*/
+	$scope.show = function()
+	{
+		$scope.name = "岳不群";	
+	}	
+}
+</script>
+</head>
+
+<body>
+<!--
+	MVVM设计模式：当M变化时V也跟着变化，当V变化时M也跟着变化。
+-->
+<!--M影响V-->
+<!--<div ng-controller="Aaa" ng-click = "name='田伯光'">-->
+<div ng-controller="Aaa" ng-click = "show()">
+	<p>{{name}}</p>
+</div>
+<!--V影响M-->
+<div ng-controller="Aaa">
+	<label for=""><input type="text" ng-model="name"></label>
+    <div>{{name}}</div>
+</div>
+</body>
+</html>

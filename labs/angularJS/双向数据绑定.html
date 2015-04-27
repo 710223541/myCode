@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app>
+<head>
+<meta charset="utf-8">
+<title>angularJs-数据双向绑定</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+function Aaa($scope,$timeout)
+{
+	$scope.name = "令狐冲";
+	$timeout(function(){
+		$scope.name = "任盈盈";	
+	},1000)	
+}
+</script>
+</head>
+
+<body>
+<!--
+	MVVM设计模式：当M变化时V也跟着变化，当V变化时M也跟着变化。
+-->
+<div ng-controller="Aaa">
+	<p>{{name}}</p>
+</div>
+</body>
+</html>

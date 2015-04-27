@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-表单验证</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',fnAaa])
+        function fnAaa($scope){
+
+        }
+        fnAaa.prototype = {
+            name : '连玉',
+            age : 24,
+            sex : '女',
+            job : '总监',
+            des : function(){
+                return "连家新生代的佼佼者，遴选后备如组织核心团体，拟定为严氏孙媳";
+            },
+            colors : [{"name":"red"},{"name":"blue"},{"name":"green"}]
+        }
+    </script>
+</head>
+<body>
+<div ng-controller="fnAaa as a1" ng-app="myApp">
+    <ol>
+        <li ng-bind="a1.name"></li>
+        <li ng-bind="a1.age"></li>
+        <li ng-bind="a1.sex"></li>
+        <li ng-bind="a1.job"></li>
+        <li ng-bind="a1.des()"></li>
+    </ol>
+    <a href="">标签指令</a>
+    <p>
+        <select ng-options="color.name for color in a1.colors" ng-model="myColor"></select>
+    </p>
+    <p ng-bind="myColor.name"></p>
+
+    <form novalidate>
+        <input type="email"/>
+    </form>
+</div>
+<a href="">非标签指令</a>
+<form>
+    <input type="email"/>
+</form>
+</body>
+</html>

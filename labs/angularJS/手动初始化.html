@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-手动初始化</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp1',[]);
+        m1.controller('Aaa',['$scope',function($scope){
+            $scope.name = "北京昌平";
+        }]);
+        m1.controller('Baa',['$scope',function($scope){
+            $scope.name = "史各庄";
+        }]);
+
+        var m2 = angular.module('myApp2',[]);
+        m2.controller('Caa',['$scope',function($scope){
+            $scope.name = "我爱北京天安门";
+        }]);
+
+       window.onload = function(){
+            //angular.bootstrap(document,['myApp']);
+            var oDiv = document.getElementsByTagName('div');
+            angular.bootstrap(oDiv[0],['myApp1']);
+            angular.bootstrap(oDiv[1],['myApp2']);
+        }
+    </script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    <p>{{name}}</p>
+</div>
+<div ng-controller="Caa">
+    <p>{{name}}</p>
+</div>
+</body>
+</html>

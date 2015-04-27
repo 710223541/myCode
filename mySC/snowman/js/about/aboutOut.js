@@ -5,7 +5,7 @@ define(function(require,exports){
 		{
 			if(obj2[i].dataset.hash == 'about')
 			{
-				startMove(obj2[i],{width:0,height:0},function(){
+				startMove(obj2[i],{opacity:0},function(){
 					window.location.hash = hash;
 					require('../show.js').show(obj1,obj2);	
 				});

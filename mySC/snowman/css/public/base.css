@@ -7,7 +7,7 @@
 */
 
 /* css reset */
-html,body,ul,li,div,p,h2,h3,h4,nav,section,{margin:0;padding:0;}
+html,body,ul,li,div,p,h2,h3,h4,nav,section,span,em,i{margin:0;padding:0;}
 ul,ol,dl{list-style:none;}
 img{border:0;}
 

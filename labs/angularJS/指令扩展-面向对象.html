@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-指令扩展</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',fnAaa])
+        function fnAaa($scope){
+
+        }
+        fnAaa.prototype = {
+            name : '连玉',
+            age : 24,
+            sex : '女',
+            job : '总监',
+            des : function(){
+                return "连家新生代的佼佼者，遴选后备如组织核心团体，拟定为严氏孙媳";
+            }
+        }
+    </script>
+</head>
+<body>
+<div ng-controller="fnAaa as a1">
+    <ol>
+        <li ng-bind="a1.name"></li>
+        <li ng-bind="a1.age"></li>
+        <li ng-bind="a1.sex"></li>
+        <li ng-bind="a1.job"></li>
+        <li ng-bind="a1.des()"></li>
+    </ol>
+</div>
+</body>
+</html>

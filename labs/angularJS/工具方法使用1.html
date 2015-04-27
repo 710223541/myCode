@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-工具方法使用1</title>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+<div id="div1">aaaaaaaaaaaaaa</div>
+<div ng-controller="Bbb" ng-app>
+    <p>{{name}}</p>
+</div>
+<script>
+    console.log(angular.version);
+    var a = [];
+    var b = [];
+    console.log(angular.equals(a,b))
+    // var c = ['a','b','c'];
+    var c = {
+        name : '东方玉洁',
+        age : 23
+    }
+    var res = [];
+    angular.forEach(c, function (v,i) {
+        console.log(v);
+        console.log(i);
+        this.push(v+i);
+    },res);
+    console.log(res);
+
+    //字符串格式转json
+    var str = '{"name":"东方玉洁","com":"美国"}';
+    var json = {"name":"东方玉洁","com":"美国"};
+    console.log(angular.fromJson(str));
+    console.log(angular.toJson(json,true));
+    var oDiv1 = document.getElementById('div1');
+    angular.element(oDiv1).css('background','red');
+    angular.element('#div1').css('background','blue');
+
+    //angular.bootstrap()
+
+    function Bbb($scope,$timeout){
+        $scope.name = "德国空军";
+//        $timeout(function(){
+//            $scope.name = "美国陆军";
+//        },2000);
+        setTimeout(function(){
+           $scope.$apply(function(){
+               $scope.name = "苏联红军";
+           })
+        },2000)
+    }
+</script>
+</body>
+</html>

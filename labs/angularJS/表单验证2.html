@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-表单验证2</title>
+    <style>
+        input{outline: none;}
+        input.ng-valid{
+            border: 1px solid red;
+        }
+        input.ng-invalid{
+            border:1px solid #000000;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',function($scope){
+            $scope.name = '金刚狼';
+        }])
+    </script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    <form action="" novalidate name="myForm">
+        <input type="text" name="myText" id="" ng-model="name" required ng-minlength="4" ng-maxlength="10" ng-pattern="/^[a-zA-z]+$/"/>
+        <div>{{myForm.myText.$valid}}</div>
+        <div>{{myForm.myText.$invalid}}</div>
+        <div>{{myForm.myText.$pristine}}</div>
+        <div>{{myForm.myText.$dirty}}</div>
+        <div>{{myForm.myText.$error}}</div>
+    </form>
+</div>
+</body>
+</html>

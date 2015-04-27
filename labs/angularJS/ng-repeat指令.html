@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-ng-repeat</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',function($s){
+            $s.dataList = ["东方玉洁","金刚狼","暴风女","独眼龙","万磁王","魔型女","琴","X教授"];
+        }]);
+    </script>
+</head>
+<body>
+<ol ng-controller="Aaa">
+    <li ng-repeat="data in dataList">{{data}}</li>
+</ol>
+</body>
+</html>

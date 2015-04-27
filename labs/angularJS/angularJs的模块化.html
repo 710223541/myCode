@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<title>angularJs-模块化</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+    var m1 = angular.module('myApp',[]);
+    m1.controller('Aaa',['$scope',function($s){
+        $s.name = "东方玉洁";
+    }]);
+    m1.controller('Baa',['$scope',function($s){
+        $s.name = "中国";
+        $s.age = 100;
+    }])
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+<p>{{name}}</p>
+<p>{{age}}</p>
+</div>
+<div ng-controller="Baa">
+    <p>{{name}}</p>
+    <p>{{age}}</p>
+</div>
+</body>
+</html>

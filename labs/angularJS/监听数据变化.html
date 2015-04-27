@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app>
+<head>
+<meta charset="utf-8">
+<title>angularJs-$watch监听数据变化</title>
+<style type="text/css">
+label{display:block;margin-bottom:10px;}
+</style>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+function Goods($scope)
+{
+	$scope.iPhone = 
+	{
+		name : "iPhone 6 Plus",
+		price : 5,
+		num : 1,
+		freight : 10
+	};
+	
+	$scope.sum = function()
+	{
+		return 	$scope.iPhone.price * $scope.iPhone.num;
+	}
+	
+	$scope.$watch($scope.sum,function(newNum,oldNum)
+	{
+		var a = newNum >= 100 ? 0 : 10;
+		$scope.iPhone.freight = a;
+	});	
+}
+</script>
+</head>
+
+<body>
+<div ng-controller="Goods">
+	<label for="">商品名称：<input type="text" ng-model="iPhone.name"></label>
+    <label for="">商品单价：<input type="text" ng-model="iPhone.price"></label>
+    <label for="">商品个数：<input type="text" ng-model="iPhone.num"></label>
+    <p>商品价格：{{sum() | currency : '￥'}}</p>
+    <p>商品运费：{{iPhone.freight | currency : '￥'}}</p>
+    <!--<p>商品总价：{{sum() | currency}}</p>-->
+    <p>商品总价：{{sum()+iPhone.freight | currency : '￥'}}</p>
+</div>
+</body>
+</html>

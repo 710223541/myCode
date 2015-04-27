@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app>
+<head>
+<meta charset="utf-8">
+<title>angularJs-hello</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+function Aaa($scope) {
+	$scope.name = "东方不败";
+	$scope.age = 39;
+}
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	<p>{{name}}</p>
+    <p>{{age}}</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>作品展示</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+body{background:#DCEFFE;}
+#wrap{width:710px;height:390px;margin:30px auto;position:relative;}
+#list{width:100%;height:100%;list-style:none;position:relative;}
+#list li{width:690px;height:370px;border:10px solid #fff;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5),inset 0 0 5px rgba(0,0,0,1);position:absolute;left:0;top:0;}
+.btn{display:block;width:50px;height:40px;background:url(images/png/btn.png) no-repeat;position:absolute;}
+.prev{background-position:left bottom;top:170px;left:-20px;z-index:9999;}
+.next{background-position:right bottom;top:170px;right:-20px;z-index:9999;}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+	<ul id="list"></ul>
+    <a href="javascript:;" class="btn prev"></a>
+    <a href="javascript:;" class="btn next"></a>
+</div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var arrPic = ['images/demos/1.jpeg','images/demos/2.jpeg','images/demos/3.jpeg','images/demos/4.jpeg'];	
+	var iNum = 0;
+	var aList = document.getElementById('list');
+	
+	for(var i=0;i<arrPic.length;i++)
+	{
+		var oImg = new Image;
+		
+		oImg.src = arrPic[i];
+		
+		oImg.onload = function()
+		{
+			iNum++;
+			
+			if(iNum == arrPic.length)
+			{
+				start();	
+			}		
+		}		
+	}
+	
+	function start()
+	{
+		var sHtml = '';
+		for(var i=0;i<arrPic.length;i++)
+		{
+			sHtml += '<li style="background:url('+arrPic[i]+') no-repeat;z-index:'+(arrPic.length-i)+'"></li>';
+		}
+		aList.innerHTML = sHtml;		
+	}	
+}
+</script>
+</body>
+</html>
+

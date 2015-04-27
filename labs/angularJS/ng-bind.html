@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-bind</title>
+    <script src="js/angular.min.js"></script>
+
+</head>
+<body>
+<div ng-controller="Aaa">
+    <div ng-bind="data"></div>
+    <div ng-bind-template="{{dataHtml}},{{data}}"></div>
+    <!--<div ng-bind-html="dataHtml"></div>-->
+    <div ng-cloak="">{{data}}</div>
+</div>
+<script>
+    alert(1);
+    var m1 = angular.module('myApp',[]);
+    m1.controller('Aaa',['$scope',function($scope){
+        $scope.data = '中华人民共和国';
+        $scope.dataHtml = '<h2>美利坚合众国</h2>';
+    }]);
+</script>
+</body>
+</html>

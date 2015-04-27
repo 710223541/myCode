@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#div1{width:785px;margin:50px auto 0;height:auto;}
+#div1 ul{width:225px;float:left;margin:5px;list-style:none;}
+#div1 ul img{width:225px;}
+</style>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+		<li>
+        	<img src="http://a.hiphotos.baidu.com/image/h%3D360/sign=72df38150ff431ada3d2453f7b37ac0f/d058ccbf6c81800ad9b05489b23533fa838b47e4.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://b.hiphotos.baidu.com/image/h%3D360/sign=e65ba50e8026cffc762ab9b489004a7d/b3fb43166d224f4a71baa0840bf790529822d102.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://a.hiphotos.baidu.com/image/h%3D360/sign=f7695bf29f504fc2bd5fb603d5dce7f0/c8177f3e6709c93da888d90d9b3df8dcd00054d6.jpg" alt="">
+            <p>11111111</p>
+        </li>
+	</ul>
+    
+    <ul>
+		<li>
+        	<img src="http://c.hiphotos.baidu.com/image/h%3D360/sign=e21df72c013b5bb5a1d726f806d2d523/a6efce1b9d16fdfa65783069b68f8c5494ee7b25.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<p><img src="http://f.hiphotos.baidu.com/image/h%3D360/sign=e6a76d0d520fd9f9bf17536f152cd42b/9a504fc2d5628535e882905093ef76c6a7ef6364.jpg" alt=""></p>
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://g.hiphotos.baidu.com/image/h%3D360/sign=678c125457fbb2fb2b2b5e147f4b2043/a044ad345982b2b7eec023cd33adcbef76099b5f.jpg" alt="">
+            <p>11111111</p>
+        </li>
+	</ul>
+    
+    <ul>
+		<li>
+        	<img src="http://f.hiphotos.baidu.com/image/h%3D360/sign=dc854c9bdf54564efa65e23f83df9cde/80cb39dbb6fd526645c74c9ca918972bd507364d.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://a.hiphotos.baidu.com/image/h%3D360/sign=0d485ee3b0b7d0a264c9029bfbee760d/b2de9c82d158ccbfccfd876b1bd8bc3eb1354119.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://e.hiphotos.baidu.com/image/h%3D360/sign=af12679b2cdda3cc14e4be2631e93905/b03533fa828ba61e4cf7362b4334970a304e599d.jpg" alt="">
+            <p>11111111</p>
+        </li>
+        <li>
+        	<img src="http://a.hiphotos.baidu.com/image/h%3D360/sign=07535e0d72cf3bc7f700cbeae100babd/79f0f736afc379316a0f2429e9c4b74543a9114e.jpg" alt="">
+            <p>11111111</p>
+        </li>
+	</ul>
+    
+    <div style="clear:both;"></div>
+</div>
+
+<script type="text/javascript">
+window.onload = function()
+{
+	var aUl = document.getElementsByTagName('ul'); 
+	var bOff = true;
+	window.onscroll = function()
+	{
+		var viewHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		var tScroll	= document.documentElement.scrollTop || document.body.scrollTop;
+		
+		for(var i=0;i<aUl.length;i++)
+		{
+			var aLi = aUl[i].getElementsByTagName('li');
+			
+			aLiLast = aLi[aLi.length-1];
+			
+			if(getTop(aLiLast)<viewHeight+tScroll)
+			{
+				//console.log(viewHeight+tScroll);
+				
+				ajax('data.js',function(str){
+					var json = eval('('+ str +')');	
+					if(json.code === 0)
+					{
+						bOff = false;
+					}
+					
+					for(var i=0;i<json.list.length;i++)
+					{
+						var list = json.list[i]
+						
+						for(var j=0;j<list.src.length;j++)
+						{
+							var iLi = document.createElement('li');
+							iLi.innerHTML = '<img src="'+list.src[j]+'"><p>'+list.title[j]+'</p>';
+							aUl[i].appengChild(iLi);
+						}
+					}
+				});
+			}
+		}
+	}	
+	
+	function getTop(obj)
+	{
+		var top = 0;
+		while(obj){
+			top += obj.offsetTop;
+			obj = obj.offsetParent;
+		}
+		return top;
+	}
+}
+</script>
+</body>
+</html>
+
+
+
+

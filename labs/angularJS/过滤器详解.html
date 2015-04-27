@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-过滤器详解</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',function($scope){
+            $scope.name = '234803454565';
+            $scope.json = {"name":"唐僧","sex":"男","con":"中国","age":"30"};
+            $scope.arr = ['a','b','c'];
+            $scope.num = '47565867686876';
+            $scope.data = [{"color":"red","age":"40"},{"color":"green","age":"30"},{"color":"blue","age":"20"},{"color":"yellow","age":"50"}];
+        }]);
+    </script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="Aaa">
+    <p>{{name | currency:'￥'}}</p>
+    <p>{{name | number : 6}}</p>
+    <pre>{{json | json}}</pre>
+    <p>{{arr | limitTo:2}}</p>
+    <p>{{num | date : 'yyyy'}}</p>
+    <p>{{data | orderBy : 'age' : true}}</p>
+    <p>{{data | filter : '50'}}</p>
+</div>
+</body>
+</html>

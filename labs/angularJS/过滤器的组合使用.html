@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-过滤器的组合使用</title>
+    <style>
+        *{
+            background: #000;
+            border: 1px solid #000;
+        }
+        div{
+            color: #000;
+            display: block;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope','$filter',function($scope,$filter){
+            $scope.name = 'Hello';
+            $scope.num = $filter('number')('4345345545.64564',2);
+            $scope.date = $filter('date')('4345345545890','yyyy-mm-dd');
+            $scope.str = $filter('uppercase')('hello');
+        }]);
+        m1.filter('firstUpper',function(){
+            return function(str){
+               return str.charAt(0).toUpperCase()+str.substring(1);
+            }
+        })
+    </script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="Aaa">
+    <ol>
+        <li>{{name | limitTo:2 | uppercase}}</li>
+        <li>{{str}}</li>
+        <li>{{num}}
+        <li>{{date}}</li>
+        <li>{{name | firstUpper}}</li>
+    </ol>
+</div>
+</body>
+</html>

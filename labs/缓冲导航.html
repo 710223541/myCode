@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>缓冲导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #div1,ul{
+            width:960px;
+            margin: 30px auto 0;
+        }
+        #div1{position: relative;}
+        ul>li{
+            width: 100px;
+            height: 60px;
+            line-height: 60px;
+            float: left;
+            margin-right: 20px;
+            text-align: center;
+        }
+        ul>li.active{
+            background: #f4421a;
+        }
+        #activeBg{
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background: #f4421a;
+            top:0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li><a href="javascript:;">检票处</a></li>
+        <li><a href="javascript:;">CSS</a></li>
+        <li><a href="javascript:;">HTML5</a></li>
+        <li><a href="javascript:;">JavaScript</a></li>
+        <li><a href="javascript:;">PHP</a></li>
+        <li><a href="javascript:;">AngularJs</a></li>
+        <div style="clear: both;"></div>
+    </ul>
+    <div id="activeBg"></div>
+</div>
+<script src="move.js"></script>
+<script>
+    function getId(id)
+    {
+        return document.getElementById(id);
+    }
+    var oLi = getId('div1').getElementsByTagName('li');
+    var activeBg = getId('activeBg');
+    var L = [];
+    for(var i=0;i<oLi.length;i++)
+    {
+        L.push(oLi[i].offsetLeft);
+        oLi[i].index = i;
+        oLi[i].onmouseover = function(ev)
+        {
+            startMove(activeBg,{left:L[this.index]});
+        }
+        oLi[i].onmouseout = function(ev)
+        {
+            startMove(activeBg,{left:L[0]})
+        }
+    }
+
+    console.log(L);
+</script>
+</body>
+</html>

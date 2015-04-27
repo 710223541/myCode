@@ -1,7 +1,7 @@
 define(function(require,exports){
 	function init(obj)
 	{
-		startMove(obj,{width:960,height:500},function(){
+		startMove(obj,{opacity:100},function(){
 			window.bBtn = true;		
 		});	
 	}	

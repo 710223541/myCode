@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-表单验证2</title>
+    <style>
+        input{outline: none;}
+        input.ng-valid{
+            border: 3px solid #008000;
+        }
+        input.ng-invalid{
+            border:3px solid #ff0000;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope',function($scope){
+            $scope.regText = {
+                regVal: 'default',
+                regList:[
+                    {status:'default',tips:'请输入用户名'},
+                    {status:'required',tips:'用户名不能为空'},
+                    {status:'pattern',tips:'用户名必须为字母'},
+                    {status:'pass',tips:'✔'}
+                ]
+            };
+
+            $scope.rePass = {
+                regVal: 'default',
+                rePassList:[
+                    {status:'default',tips:'请输入密码'},
+                    {status:'required',tips:'密码不能为空'},
+                    {status:'minlength',tips:'密码至少6位'},
+                    {status:'pass',tips:'✔'}
+                ]
+            }
+
+            $scope.change = function(re,err)
+            {
+                for(var attr in err)
+                {
+                    if(err[attr] === true )
+                    {
+                        re.regVal = attr;
+                        return;
+                    }
+                }
+                re.regVal = 'pass';
+            }
+        }])
+    </script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    <form action="" novalidate name="myForm">
+        <div>
+            <label for="">账号：</label>
+            <input type="text" name="reNext" id="" ng-model="regText.status" required ng-pattern="/^[a-zA-Z]+$/" ng-blur="change(regText,myForm.reNext.$error)"/>&nbsp;
+            <span ng-repeat="re in regText.regList | filter:regText.regVal" ng-bind="re.tips"></span>
+        </div>
+        <br/>
+        <div>
+            <label for="">密码：</label>
+            <input type="password" name="rePassword" id="" ng-model="rePass.status" required minlength="6" ng-blur="change(rePass,myForm.rePassword.$error)"/>&nbsp;
+            <span ng-repeat="pass in rePass.rePassList | filter:rePass.regVal" ng-bind="pass.tips"></span>
+        </div>
+    </form>
+</div>
+</body>
+</html>

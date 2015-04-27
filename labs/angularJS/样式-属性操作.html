@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularJs-样式属性操作</title>
+    <style>
+        .red{
+            background: #f4421a;
+            line-height: 35px;
+        }
+        .blue{
+            background: #006dcc;
+            line-height: 35px;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    <div ng-bind="data" ng-class="{red:true,blue:true}"></div>
+    <div ng-bind="data" ng-class="{red:true}"></div>
+    <div ng-bind="data" ng-style="{{style}}"></div>
+    <a ng-href="{{url}}">百度一下</a>
+    <a ng-attr-href="{{url}}" ng-attr-title="{{data}}">fdafds</a>
+</div>
+<script>
+    var m1 = angular.module('myApp',[]);
+    m1.controller('Aaa',['$scope',function($scope){
+        $scope.data = '中华人民共和国';
+        $scope.style = {background:'yellow',lineHeight:'35px'};
+        $scope.url = 'http://www.baidu.com/';
+    }]);
+</script>
+</body>
+</html>

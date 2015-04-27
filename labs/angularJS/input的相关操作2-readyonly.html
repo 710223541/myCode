@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angularjs-readyonly</title>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var  m1 = angular.module('myApp',[]);
+        m1.controller('Aaa',['$scope', function ($scope) {
+            $scope.name = 'hello';
+        }]);
+    </script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    <p><input type="text" ng-readonly="true" ng-value="name"/></p>
+    <p><input type="checkbox" name="" id="" ng-checked="false"/></p>
+</div>
+</body>
+</html>
