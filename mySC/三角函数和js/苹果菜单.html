@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+img{border:none;}
+#div1{position:absolute;bottom:0;text-align:center;width:100%;}
+#div1 img{width:64px;}
+</style>
+</head>
+
+<body>
+<div id="div1">
+	<img src="img/1.png" alt="">
+	<img src="img/2.png" alt="">
+	<img src="img/3.png" alt="">
+	<img src="img/4.png" alt="">
+	<img src="img/5.png" alt="">
+</div>
+<script src="appleNav.js"></script>
+<script type="text/javascript">
+window.onload = function()
+{
+	var aDiv = document.getElementById('div1');
+	var aImg = aDiv.getElementsByTagName('img');
+	var a1 = new appleNav(aImg);
+	a1.init({
+		oParent:aDiv,
+		oChilds:aImg	
+	});
+}
+</script>
+</body>
+</html>

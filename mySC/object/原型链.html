@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+function a()
+{
+	this.num = 200;	
+}
+a.prototype.num = 100;
+
+var a1 = new a;
+
+alert(a1.num);
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@ function $tag()
 	}
 }
 
+
 function Sel(id)
 {
 	this.aSel = $tag(id,'select');		

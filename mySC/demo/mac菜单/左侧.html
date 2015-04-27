@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>mac菜单</title>
+</head>
+<style type="text/css">
+*{margin:0;padding:0;}
+img{border:none;}
+body{background:url(img/bg.jpg) no-repeat;background-size:100% 100%;overflow:hidden;}
+#div1 img{width:64px;}
+.tc{text-align:center;}
+button{text-decoration:none;color:#fff;font-size:24px;display:inline-block;padding-top:30px;border:none;background:none;cursor:pointer;outline:none;}
+</style>
+<body>
+<div id="aBtn" class="tc">
+	<button>到左边</button>
+    <button>到底部</button>
+</div>
+<div id="div1">
+	<img src="./img/1.png" alt="">
+	<img src="./img/2.png" alt="">
+	<img src="./img/3.png" alt="">
+	<img src="./img/4.png" alt="">
+	<img src="./img/5.png" alt="">
+ 	<img src="./img/3.png" alt="">
+</div>
+<script type="text/javascript">
+window.onload = function()
+{
+	var oBody = document.getElementsByTagName('body')[0];
+	oBody.style.height = document.documentElement.clientHeight+'px';
+	var oDiv = document.getElementById('div1');
+	var oImg = oDiv.getElementsByTagName('img');
+	var aBtn = document.getElementById("aBtn").getElementsByTagName("button");
+	f1();
+	aBtn[0].onclick = function()
+	{
+		f1();
+	}
+	
+	function f1()
+	{
+		var a1 = new appleNav;	
+		a1.init({
+			oParent:oDiv,
+			oChild:oImg	,
+			dir:'left',
+			w:'64px',
+			h:'100%',
+			pt:100
+		});		
+	}
+	
+	aBtn[1].onclick = function()
+	{
+		var a1 = new appleNav;	
+		a1.init({
+			oParent:oDiv,
+			oChild:oImg	,
+			dir:'center',
+			w:'100%',
+			h:'auto',
+			pa:'absolute',
+			ta:'center'	
+		});		
+	}
+	
+}
+
+function appleNav()
+{
+	this.setting = {
+		oParent:'',
+		oChild:'',
+		arr:[],
+		w:'64px',
+		h:'100%',
+		dir:'left',
+		pt:200,
+		pa:'',
+		ta:''
+	};	
+}
+
+appleNav.prototype = {
+	init : function(opt)
+	{
+		extend(this.setting,opt);
+		var This = this;
+		
+		if(this.setting.dir=='left')
+		{
+			this.setting.oParent.style.width = this.setting.w;
+			this.setting.oParent.style.height = this.setting.h;
+			this.setting.oParent.style.bottom = -130+'px';
+			this.setting.oParent.style.paddingTop = this.setting.pt+'px';
+		}else if(this.setting.dir=='center')
+		{
+			this.setting.oParent.style.width = this.setting.w+'%';
+			this.setting.oParent.style.height = this.setting.h;
+			this.setting.oParent.style.position = this.setting.pa;
+			this.setting.oParent.style.bottom = 0;
+			this.setting.oParent.style.textAlign = this.setting.ta;
+		}
+		
+		document.onmousemove = function(ev)
+		{
+			var ev = ev || window.event;
+			This.fnCp(ev);		
+		}
+	},
+	fnCp : function(ev)
+	{
+		if(this.setting.dir=='left')
+		{
+			for(var i=0;i<this.setting.oChild.length;i++)
+			{
+				var Y = this.setting.oChild[i].offsetTop+(this.setting.oChild[i].offsetHeight/2);
+				var X = this.setting.oChild[i].offsetLeft+(this.setting.oChild[i].offsetWidth/2)+this.setting.oParent.offsetLeft;
+				this.setting.arr.push([X,Y]);
+				
+				var a = ev.clientX - X;
+				var b = ev.clientY - Y;
+				var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+				var scale = 1 - c/300;
+				if(scale<0.5)
+				{
+					scale = 0.5;	
+				}
+				this.setting.oChild[i].style.width = scale*128+'px';
+				this.setting.oChild[i].style.height = scale*128+'px';
+			}	
+		}else if(this.setting.dir=='center')
+		{
+			for(var i=0;i<this.setting.oChild.length;i++)
+			{
+				var Y = this.setting.oChild[i].offsetTop+(this.setting.oChild[i].offsetHeight/2)+this.setting.oParent.offsetTop;
+				var X = this.setting.oChild[i].offsetLeft+(this.setting.oChild[i].offsetWidth/2);
+				this.setting.arr.push([X,Y]);
+				
+				var a = ev.clientX - X;
+				var b = ev.clientY - Y;
+				var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+				var scale = 1 - c/300;
+				if(scale<0.5)
+				{
+					scale = 0.5;	
+				}
+				this.setting.oChild[i].style.width = scale*128+'px';
+				this.setting.oChild[i].style.height = scale*128+'px';
+			}		
+		}
+		
+	},
+}
+
+function extend(obj1,obj2)
+{
+	for(var attr in obj2)
+	{
+		obj1[attr] = obj2[attr];
+	}
+}
+
+</script>
+</body>
+</html>

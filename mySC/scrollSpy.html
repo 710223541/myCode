@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+.wrap{overflow:hidden;width:1000px;margin:0 auto;position:relative;}
+ul,li{list-style:none;}
+#left{width:150px;background:#fff;position:fixed;top:100px;left:210px;}
+#ul1 li{line-height:30px;}
+#right{width:800px;float:right;margin-left:150px;}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <div id="left">
+  	<ul id="ul1">
+  		<li><a href="#div1">美国</a></li>
+        <li><a href="#div2">日本</a></li>
+        <li><a href="#div3">德国</a></li>
+        <li><a href="#div4">英国</a></li>
+        <li><a href="#div5">新加坡</a></li>
+        <li><a href="#div6">马来西亚</a></li>
+        <li><a href="#div7">中国</a></li>
+  	</ul>
+  </div>
+  <div id="right">
+  	<div style="height:100px;background:red;padding-top:30px;" id="div1">美国</div>
+    <div style="height:300px;background:yellow;padding-top:30px;" id="div2">日本</div>
+    <div style="height:400px;background:green;padding-top:30px;" id="div3">德国</div>
+    <div style="height:200px;background:blue;padding-top:30px;" id="div4">英国</div>
+    <div style="height:500px;background:pink;padding-top:30px;" id="div5">新加坡</div>
+    <div style="height:300px;background:gray;padding-top:30px;" id="div6">马来西亚</div>
+    <div style="height:100px;background:red;padding-top:30px;" id="div7">中国</div>
+  </div>
+</div>
+<script type="text/javascript">
+var arr = [];
+var aList = document.getElementById('right').getElementsByTagName('div');
+var a = document.getElementById('ul1').getElementsByTagName('a');
+for(var i=0;i<aList.length;i++)
+{
+	arr.push(aList[i].offsetHeight);	
+}
+
+console.log(arr);
+
+window.onscroll = function()
+{
+	console.log(document.body.scrollTop);
+
+	for(var i=0;i<arr.length;i++)
+	{
+		arr[i].index = i;
+		if(document.body.scrollTop>arr[i])
+		{
+			for(var i=0;i<a.length;i++)
+			{
+				a[i].style.color = '';
+				a[i].style.fontWeight = '';	
+			}
+			console.log(i);
+			
+			//a[i].style.color = 'red';
+			//a[i].style.fontWeight = 'blod';	
+		}
+		
+		alert(this.index);
+	}	
+}
+</script>
+</body>
+</html>

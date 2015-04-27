@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+img{border:none;}
+ul,li{list-style:none;}
+#ul1{width:660px;position:relative;margin:0 auto;}
+#ul1 li{float:left;width:200px;height:150px;margin:10px;}
+.cb{clear:both;}
+.tc{text-align:center;}
+.mt10{margin-top:10px;}
+.mb10{margin-bottom:10px;}
+</style>
+</head>
+
+<body>
+<p class="tc mt10 mb10"><input type="button" value="随机排序" id="aBtn"></p>
+<ul id="ul1">
+	<li><img src="photo/1.jpg" alt=""></li>
+	<li><img src="photo/2.jpg" alt=""></li>
+	<li><img src="photo/3.jpg" alt=""></li>
+	<li><img src="photo/4.jpg" alt=""></li>
+	<li><img src="photo/5.jpg" alt=""></li>
+	<li><img src="photo/1.jpg" alt=""></li>
+	<li><img src="photo/2.jpg" alt=""></li>
+	<li><img src="photo/3.jpg" alt=""></li>
+	<li><img src="photo/4.jpg" alt=""></li>
+    <div class="cb"></div>
+</ul>
+<script src="move.js"></script>
+<script type="text/javascript">
+var iZindex = 2;
+var oLi = document.getElementById('ul1').getElementsByTagName('li');
+var arr = [];
+var aBtn = document.getElementById('aBtn');
+aBtn.onclick = function()
+{
+	var randomArr = [0,1,2,3,4,5,6,7,8];
+	
+	randomArr.sort(function(n1,n2){
+		return Math.random()-0.5;	
+	});
+	
+	for(var i=0;i<oLi.length;i++)
+	{
+		startMove(oLi[i],{left:arr[randomArr[i]][0],top:arr[randomArr[i]][1]});
+		oLi[i].index = randomArr[i];
+	}	
+}
+for(var i=0;i<oLi.length;i++)
+{
+	arr.push([oLi[i].offsetLeft,oLi[i].offsetTop]);
+}
+
+for(var i=0;i<arr.length;i++)
+{
+	oLi[i].style.position = 'absolute';
+	oLi[i].style.left = arr[i][0]+'px';
+	oLi[i].style.top = arr[i][1]+'px';
+	oLi[i].style.margin = 0;		
+}
+
+for(var i=0;i<oLi.length;i++)
+{
+	oLi[i].index = i;
+	Drag(oLi[i]);
+}
+
+function Drag(obj)
+{
+	var disX = 0;
+	var disY = 0;
+	obj.onmousedown = function(ev)
+	{
+		obj.style.zIndex = iZindex++;
+		var ev = ev || window.event;
+		disX = ev.clientX - obj.offsetLeft;
+		disY = ev.clientY - obj.offsetTop;
+		
+		document.onmousemove = function(ev)
+		{
+			var ev = ev || window.event;
+			obj.style.left = ev.clientX - disX + 'px';
+			obj.style.top = ev.clientY - disY + 'px'; 
+			
+			for(var i=0;i<oLi.length;i++)
+			{
+				oLi[i].style.border = '';	
+			}
+			
+			var nL = nearLi(obj);
+			
+			if(nL)
+			{
+				nL.style.border = '2px solid red';
+			}
+		}
+		document.onmouseup = function()
+		{
+			document.onmousemove = null;
+			document.onmouseup = null;	
+			
+			var nL = nearLi(obj)
+			var tmp = 0;
+			if(nL)
+			{
+				startMove(nL,{left:arr[obj.index][0],top:arr[obj.index][1]});
+				startMove(obj,{left:arr[nL.index][0],top:arr[nL.index][1]});
+				nL.style.border = '';
+				tmp = obj.index;
+				obj.index = nL.index;	
+				nL.index = tmp;		
+			}else{
+				startMove(obj,{left:arr[obj.index][0],top:arr[obj.index][1]});	
+			}
+		}
+		
+		return false;
+	}	
+}
+
+function nearLi(obj1)
+{
+	var value = 9999;
+	var index = -1;
+	for(var i=0;i<oLi.length;i++)
+	{
+		if(PZ(obj1,oLi[i]) && obj1 != oLi[i])
+		{
+			var c = jl(obj1,oLi[i]);
+			if(c<value)
+			{
+				value = c;	
+				index = i;	
+			}
+		}
+	}
+	if(index!=-1)
+	{
+		return oLi[index];	
+	}else{
+		return false;	
+	}		
+}
+
+
+function jl(obj1,obj2)
+{
+	var a = obj1.offsetLeft - obj2.offsetLeft;
+	var b = obj1.offsetTop - obj2.offsetTop;
+	return Math.sqrt(a*a + b*b);
+}
+
+function PZ(obj1,obj2)
+{
+	var T1 = obj1.offsetTop;
+	var B1 = T1 + obj1.offsetHeight;
+	var L1 = obj1.offsetLeft;
+	var R1 = L1 + obj1.offsetWidth;
+	
+	var T2 = obj2.offsetTop;
+	var B2 = T2 + obj2.offsetHeight;
+	var L2 = obj2.offsetLeft;
+	var R2 = L2 + obj2.offsetWidth;
+	
+	if(T1>B2 || B1<T2 || L1>R2 || R1<L2)
+	{
+		return false;	
+	}else{
+		return true;	
+	}
+}
+</script>
+</body>
+</html>

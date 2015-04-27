@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹窗组件1</title>
+<style type="text/css">
+html,body,div,span{margin:0;padding:0;}
+.fl{float:left;}
+.fr{float:right;}
+.cb{clear:both;}
+.dialog_warp{border:1px solid #d5d5d5;position:absolute;}
+.dialog_title{height:30px;line-height:30px;background:#ccc;padding:0 10px;}
+
+</style>
+</head>
+
+<body>
+<div id="btn_warp">
+	<input type="button" value="登录">
+	<input type="button" value="消息">
+</div>
+<script type="text/javascript">
+
+
+var aBtn = $tag('input');
+
+aBtn[0].onclick = function()
+{
+	var d1 = new Dialog();
+	d1.init({
+		title : '登录'	
+	});	
+}
+
+aBtn[1].onclick = function()
+{
+	var d1 = new Dialog();
+	d1.init({
+		w : 200,
+		h : 400,
+		dir : 'right',
+		title : '消息'	
+	});	
+}
+
+
+function Dialog()
+{
+	this.setting = {
+		w : 300,
+		h : 300,
+		dir : 'center',	
+		title : ''
+	};	
+	
+	this.warp = null;
+}
+
+Dialog.prototype = 
+{
+	init : function(opt){
+		extend(this.setting,opt);
+		
+		this.create();
+	},
+	create : function()
+	{
+		this.warp = document.createElement('div');
+		this.warp.className = 'dialog_warp';
+		this.warp.innerHTML = '<div class="dialog_title"><span class="fl"></span><span class="fr">X</span></div><div class="dialog_cont"></div>';
+		document.body.appendChild(this.warp);
+		this.setData();
+		this.fnClose();	
+	},
+	setData : function()
+	{
+		this.warp.style.width = this.setting.w+"px";
+		this.warp.style.height = this.setting.h+"px";
+		if(this.setting.dir == 'center')
+		{
+			this.warp.style.left = (viewWidth() - this.warp.offsetWidth)/2+'px';
+			this.warp.style.top = (viewHeight() - this.warp.offsetHeight)/2+'px';		
+		}else if(this.setting.dir == 'right')
+		{
+			this.warp.style.left = (viewWidth() - this.warp.offsetWidth)+'px';
+			this.warp.style.top = (viewHeight() - this.warp.offsetHeight)+'px';	
+		};
+		var aTitle = $tag('span')[0];
+		aTitle.innerHTML = this.setting.title;	
+	},
+	fnClose : function()
+	{
+		var aCloseBtn = $tag('span')[1];
+		aCloseBtn.style.cursor = 'pointer';
+		var This = this;
+		aCloseBtn.onclick = function()
+		{
+			document.body.removeChild(This.warp);		
+		}	
+	}	
+}
+
+function viewWidth()
+{
+	return document.documentElement.clientWidth;	
+}
+function viewHeight()
+{
+	return document.documentElement.clientHeight;	
+}
+function $tag()
+{
+	if(arguments.length == 1)
+	{
+		return document.getElementsByTagName(arguments[0]);
+	}else if(arguments.length==2)
+	{
+		return document.getElementById(arguments[0]).getElementsByTagName(arguments[1]);
+	}
+}
+
+function extend(obj1,obj2)
+{
+	for(var attr in obj2)
+	{
+		obj1[attr] = obj2[attr];
+	}
+}
+
+</script>
+</body>
+</html>

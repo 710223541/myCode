@@ -44,7 +44,7 @@ a:hover{color:#fff;}
 	<a href="#">超级要塞</a>
 	<a href="#">世纪轰炸机</a>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 //随机颜色
 function randomColor()
 {
@@ -72,6 +72,24 @@ for(var i=0;i<aList.length;i++)
 }
 
 console.log(rand(5));
+</script>-->
+
+<script>
+	window.onload = function(){
+		var oA = document.getElementById("wrap").getElementsByClassName("a");
+		for(var i=0; i<oA.length; i++){
+			oA.style.color = '#' + randomColor();	
+		}	
+	}
+	
+	//随机取色
+	function randomColor(){
+		var str = Math.ceil(Math.random()*(256*256*256)).toString(16);
+		if(str.length<6){
+			str = '0' + str;	
+		}
+		return str; 	
+	}
 </script>
 </body>
 </html>

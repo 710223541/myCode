@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<link rel = "Shortcut Icon" href="images/png/myico.ico">
+<link rel="stylesheet" type="text/css" href="css/public/base.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+<div class="arr_wrap bc">
+  <nav class="pr">
+  	<div class="index_logo"><a href="javascript:;">logo</a></div>
+    <ul id="nav_list" class="fr">
+      <li><a href="javascript:;" data-hash="index">首页</a></li>
+      <li><a href="javascript:;" data-hash="demo">实例</a></li>
+      <li><a href="javascript:;" data-hash="blog">博客</a></li>
+      <li><a href="javascript:;" data-hash="about">关于</a></li>
+    </ul>
+    <div class="cb"></div>
+  </nav>
+  <div id="index_content">
+      <section data-hash="index" style="background:red;">首页内容</section>
+      <section data-hash="demo"  style="background:green;">实例内容</section>
+      <section data-hash="blog"  style="background:blue;">博客内容</section>
+      <section data-hash="about" style="background:yellow;">关于内容</section>
+  </div>
+</div>
+<script src="js/sea.js"></script>
+<script src="js/move.js"></script>
+<script type="text/javascript">
+seajs.use('main');
+</script>
+</body>
+</html>
