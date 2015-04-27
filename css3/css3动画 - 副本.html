@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0}
+        .div1{margin:0;padding:0;background: red;-webkit-transition:width 3s,height 2s,background 2s;width:100px;height:100px;}
+        .div1:hover{width:250px;height:250px;background:#ffff00;}
+        .div2{margin-top: 30px;width: 100px;height: 100px;background: #f05050;animation: demo 1s infinite;-webkit-animation: demo 1s infinite;-moz-animation: demo 1s infinite;-ms-animation:demo 1s infinite;-o-animation: demo 1s infinite;position:absolute;}
+        .div3{width:100px;height:100px;background:#00a8f3;animation:bounce 1s infinite;-webkit-animation:bounce 1s infinite;-moz-animation:bounce 1s infinite;-ms-animation:bounce 1s infinite;-o-animation:bounce 1s infinite;margin-top: 200px;}
+        @keyframes demo {
+            0%{background: #f06a6a;left:0px;}
+            20%{background: #00a8f3;left:150px;}
+            40%{background: #00b3ee;left:200px;}
+            60%{background: #ffff00;left:250px;}
+            80%{background: #ff6666;left:300px;}
+            100%{background: #ee3939;left:350px;}
+        }
+        @-webkit-keyframes demo {
+            0%{background: #f06a6a;left:0px;}
+            20%{background: #00a8f3;left:150px;}
+            40%{background: #00b3ee;left:200px;}
+            60%{background: #ffff00;left:250px;}
+            80%{background: #ff6666;left:300px;}
+            100%{background: #ee3939;left:350px;}
+        }
+        @-moz-keyframes demo {
+            0%{background: #f06a6a;left:0px;}
+            20%{background: #00a8f3;left:150px;}
+            40%{background: #00b3ee;left:200px;}
+            60%{background: #ffff00;left:250px;}
+            80%{background: #ff6666;left:300px;}
+            100%{background: #ee3939;left:350px;}
+        }
+        @-ms-keyframes demo {
+            0%{background: #f06a6a;left:0px;}
+            20%{background: #00a8f3;left:150px;}
+            40%{background: #00b3ee;left:200px;}
+            60%{background: #ffff00;left:250px;}
+            80%{background: #ff6666;left:300px;}
+            100%{background: #ee3939;left:350px;}
+        }
+        @-o-keyframes demo {
+            0%{background: #f06a6a;left:0px;}
+            20%{background: #00a8f3;left:150px;}
+            40%{background: #00b3ee;left:200px;}
+            60%{background: #ffff00;left:250px;}
+            80%{background: #ff6666;left:300px;}
+            100%{background: #ee3939;left:350px;}
+        }
+
+        @-webkit-keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
+            40% {-webkit-transform: translateY(-30px);}
+            60% {-webkit-transform: translateY(-15px);}
+        }
+
+        @-moz-keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+            40% {-moz-transform: translateY(-30px);}
+            60% {-moz-transform: translateY(-15px);}
+        }
+
+        @-ms-keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {-ms-transform: translateY(0);}
+            40% {-ms-transform: translateY(-30px);}
+            60% {-ms-transform: translateY(-15px);}
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-30px);}
+            60% {transform: translateY(-15px);}
+        }
+    </style>
+</head>
+<body>
+<div class="div1"></div>
+<div class="div2"></div>
+<div class="div3"></div>
+</body>
+</html>
